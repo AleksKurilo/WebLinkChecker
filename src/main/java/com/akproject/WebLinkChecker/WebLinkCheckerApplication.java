@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class WebLinkCheckerApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(WebLinkCheckerApplication.class, args);
 	}
 }
