@@ -31,11 +31,9 @@ public class WebLinkCheckerApplication {
 
 	//	SpringApplication.run(WebLinkCheckerApplication.class, args);
 		ConfigurableApplicationContext context = SpringApplication.run(WebLinkCheckerApplication.class);
-		UserRepository repository = (UserRepository)context.getBean(UserRepository.class);
+		UserRepository repository = context.getBean(UserRepository.class);
 
 		repository.save(new User("aleks"));
-
-
 
 	}
 }
