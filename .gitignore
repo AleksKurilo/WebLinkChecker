@@ -27,3 +27,8 @@ tmp/
 RUNNING_PID
 
 
+.ideaDataSources/
+WebLinkChecker.ipr
+WebLinkChecker.iws
+src/main/java/models/
+!/src/main/java/models/
