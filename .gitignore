@@ -25,8 +25,5 @@ tmp/
 .idea_modules
 .project
 RUNNING_PID
-/.gitignore
-.ideaDataSources/
-WebLinkChecker.ipr
-WebLinkChecker.iws
-src/main/java/models/
+
+
