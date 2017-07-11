@@ -1,24 +1,32 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-nbproject/private/
+# directories
+.settings/
+.target/
+.idea/
+.worksheet/
+bin/
 build/
-nbbuild/
 dist/
-nbdist/
-.nb-gradle/
+logs/
+node_modules/
+out/
+target/
+tmp/
+.mvn/
+
+# files
+*.iml
+*/.DS_Store
+\#*
+.cache
+.classpath
+.DS_Store
+.history
+.idea
+.idea_modules
+.project
+RUNNING_PID
+/.gitignore
+.ideaDataSources/
+WebLinkChecker.ipr
+WebLinkChecker.iws
+src/main/java/models/
