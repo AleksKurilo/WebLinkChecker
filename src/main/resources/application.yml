@@ -7,5 +7,4 @@ spring:
 
   jpa:
     hibernate:
-      dialect: org.hibernate.dialect.MySQL5Dialect
-      hbm2ddl_auto: update
+      hbm2ddl_auto: create
