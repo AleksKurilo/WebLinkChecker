@@ -6,5 +6,7 @@ spring:
     password: root
 
   jpa:
+    database: mysql
     hibernate:
-      hbm2ddl_auto: create
+       hbm2ddl_auto: create
+
