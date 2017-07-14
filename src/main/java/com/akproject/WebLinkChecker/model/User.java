@@ -1,4 +1,4 @@
-package models;
+package com.akproject.WebLinkChecker.model;
 
 
 import com.sun.istack.internal.NotNull;
@@ -15,7 +15,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @NotNull
     private String name;
@@ -36,11 +36,11 @@ public class User {
     }
 
     // get's and set's
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
