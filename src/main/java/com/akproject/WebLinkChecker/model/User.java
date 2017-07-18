@@ -20,7 +20,7 @@ public class User {
     private Long id;
 
     @NotNull
-    @Size(min = 10, max = 255)
+    @Size(min = 3, max = 255)
     private String name;
 
     //default constructor
@@ -53,7 +53,6 @@ public class User {
         return name;
     }
 
-    @Size(min = 3, max = 255)
     public void setName(String name) {
         this.name = name;
     }

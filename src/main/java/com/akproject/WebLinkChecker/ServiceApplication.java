@@ -8,11 +8,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.List;
-
 
 @SpringBootApplication
-public class WebLinkCheckerApplication {
+public class ServiceApplication {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -20,7 +18,7 @@ public class WebLinkCheckerApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(){
 		return args -> {
-			User user = new User("err");
+			User user = new User("ee");
 			userRepository.save(user);
 			//userRepository.delete(4L);
 
@@ -34,7 +32,7 @@ public class WebLinkCheckerApplication {
 	public static void main(String[] args) {
 
 
-		SpringApplication.run(WebLinkCheckerApplication.class, args);
+		SpringApplication.run(ServiceApplication.class, args);
 
 	}
 }
