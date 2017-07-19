@@ -18,7 +18,7 @@ public class ServiceApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(){
 		return args -> {
-			User user = new User("ee");
+			User user = new User("dima");
 			userRepository.save(user);
 			//userRepository.delete(4L);
 
