@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,11 +24,11 @@ public class User {
     private String name;
 
     //default constructor
-    protected User() {}
+    protected Project() {}
 
 
     // Constructor for work with Database
-    public User(String name){
+    public Project(String name){
         this.name = name;
     }
 
