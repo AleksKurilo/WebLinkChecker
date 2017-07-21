@@ -6,8 +6,7 @@ spring:
     password: root
 
   jpa:
-    database: mysql
-    hibernate:
-       hbm2ddl_auto: update
+  hibernate:
+  ddl-auto: update
 
 
