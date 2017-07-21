@@ -18,21 +18,11 @@ public class ServiceApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(){
 		return args -> {
-			Project project = new Project("dima");
+			Project project = new Project("olga");
 			projectRepository.save(project);
-			//userRepository.delete(4L);
-
-			//User user = userRepository.findOne(6L);
-			//user.setName("d");
-			//userRepository.save(user);
-
 		};
 	}
-
 	public static void main(String[] args) {
-
-
 		SpringApplication.run(ServiceApplication.class, args);
-
 	}
 }

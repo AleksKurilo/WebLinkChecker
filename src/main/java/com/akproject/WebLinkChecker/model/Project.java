@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 
 
 @Entity
-@Table(name = "users")
+@Table(name = "project")
 public class Project {
 
     @Id
@@ -23,11 +23,9 @@ public class Project {
     @Size(min = 3, max = 255)
     private String name;
 
-    //default constructor
     protected Project() {}
 
 
-    // Constructor for work with Database
     public Project(String name){
         this.name = name;
     }
