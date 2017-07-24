@@ -6,6 +6,8 @@ spring:
     password: root
 
   jpa:
+    database: mysql
     hibernate:
-      dialect: org.hibernate.dialect.MySQL5Dialect
-      hbm2ddl_auto: update
+       hbm2ddl_auto: update
+
+

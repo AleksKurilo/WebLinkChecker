@@ -1,30 +1,32 @@
-package models;
+package com.akproject.WebLinkChecker.model;
 
-import com.sun.istack.internal.NotNull;
+
+
 import javax.persistence.Table;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "project")
+public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @NotNull
+    @Size(min = 3, max = 255)
     private String name;
 
-    //default constructor
-    protected User() {}
+    protected Project() {}
 
 
-    // Constructor for work with Database
-    public User(String name){
+    public Project(String name){
         this.name = name;
     }
 
@@ -34,12 +36,14 @@ public class User {
         return String.format("User[id=%d, name='%s]", id, name );
     }
 
+
+
     // get's and set's
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
