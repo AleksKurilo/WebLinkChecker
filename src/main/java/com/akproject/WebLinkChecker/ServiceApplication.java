@@ -18,7 +18,7 @@ public class ServiceApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(){
 		return args -> {
-			Project project = new Project("aleks");
+			Project project = new Project("dimas");
 			projectRepository.save(project);
 		};
 	}
