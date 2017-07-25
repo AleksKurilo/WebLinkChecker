@@ -18,9 +18,8 @@ public class ServiceApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(){
 		return args -> {
-			//Project project = new Project("test2");
-			//projectService.addProject(project);
 
+			//test work ProjectService
 			Iterable<Project> itarableProject = projectService.findAll();
 
 			System.out.println("Project found with findAll():");
