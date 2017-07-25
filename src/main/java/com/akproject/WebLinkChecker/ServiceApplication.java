@@ -1,15 +1,12 @@
 package com.akproject.WebLinkChecker;
 
 import com.akproject.WebLinkChecker.model.Project;
-import com.akproject.WebLinkChecker.model.ProjectRepository;
 import com.akproject.WebLinkChecker.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.util.List;
 
 
 @SpringBootApplication
@@ -24,8 +21,14 @@ public class ServiceApplication {
 			//Project project = new Project("test2");
 			//projectService.addProject(project);
 
-			Iterable<Project> list = projectService.findAll();
+			Iterable<Project> itarableProject = projectService.findAll();
 
+			System.out.println("Project found with findAll():");
+			System.out.println("-------------------------------");
+			for (Project project : itarableProject) {
+				System.out.println(project);
+			}
+			System.out.println();
 		};
 	}
 	public static void main(String[] args) {
