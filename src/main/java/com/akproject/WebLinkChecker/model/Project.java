@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Data
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 public class Project {
 
     @Id
