@@ -12,22 +12,28 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ServiceApplication {
 
-	@Autowired
-	private ProjectService projectService;
+	//@Autowired
+	//private ProjectService projectService;
 
 	@Bean
 	public CommandLineRunner commandLineRunner(){
 		return args -> {
 
 			//test work ProjectService
-			Iterable<Project> itarableProject = projectService.findAll();
+			/*
+			   public void  showAll(){
+        Iterable<Project> itarableProject = projectService.findAll();
 
-			System.out.println("Project found with findAll():");
-			System.out.println("-------------------------------");
-			for (Project project : itarableProject) {
-				System.out.println(project);
-			}
-			System.out.println();
+        System.out.println("Project found with findAll():");
+        System.out.println("-------------------------------");
+        for (Project project : itarableProject) {
+            System.out.println(project);
+        }
+        System.out.println();
+    }
+}
+			 */
+
 		};
 	}
 	public static void main(String[] args) {
