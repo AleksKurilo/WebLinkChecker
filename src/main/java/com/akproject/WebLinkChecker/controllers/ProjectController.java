@@ -2,30 +2,29 @@ package com.akproject.WebLinkChecker.controllers;
 
 import com.akproject.WebLinkChecker.model.Project;
 import com.akproject.WebLinkChecker.service.ProjectService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
+@RequiredArgsConstructor
 public class ProjectController {
 
-    @Autowired
+    @NonNull
     private ProjectService projectService;
 
-    @RequestMapping(value = "/projects", method = RequestMethod.GET)
-    public @ResponseBody ModelAndView getListProjects() {
-        ModelMap model = new ModelMap();
-        Iterable<Project> projects = projectService.findAll();
-        model.addAttribute("projectList", projects);
+    @RequestMapping(path = "/projects", method = RequestMethod.GET)
+    public ModelAndView projects() {
+        List<Project> projects = projectService.findAll();
 
-        ModelAndView view = new ModelAndView("projectList", model);
-
-        return view;
+        ModelAndView modelAndView = new ModelAndView("templates/projects");
+        modelAndView.addObject("projects", projects);
+        return modelAndView;
     }
 
 }

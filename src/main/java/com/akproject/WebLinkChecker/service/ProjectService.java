@@ -21,7 +21,7 @@ public class ProjectService {
     }
 
     @Transactional(readOnly = true)
-    public Iterable<Project> findAll() {
+    public List<Project> findAll() {
 
         return projectRepository.findAll();
     }
