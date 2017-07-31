@@ -13,24 +13,6 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 @SpringBootApplication
 public class ServiceApplication {
 
-	@Autowired
-	private ProjectService projectService;
-
-	@Bean
-	public FreeMarkerConfigurer freeMarkerConfig(){
-		FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
-		freeMarkerConfigurer.setTemplateLoaderPath("/webapp/project.ftl");
-		return freeMarkerConfigurer;
-	}
-/*
-	@Bean
-	public CommandLineRunner commandLineRunner(){
-		return args -> {
-
-		};
-	}
-*/
-
 	public static void main(String[] args) {
 		SpringApplication.run(ServiceApplication.class, args);
 	}

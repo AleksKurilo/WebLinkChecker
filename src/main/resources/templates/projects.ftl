@@ -15,10 +15,10 @@
             </thead>
             <tbody>
             <#list projects as project>
-                 <tr>
-                     <td>${project.id}</td>
-                     <td>${project.name}</td>
-                </tr>
+            <tr>
+                <td>${project.id}</td>
+                <td>${project.name}</td>
+            </tr>
             </#list>
             </tbody>
         </table>
