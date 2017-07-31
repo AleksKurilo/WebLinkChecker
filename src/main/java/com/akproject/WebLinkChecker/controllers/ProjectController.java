@@ -22,7 +22,7 @@ public class ProjectController {
     public ModelAndView projects() {
         List<Project> projects = projectService.findAll();
 
-        ModelAndView modelAndView = new ModelAndView("templates/projects");
+        ModelAndView modelAndView = new ModelAndView("projects");
         modelAndView.addObject("projects", projects);
         return modelAndView;
     }
