@@ -16,8 +16,8 @@
             <tbody>
             <#list projects as project>
                  <tr>
-                 <td>${project.id}</td>
-                  <td>${project.name}</td>
+                     <td>${project.id}</td>
+                     <td>${project.name}</td>
                 </tr>
             </#list>
             </tbody>
