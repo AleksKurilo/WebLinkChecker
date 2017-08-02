@@ -30,5 +30,10 @@
                 <button type="submit" >Add project</button>
             </form>
         </p>
+        <p>
+             <form method="get" action="http://localhost:8080/projects/delete">
+                <button type="submit" >Delete project</button>
+            </form>
+        </p>
     </body>
 </html>
