@@ -26,7 +26,7 @@
             </tbody>
         </table>
         <p>
-            <form method="get" action="http://localhost:8080/weblinkcheker/projects/save">
+            <form method="get" action="http://localhost:8080/projects/save">
                 <button type="submit" >Add project</button>
             </form>
         </p>
