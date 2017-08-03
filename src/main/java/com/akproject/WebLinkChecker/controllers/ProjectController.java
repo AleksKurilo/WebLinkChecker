@@ -12,17 +12,12 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-//@RequestMapping(path = "/weblinkcheker")
 @RequiredArgsConstructor
 public class ProjectController {
 
     @NonNull
-    private ProjectService projectService;
+    private final ProjectService projectService;
 
-    /**
-     * Shows all progect in the database
-     * Показывает все проекта в базе данных
-     */
     @RequestMapping(path = "/projects", method = RequestMethod.GET)
     public ModelAndView projects() {
         List<Project> projects = projectService.findAll();
@@ -32,39 +27,24 @@ public class ProjectController {
         return modelAndView;
     }
 
-    /**
-     * Retrieves the add page
-     * Возвращает страницу Добавления
-     */
     @RequestMapping(path ="/projects/save", method = RequestMethod.GET)
     public ModelAndView saveView(){
         ModelAndView modelAndView = new ModelAndView("save");
         return modelAndView;
     }
 
-    /**
-     * Adds a new project by delegation the process to ProjectServisw
-     * Добавляет новый project используя ProjectServisw
-     */
-
     @RequestMapping(path = "/projects/save", method = RequestMethod.POST)
     public String saveProject(@ModelAttribute("project") Project project){
-        projectService.saveProject(project);
+        projectService.save(project);
         return "redirect:/projects";
     }
 
-    /**
-     * Retrieves the delete page
-     */
     @RequestMapping(path ="/projects/delete", method = RequestMethod.GET)
     public ModelAndView deleteView(){
         ModelAndView modelAndView = new ModelAndView("delete");
         return modelAndView;
     }
 
-    /**
-     * Deletes an existing project by delegating the processing to PersonService.
-     */
     @RequestMapping(path = "/projects/delete", method = RequestMethod.POST)
     public String deleteProject(@RequestParam Long id){
         projectService.deleteProject(id);

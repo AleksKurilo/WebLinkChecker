@@ -9,13 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class ProjectService {
 
     @Autowired
     public ProjectRepository projectRepository;
 
-    public void saveProject(Project project) {
+    @Transactional
+    public void save(Project project) {
         projectRepository.save(project);
     }
 
