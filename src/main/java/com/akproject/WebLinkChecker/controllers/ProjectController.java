@@ -7,8 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -29,24 +27,17 @@ public class ProjectController {
 
     @RequestMapping(path ="/projects/save", method = RequestMethod.GET)
     public ModelAndView saveView(){
-        ModelAndView modelAndView = new ModelAndView("save");
-        return modelAndView;
+        return new ModelAndView("save");
     }
 
     @RequestMapping(path = "/projects/save", method = RequestMethod.POST)
-    public String saveProject(@ModelAttribute("project") Project project){
+    public String save(@ModelAttribute("project") Project project){
         projectService.save(project);
         return "redirect:/projects";
     }
 
-    @RequestMapping(path ="/projects/delete", method = RequestMethod.GET)
-    public ModelAndView deleteView(){
-        ModelAndView modelAndView = new ModelAndView("delete");
-        return modelAndView;
-    }
-
-    @RequestMapping(path = "/projects/delete", method = RequestMethod.POST)
-    public String deleteProject(@RequestParam Long id){
+    @RequestMapping(path = " /projects/{id}/delete", method = RequestMethod.POST)
+    public String delete(@PathVariable long id){
         projectService.deleteProject(id);
         return "redirect:/projects";
     }
