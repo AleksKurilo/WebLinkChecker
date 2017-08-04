@@ -24,8 +24,8 @@
      <td>${project.name}</td>
      <td>
         <form>
-           <a href="/projects/{id}/delete" method="post" name="id">Delete</a>
-         </form>
+          <a href="/projects/${project.id}/delete" method="post" name="id">Delete</a>
+        </form>
 
      </td>
    </tr>
