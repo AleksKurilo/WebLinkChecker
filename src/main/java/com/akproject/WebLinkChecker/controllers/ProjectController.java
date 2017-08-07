@@ -36,9 +36,8 @@ public class ProjectController {
         return "redirect:/projects";
     }
 
-    @RequestMapping(path = " /projects/{id}/delete", method = RequestMethod.POST)
+    @RequestMapping(path = "/projects/{id}/delete", method = RequestMethod.GET)
     public String delete(@PathVariable long id){
-        System.out.println(id);
         projectService.deleteProject(id);
         return "redirect:/projects";
     }
