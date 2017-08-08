@@ -1,7 +1,7 @@
-package com.akproject.WebLinkChecker.service;
+package com.web.link.checker.project.service;
 
-import com.akproject.WebLinkChecker.model.Project;
-import com.akproject.WebLinkChecker.model.ProjectRepository;
+import com.web.link.checker.project.model.Project;
+import com.web.link.checker.project.repository.ProjectRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

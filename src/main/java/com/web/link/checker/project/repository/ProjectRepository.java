@@ -1,6 +1,7 @@
-package com.akproject.WebLinkChecker.model;
+package com.web.link.checker.project.repository;
 
 
+import com.web.link.checker.project.model.Project;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

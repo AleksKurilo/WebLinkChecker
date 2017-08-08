@@ -1,4 +1,4 @@
-package com.akproject.WebLinkChecker.model;
+package com.web.link.checker.project.model;
 
 import lombok.*;
 import javax.persistence.Entity;

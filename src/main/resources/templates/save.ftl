@@ -1,5 +1,5 @@
 <#--@ftlvariable name="projects" type="java.util.List"-->
-<#-- @ftlvariable name="projects" type="com.akproject.WebLinkChecker.model.Project"-->
+<#-- @ftlvariable name="projects" type="com.web.link.checker.project.model.Project"-->
 <!DOCTYPE html>
 <meta charset="utf-8">
 <html>
