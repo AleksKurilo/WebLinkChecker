@@ -6,7 +6,10 @@ spring:
     password: root
 
   jpa:
-  hibernate:
-  ddl-auto: update
-
+    hibernate:
+      ddl-auto: update
+  mvc:
+    view:
+      suffix: ftl
+      prefix: /templates/
 
