@@ -19,7 +19,8 @@ public class ProjectService {
         projectRepository.save(project);
     }
 
-    public void deleteProject(Long id){
+    @Transactional
+    public void delete(Long id){
         projectRepository.delete(id);
     }
 
