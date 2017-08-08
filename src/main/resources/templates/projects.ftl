@@ -10,13 +10,13 @@
 
 <body>
 
-<h1>Project table</h1>
+<h1>Project</h1>
 <table border="1" cellpadding="5" cellspacing="0" width="200" height="75">
     <thead>
     <tr>
         <th>Id</th>
         <th>Name</th>
-        <th>Delete project</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
