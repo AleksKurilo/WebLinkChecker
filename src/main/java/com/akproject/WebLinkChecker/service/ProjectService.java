@@ -2,16 +2,18 @@ package com.akproject.WebLinkChecker.service;
 
 import com.akproject.WebLinkChecker.model.Project;
 import com.akproject.WebLinkChecker.model.ProjectRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProjectService {
 
-    @Autowired
+    @NonNull
     public ProjectRepository projectRepository;
 
     @Transactional
