@@ -20,6 +20,6 @@ public class Project {
 
     @NotNull
     @Size(min = 3, max = 255)
-    @NonNull private String name;
+    private String name;
 
 }

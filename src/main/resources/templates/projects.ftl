@@ -3,18 +3,20 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <html>
+
 <head>
     <title>Project Page</title>
 </head>
-<body>
-<h1>Project table</h1>
 
+<body>
+
+<h1>Project table</h1>
 <table border="1" cellpadding="5" cellspacing="0" width="200" height="75">
     <thead>
     <tr>
         <th>Id</th>
         <th>Name</th>
-        <th>Edit</th>
+        <th>Delete project</th>
     </tr>
     </thead>
     <tbody>
@@ -32,5 +34,6 @@
 <p>
    <a href="/projects/save">Add Project</a>
 </p>
+
 </body>
 </html>
