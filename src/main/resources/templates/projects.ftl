@@ -7,7 +7,6 @@
 <head>
     <title>Project Page</title>
 </head>
-
 <body>
 
 <h1>Project table</h1>
