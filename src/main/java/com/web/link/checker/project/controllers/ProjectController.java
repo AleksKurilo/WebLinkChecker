@@ -1,16 +1,22 @@
 package com.web.link.checker.project.controllers;
 
-import com.web.link.checker.project.model.Project;
-import com.web.link.checker.project.service.ProjectService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 import java.util.List;
 
+import com.web.link.checker.project.model.Project;
+import com.web.link.checker.project.service.ProjectService;
+import static com.web.link.checker.project.controllers.ProjectBinding.*;
+
+
 @Controller
-@RequestMapping(path = "/projects")
+@RequestMapping(path = BASE_PATH)
 @RequiredArgsConstructor
 public class ProjectController {
 
@@ -20,27 +26,36 @@ public class ProjectController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView projects() {
         List<Project> projects = projectService.findAll();
-
         ModelAndView modelAndView = new ModelAndView("projects");
         modelAndView.addObject("projects", projects);
         return modelAndView;
     }
 
-    @RequestMapping(path ="/save", method = RequestMethod.GET)
+    @RequestMapping(path =SAVE, method = RequestMethod.GET)
     public ModelAndView saveView(){
         return new ModelAndView("save");
     }
 
-    @RequestMapping(path = "/save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("project") Project project){
-        projectService.save(project);
-        return "redirect:/projects";
+    @RequestMapping(path ="/saveError", method = RequestMethod.GET)
+    public ModelAndView saveViewError(){
+        return new ModelAndView("saveError");
     }
 
-    @RequestMapping(path = "/{id}/delete", method = RequestMethod.GET)
+    @RequestMapping(path = SAVE, method = RequestMethod.POST)
+    public String save(@ModelAttribute("project") @Valid Project project, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "/saveError";
+        }
+        projectService.save(project);
+        return "redirect:"+BASE_PATH+"/";
+    }
+
+
+
+    @RequestMapping(path = DELETE, method = RequestMethod.GET)
     public String delete(@PathVariable long id){
         projectService.delete(id);
-        return "redirect:/projects";
+        return "redirect:"+BASE_PATH+"/";
     }
 
 
