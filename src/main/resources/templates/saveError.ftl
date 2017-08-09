@@ -11,7 +11,7 @@
 <hr color="#008000" size="1" noshade>
 <form method="post" action="/projects/save">
     <p>Project Name: <input name="name" value="" type="text" placeholder="Enter name Project"/></p>
-    <p> Error </p>
+    <p> ${messageError} </p>
     <p>
         <input type="submit" value="Submit"/>
     </p>

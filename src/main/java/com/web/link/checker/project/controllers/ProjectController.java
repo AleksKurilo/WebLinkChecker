@@ -23,6 +23,8 @@ public class ProjectController {
     @NonNull
     private final ProjectService projectService;
 
+    BindingResult bindingResult;
+
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView projects() {
         List<Project> projects = projectService.findAll();
@@ -36,15 +38,21 @@ public class ProjectController {
         return new ModelAndView("save");
     }
 
-    @RequestMapping(path ="/saveError", method = RequestMethod.GET)
+    //Test method
+    @RequestMapping(path =SAVE_ERROR, method = RequestMethod.GET)
     public ModelAndView saveViewError(){
-        return new ModelAndView("saveError");
+        ModelAndView modelAndViewError = new ModelAndView("saveError");
+        String messageError = bindingResult.toString();
+        modelAndViewError.addObject("messageError", messageError);
+        return modelAndViewError;
     }
+
 
     @RequestMapping(path = SAVE, method = RequestMethod.POST)
     public String save(@ModelAttribute("project") @Valid Project project, BindingResult bindingResult){
+        this.bindingResult = bindingResult;
         if(bindingResult.hasErrors()){
-            return "/saveError";
+            return "redirect:"+BASE_PATH+SAVE_ERROR;
         }
         projectService.save(project);
         return "redirect:"+BASE_PATH+"/";
