@@ -18,7 +18,7 @@ public class Project {
     private Long id;
 
     @NotNull
-    @Size(min = 3, max = 255)
+    @Size(min = 3, max = 255, message = "Size must be between 3 and 250 !")
     private String name;
 
 }

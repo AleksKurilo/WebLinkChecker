@@ -33,16 +33,17 @@ public class ProjectController {
         return modelAndView;
     }
 
+
     @RequestMapping(path =SAVE, method = RequestMethod.GET)
     public ModelAndView saveView(){
         return new ModelAndView("save");
     }
 
-    //Test method
+
     @RequestMapping(path =SAVE_ERROR, method = RequestMethod.GET)
     public ModelAndView saveViewError(){
         ModelAndView modelAndViewError = new ModelAndView("saveError");
-        String messageError = bindingResult.toString();
+        String messageError = bindingResult.getFieldError("name").getDefaultMessage();
         modelAndViewError.addObject("messageError", messageError);
         return modelAndViewError;
     }
@@ -57,7 +58,6 @@ public class ProjectController {
         projectService.save(project);
         return "redirect:"+BASE_PATH+"/";
     }
-
 
 
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
