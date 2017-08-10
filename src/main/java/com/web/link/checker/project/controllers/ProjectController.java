@@ -23,7 +23,7 @@ public class ProjectController {
     @NonNull
     private final ProjectService projectService;
 
-    BindingResult bindingResult;
+    private BindingResult bindingResult;
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView projects() {
