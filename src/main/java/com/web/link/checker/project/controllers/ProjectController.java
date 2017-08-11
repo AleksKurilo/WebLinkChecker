@@ -34,7 +34,7 @@ public class ProjectController {
     }
 
 
-    @RequestMapping(path =SAVE, method = RequestMethod.GET)
+    @RequestMapping(path = SAVE, method = RequestMethod.GET)
     public ModelAndView saveView(){
         return new ModelAndView("save");
     }
@@ -59,6 +59,16 @@ public class ProjectController {
         return "redirect:"+BASE_PATH+"/";
     }
 
+    @RequestMapping(path = "/{id}/edit", method = RequestMethod.GET)
+    public ModelAndView editView(){
+        return new ModelAndView("edit");
+    }
+
+    @RequestMapping(path = "/{id}/edit", method = RequestMethod.POST)
+    public String edit(@PathVariable long id, @ModelAttribute("name") String name){
+        projectService.edit(id, name);
+        return "redirect:"+BASE_PATH+"/";
+    }
 
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
     public String delete(@PathVariable long id){

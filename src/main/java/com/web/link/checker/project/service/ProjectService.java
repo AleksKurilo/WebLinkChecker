@@ -30,4 +30,11 @@ public class ProjectService {
     public List<Project> findAll() {
         return projectRepository.findAll();
     }
+
+    @Transactional
+    public void edit(Long id, String name){
+        Project project = projectRepository.findOne(id);
+        project.setName(name);
+        projectRepository.save(project);
+    }
 }
