@@ -1,5 +1,6 @@
 package com.web.link.checker.project.controllers;
 
+import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,8 +16,8 @@ import static com.web.link.checker.project.controllers.ProjectBinding.*;
 
 @Controller
 @RequestMapping(path = BASE_PATH)
-@RequiredArgsConstructor
-public class ProjectController {
+@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
+public final class ProjectController {
 
     @NonNull
     private final ProjectService projectService;
