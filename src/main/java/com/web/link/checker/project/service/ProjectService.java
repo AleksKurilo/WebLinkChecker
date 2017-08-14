@@ -32,9 +32,9 @@ public class ProjectService {
     }
 
     @Transactional
-    public void update(Long id, String name){
-        Project project = projectRepository.findOne(id);
-        project.setName(name);
+    public void update(Long id, Project project){
+       // Project exproject = projectRepository.findOne(id);
+        project.setId(id);
         projectRepository.save(project);
     }
 }

@@ -6,10 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.validation.Valid;
 import java.util.List;
-
 import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.service.ProjectService;
 import static com.web.link.checker.project.controllers.ProjectBinding.*;
@@ -38,15 +36,6 @@ public class ProjectController {
         return new ModelAndView("save");
     }
 
-
-    @RequestMapping(path =SAVE_ERROR, method = RequestMethod.GET)
-    public ModelAndView saveViewError(){
-        ModelAndView modelAndViewError = new ModelAndView("saveError");
-        String messageError = bindingResult.getFieldError("name").getDefaultMessage();
-        modelAndViewError.addObject("messageError", messageError);
-        return modelAndViewError;
-    }
-
     @RequestMapping(path = SAVE, method = RequestMethod.POST)
     public String save(@ModelAttribute("project") @Valid Project project, BindingResult bindingResult){
         this.bindingResult = bindingResult;
@@ -57,15 +46,36 @@ public class ProjectController {
         return "redirect:"+BASE_PATH+"/";
     }
 
+    @RequestMapping(path =SAVE_ERROR, method = RequestMethod.GET)
+    public ModelAndView saveViewError(){
+        ModelAndView modelAndViewError = new ModelAndView("saveError");
+        String messageError = bindingResult.getFieldError("name").getDefaultMessage();
+        modelAndViewError.addObject("messageError", messageError);
+        return modelAndViewError;
+    }
+
     @RequestMapping(path = UPDATE, method = RequestMethod.GET)
-    public ModelAndView editView(){
+    public ModelAndView updateView(){
         return new ModelAndView("update");
     }
 
+
     @RequestMapping(path = UPDATE, method = RequestMethod.POST)
-    public String update(@PathVariable long id, @ModelAttribute("name") String name){
-        projectService.update(id, name);
+    public String update(@PathVariable long id, @ModelAttribute("project") @Valid Project project, BindingResult bindingResult){
+        this.bindingResult = bindingResult;
+        if(bindingResult.hasErrors()){
+            return "redirect:"+BASE_PATH+UPDATE_ERROR;
+        }
+        projectService.update(id, project);
         return "redirect:"+BASE_PATH+"/";
+    }
+
+    @RequestMapping(path = UPDATE_ERROR, method = RequestMethod.GET)
+    public ModelAndView updateViewError(){
+        ModelAndView modelAndViewError =  new ModelAndView("updateError");
+        String messageError = bindingResult.getFieldError("name").getDefaultMessage();
+        modelAndViewError.addObject("messageError", messageError);
+        return modelAndViewError;
     }
 
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
