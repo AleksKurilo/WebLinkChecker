@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.List;
@@ -34,18 +35,22 @@ public final class ProjectController {
 
     @RequestMapping(path = SAVE, method = RequestMethod.GET)
     public ModelAndView saveView(){
-        return new ModelAndView("save");
+
+        return new ModelAndView("save", "command", new Project());
     }
+
 
     @RequestMapping(path = SAVE, method = RequestMethod.POST)
     public String save(@ModelAttribute("project") @Valid Project project, BindingResult bindingResult){
         this.bindingResult = bindingResult;
+
         if(bindingResult.hasErrors()){
-            return "redirect:"+BASE_PATH+SAVE_ERROR;
+            return BASE_PATH+SAVE; //"No message available"
         }
         projectService.save(project);
-        return "redirect:"+BASE_PATH+"/";
+        return "redirect:"+BASE_PATH;
     }
+
 
     @RequestMapping(path =SAVE_ERROR, method = RequestMethod.GET)
     public ModelAndView saveViewError(){
@@ -55,10 +60,12 @@ public final class ProjectController {
         return modelAndViewError;
     }
 
+
     @RequestMapping(path = UPDATE, method = RequestMethod.GET)
     public ModelAndView updateView(){
         return new ModelAndView("update");
     }
+
 
 
     @RequestMapping(path = UPDATE, method = RequestMethod.POST)
@@ -68,8 +75,9 @@ public final class ProjectController {
             return "redirect:"+BASE_PATH+UPDATE_ERROR;
         }
         projectService.update(id, project);
-        return "redirect:"+BASE_PATH+"/";
+        return "redirect:"+BASE_PATH;
     }
+
 
     @RequestMapping(path = UPDATE_ERROR, method = RequestMethod.GET)
     public ModelAndView updateViewError(){
@@ -78,6 +86,7 @@ public final class ProjectController {
         modelAndViewError.addObject("messageError", messageError);
         return modelAndViewError;
     }
+
 
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
     public String delete(@PathVariable long id){
