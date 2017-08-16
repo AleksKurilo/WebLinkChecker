@@ -45,7 +45,7 @@ public final class ProjectController {
         this.bindingResult = bindingResult;
 
         if(bindingResult.hasErrors()){
-            return BASE_PATH+SAVE; //"No message available"
+            return BASE_PATH+SAVE;
         }
         projectService.save(project);
         return "redirect:"+BASE_PATH;
