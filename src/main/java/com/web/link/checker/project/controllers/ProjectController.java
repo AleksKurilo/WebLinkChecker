@@ -50,7 +50,7 @@ public final class ProjectController {
         projectService.save(project);
         return "redirect:"+BASE_PATH;
     }
-
+//======================================DO NOT UPDATE====================================
 
     @RequestMapping(path =SAVE_ERROR, method = RequestMethod.GET)
     public ModelAndView saveViewError(){
@@ -75,7 +75,7 @@ public final class ProjectController {
             return "redirect:"+BASE_PATH+UPDATE_ERROR;
         }
         projectService.update(id, project);
-        return "redirect:"+BASE_PATH;
+        return "redirect:" + BASE_PATH;
     }
 
 
@@ -91,7 +91,7 @@ public final class ProjectController {
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
     public String delete(@PathVariable long id){
         projectService.delete(id);
-        return "redirect:"+BASE_PATH+"/";
+        return "redirect:" + BASE_PATH;
     }
 
 }
