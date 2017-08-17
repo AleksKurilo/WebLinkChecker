@@ -12,7 +12,6 @@ import java.util.List;
 import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.service.ProjectService;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import static com.web.link.checker.project.controllers.ProjectBinding.*;
 
 
@@ -35,32 +34,21 @@ public final class ProjectController {
     @RequestMapping(path = SAVE, method = RequestMethod.GET)
     public ModelAndView saveView(){
         ModelAndView modelAndView = new ModelAndView("save", "project", new Project());
-
         return modelAndView;
     }
 
     @RequestMapping(path = SAVE, method = RequestMethod.POST)
-    public String save(@ModelAttribute("project") @Valid Project project,
-                       BindingResult bindingResult,
+    public String save(@ModelAttribute("project") @Valid Project project, BindingResult bindingResult,
                        RedirectAttributes redirectAttributes){
-
         if(bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute( bindingResult);
+            redirectAttributes.addFlashAttribute( "error",bindingResult);
             return BASE_PATH+SAVE;
         }
         projectService.save(project);
         return "redirect:"+BASE_PATH;
     }
-//======================================DO NOT UPDATE====================================
-
-    @RequestMapping(path =SAVE_ERROR, method = RequestMethod.GET)
-    public ModelAndView saveViewError(){
-        ModelAndView modelAndViewError = new ModelAndView("saveError");
-   //     String messageError = bindingResult.getFieldError("name").getDefaultMessage();
-   //     modelAndViewError.addObject("messageError", messageError);
-        return modelAndViewError;
-    }
-
+    /*
+//===================================== NOT CORRECTED BEGIN =========================================================
 
     @RequestMapping(path = UPDATE, method = RequestMethod.GET)
     public ModelAndView updateView(){
@@ -79,7 +67,6 @@ public final class ProjectController {
         return "redirect:" + BASE_PATH;
     }
 
-
     @RequestMapping(path = UPDATE_ERROR, method = RequestMethod.GET)
     public ModelAndView updateViewError(){
         ModelAndView modelAndViewError =  new ModelAndView("updateError");
@@ -88,6 +75,8 @@ public final class ProjectController {
         return modelAndViewError;
     }
 
+    //====================================== END ==================================================================
+    */
 
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
     public String delete(@PathVariable long id){
