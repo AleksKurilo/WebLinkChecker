@@ -6,12 +6,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.List;
 import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.service.ProjectService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import static com.web.link.checker.project.controllers.ProjectBinding.*;
 
 
@@ -22,7 +23,6 @@ public final class ProjectController {
 
     @NonNull
     private final ProjectService projectService;
-
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView projects() {
@@ -40,9 +40,12 @@ public final class ProjectController {
     }
 
     @RequestMapping(path = SAVE, method = RequestMethod.POST)
-    public String save(@ModelAttribute("project") @Valid Project project, BindingResult bindingResult){
+    public String save(@ModelAttribute("project") @Valid Project project,
+                       BindingResult bindingResult,
+                       RedirectAttributes redirectAttributes){
 
         if(bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute( bindingResult);
             return BASE_PATH+SAVE;
         }
         projectService.save(project);

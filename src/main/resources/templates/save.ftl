@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <title>Add Project</title>
 </head>
 <body>
@@ -16,16 +17,9 @@
            <@spring.bind "project.name"/>
 
             <@spring.formInput "project.name"/>
-
-             <br>
-                <#if spring.status??>
-                    <#list spring.status.errorMessages as error>
-                        <b>${error}</b>
-                        <br>
-                    </#list>
-                </#if>
-             <br>
-
+            <#if spring.status.error>
+                <@spring.showErrors "project.name","error" />
+            </#if>
          </p>
          <p>
             <input type="submit" value="Submit"/>
