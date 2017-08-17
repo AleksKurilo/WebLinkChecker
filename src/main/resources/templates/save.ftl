@@ -14,7 +14,9 @@
     <form method="post" action="/projects/save">
          <p>Project Name:
            <@spring.bind "project.name"/>
-             <input name="${spring.status.expression}" value="${spring.status.value?html}" type="text" placeholder="Enter name Project"/>
+
+            <@spring.formInput "project.name"/>
+
              <br>
                 <#if spring.status??>
                     <#list spring.status.errorMessages as error>
@@ -23,6 +25,7 @@
                     </#list>
                 </#if>
              <br>
+
          </p>
          <p>
             <input type="submit" value="Submit"/>

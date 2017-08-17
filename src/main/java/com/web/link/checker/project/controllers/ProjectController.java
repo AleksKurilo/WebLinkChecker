@@ -23,7 +23,6 @@ public final class ProjectController {
     @NonNull
     private final ProjectService projectService;
 
-    private BindingResult bindingResult;
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView projects() {
@@ -35,14 +34,13 @@ public final class ProjectController {
 
     @RequestMapping(path = SAVE, method = RequestMethod.GET)
     public ModelAndView saveView(){
+        ModelAndView modelAndView = new ModelAndView("save", "project", new Project());
 
-        return new ModelAndView("save", "command", new Project());
+        return modelAndView;
     }
-
 
     @RequestMapping(path = SAVE, method = RequestMethod.POST)
     public String save(@ModelAttribute("project") @Valid Project project, BindingResult bindingResult){
-        this.bindingResult = bindingResult;
 
         if(bindingResult.hasErrors()){
             return BASE_PATH+SAVE;
@@ -55,8 +53,8 @@ public final class ProjectController {
     @RequestMapping(path =SAVE_ERROR, method = RequestMethod.GET)
     public ModelAndView saveViewError(){
         ModelAndView modelAndViewError = new ModelAndView("saveError");
-        String messageError = bindingResult.getFieldError("name").getDefaultMessage();
-        modelAndViewError.addObject("messageError", messageError);
+   //     String messageError = bindingResult.getFieldError("name").getDefaultMessage();
+   //     modelAndViewError.addObject("messageError", messageError);
         return modelAndViewError;
     }
 
@@ -70,7 +68,7 @@ public final class ProjectController {
 
     @RequestMapping(path = UPDATE, method = RequestMethod.POST)
     public String update(@PathVariable long id, @ModelAttribute("project") @Valid Project project, BindingResult bindingResult){
-        this.bindingResult = bindingResult;
+   //     this.bindingResult = bindingResult;
         if(bindingResult.hasErrors()){
             return "redirect:"+BASE_PATH+UPDATE_ERROR;
         }
@@ -82,8 +80,8 @@ public final class ProjectController {
     @RequestMapping(path = UPDATE_ERROR, method = RequestMethod.GET)
     public ModelAndView updateViewError(){
         ModelAndView modelAndViewError =  new ModelAndView("updateError");
-        String messageError = bindingResult.getFieldError("name").getDefaultMessage();
-        modelAndViewError.addObject("messageError", messageError);
+   //     String messageError = bindingResult.getFieldError("name").getDefaultMessage();
+   //     modelAndViewError.addObject("messageError", messageError);
         return modelAndViewError;
     }
 
