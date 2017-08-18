@@ -43,7 +43,7 @@ public final class ProjectController {
         if(bindingResult.hasErrors()){
             redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
             redirectAttr.addFlashAttribute("project", project);
-            return BASE_PATH + SAVE;
+            return "redirect:" + BASE_PATH + SAVE;
         }
         projectService.save(project);
         return "redirect:" + BASE_PATH;
