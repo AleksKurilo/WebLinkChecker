@@ -33,21 +33,19 @@ public final class ProjectController {
 
     @RequestMapping(path = SAVE, method = RequestMethod.GET)
     public ModelAndView saveView(){
-        ModelAndView modelAndView = new ModelAndView("save", "project", new Project());
-        return modelAndView;
+       return new ModelAndView("save", "project", new Project());
     }
 
     @RequestMapping(path = SAVE, method = RequestMethod.POST)
-    public String save(@ModelAttribute("project") @Valid Project project, BindingResult bindingResult,
-                       RedirectAttributes redirectAttributes){
+    public String save(@ModelAttribute("project") @Valid Project project, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute( "error",bindingResult);
             return BASE_PATH+SAVE;
         }
         projectService.save(project);
         return "redirect:"+BASE_PATH;
     }
-    /*
+
+/*
 //===================================== NOT CORRECTED BEGIN =========================================================
 
     @RequestMapping(path = UPDATE, method = RequestMethod.GET)

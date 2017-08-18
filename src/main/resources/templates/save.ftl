@@ -13,9 +13,9 @@
     <p>Project Name:
     <@spring.bind "project.name"/>
     <@spring.formInput "project.name"/>
-    <#if spring.status.error>
-      <@spring.showErrors "project.name","error" />
-    </#if>
+       <#if spring.status.error>
+          <@spring.showErrors separator= ","/>
+       </#if>
     </p>
     <p>
         <input type="submit" value="Submit"/>
