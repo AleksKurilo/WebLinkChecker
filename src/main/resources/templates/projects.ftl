@@ -10,31 +10,31 @@
 
 <body>
 
-<h1>Project</h1>
-<table border="1" cellpadding="5" cellspacing="0" width="200" height="75">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <#list projects as project>
-    <tr>
-        <td>${project.id}</td>
-        <td>${project.name}</td>
-        <td>
-            <a href="/projects/${project.id}/delete">Delete</a>
-            <a href="/projects/${project.id}/update">Edit</a>
-        </td>
-    </tr>
-    </#list>
-    </tbody>
-</table>
-<p>
-   <a href="/projects/save">Add Project</a>
-</p>
+    <h1>Project</h1>
+    <table border="1" cellpadding="5" cellspacing="0" width="200" height="75">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <#list projects as project>
+        <tr>
+            <td>${project.id}</td>
+            <td>${project.name}</td>
+            <td>
+                <a href="/projects/${project.id}/delete">Delete</a>
+                <a href="/projects/${project.id}/update">Edit</a>
+            </td>
+        </tr>
+        </#list>
+        </tbody>
+    </table>
+    <p>
+       <a href="/projects/save">Add Project</a>
+    </p>
 
 </body>
 </html>

@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,52 +33,42 @@ public final class ProjectController {
     }
 
     @RequestMapping(path = SAVE, method = RequestMethod.GET)
-    public ModelAndView saveView(){
-        ModelAndView modelAndView = new ModelAndView("save", "project", new Project());
-        return modelAndView;
+    public String saveView(Model model){
+        if(!model.containsAttribute("project")) {
+            model.addAttribute("project", new Project());
+        }
+        return "save";
     }
 
     @RequestMapping(path = SAVE, method = RequestMethod.POST)
-    public String save(@ModelAttribute("project") @Valid Project project, BindingResult bindingResult, RedirectAttributes redirectAttr ){
+    public String save(@ModelAttribute("project") @Valid Project project, BindingResult bindingResult, RedirectAttributes redirectAttr){
         if(bindingResult.hasErrors()){
             redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
             redirectAttr.addFlashAttribute("project", project);
-            return "redirect:" + BASE_PATH + SAVE;
+           return "redirect:" + BASE_PATH + SAVE;
         }
         projectService.save(project);
         return "redirect:" + BASE_PATH;
     }
 
-/*
-//===================================== NOT CORRECTED BEGIN =========================================================
-
     @RequestMapping(path = UPDATE, method = RequestMethod.GET)
-    public ModelAndView updateView(){
-        return new ModelAndView("update");
+    public String updateView(Model model){
+        if(!model.containsAttribute("project")){
+            model.addAttribute("project", new Project());
+        }
+        return "update";
     }
 
-
-
     @RequestMapping(path = UPDATE, method = RequestMethod.POST)
-    public String update(@PathVariable long id, @ModelAttribute("project") @Valid Project project, BindingResult bindingResult){
-   //     this.bindingResult = bindingResult;
+    public String update(@PathVariable long id, @ModelAttribute("project") @Valid Project project, BindingResult bindingResult, RedirectAttributes redirectAttributes){
         if(bindingResult.hasErrors()){
-            return "redirect:"+BASE_PATH+UPDATE_ERROR;
+           redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
+           redirectAttributes.addFlashAttribute("project", project);
+           return "redirect:" + BASE_PATH + UPDATE;
         }
         projectService.update(id, project);
         return "redirect:" + BASE_PATH;
     }
-
-    @RequestMapping(path = UPDATE_ERROR, method = RequestMethod.GET)
-    public ModelAndView updateViewError(){
-        ModelAndView modelAndViewError =  new ModelAndView("updateError");
-   //     String messageError = bindingResult.getFieldError("name").getDefaultMessage();
-   //     modelAndViewError.addObject("messageError", messageError);
-        return modelAndViewError;
-    }
-
-    //====================================== END ==================================================================
-    */
 
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
     public String delete(@PathVariable long id){
