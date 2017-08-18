@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,16 +34,19 @@ public final class ProjectController {
 
     @RequestMapping(path = SAVE, method = RequestMethod.GET)
     public ModelAndView saveView(){
-       return new ModelAndView("save", "project", new Project());
+        ModelAndView modelAndView = new ModelAndView("save", "project", new Project());
+        return modelAndView;
     }
 
     @RequestMapping(path = SAVE, method = RequestMethod.POST)
-    public String save(@ModelAttribute("project") @Valid Project project, BindingResult bindingResult){
+    public String save(@ModelAttribute("project") @Valid Project project, BindingResult bindingResult, RedirectAttributes redirectAttr ){
         if(bindingResult.hasErrors()){
-            return BASE_PATH+SAVE;
+            redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
+            redirectAttr.addFlashAttribute("project", project);
+            return BASE_PATH + SAVE;
         }
         projectService.save(project);
-        return "redirect:"+BASE_PATH;
+        return "redirect:" + BASE_PATH;
     }
 
 /*

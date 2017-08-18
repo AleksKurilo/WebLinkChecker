@@ -13,10 +13,14 @@
     <p>Project Name:
     <@spring.bind "project.name"/>
     <@spring.formInput "project.name"/>
-       <#if spring.status.error>
-          <@spring.showErrors separator= ","/>
-       </#if>
-    </p>
+    <#if spring.status??>
+        <p>
+            <#list spring.status.errorMessages as error>
+                <strong>${error}</strong> <br>
+            </#list>
+        </p>
+    </#if>
+        </p>
     <p>
         <input type="submit" value="Submit"/>
     </p>
