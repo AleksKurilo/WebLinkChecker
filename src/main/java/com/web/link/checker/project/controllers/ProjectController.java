@@ -26,9 +26,6 @@ public final class ProjectController {
     @NonNull
     private final ProjectService projectService;
 
-    @NonNull
-    private MessageSource messageSource;
-
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView projects() {
         List<Project> projects = projectService.findAll();
