@@ -3,8 +3,6 @@ package com.web.link.checker.project.controllers;
 import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +17,7 @@ import static com.web.link.checker.project.controllers.ProjectBinding.*;
 
 
 @Controller
-@RequestMapping(path = ProjectBinding.BASE_PATH)
+@RequestMapping(path = BASE_PATH)
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ProjectController {
 
@@ -34,26 +32,26 @@ public final class ProjectController {
         return modelAndView;
     }
 
-    @RequestMapping(path = ProjectBinding.SAVE, method = RequestMethod.GET)
+    @RequestMapping(path = SAVE, method = RequestMethod.GET)
     public String saveView(Model model){
         if(!model.containsAttribute("project")) {
-            model.addAttribute("project", new Project());
+            model.addAttribute("project", new ProjectInsert());
         }
         return "save";
     }
 
-    @RequestMapping(path = ProjectBinding.SAVE, method = RequestMethod.POST)
-    public String save(@ModelAttribute("project") @Valid Project project, BindingResult bindingResult, RedirectAttributes redirectAttr){
+    @RequestMapping(path = SAVE, method = RequestMethod.POST)
+    public String save(@ModelAttribute("project") @Valid ProjectInsert projectInsert, BindingResult bindingResult, RedirectAttributes redirectAttr){
         if(bindingResult.hasErrors()){
             redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
-            redirectAttr.addFlashAttribute("project", project);
-           return "redirect:" + ProjectBinding.BASE_PATH + ProjectBinding.SAVE;
+            redirectAttr.addFlashAttribute("project", projectInsert);
+           return "redirect:" + BASE_PATH + SAVE;
         }
-        projectService.save(project);
-        return "redirect:" + ProjectBinding.BASE_PATH;
+        projectService.save(projectInsert);
+        return "redirect:" + BASE_PATH;
     }
-
-    @RequestMapping(path = ProjectBinding.UPDATE, method = RequestMethod.GET)
+//===================================================DO NOT CHANGE YET===================================================================================
+    @RequestMapping(path = UPDATE, method = RequestMethod.GET)
     public String updateView(Model model){
         if(!model.containsAttribute("project")){
             model.addAttribute("project", new Project());
@@ -61,21 +59,21 @@ public final class ProjectController {
         return "update";
     }
 
-    @RequestMapping(path = ProjectBinding.UPDATE, method = RequestMethod.POST)
+    @RequestMapping(path = UPDATE, method = RequestMethod.POST)
     public String update(@PathVariable long id, @ModelAttribute("project") @Valid Project project, BindingResult bindingResult, RedirectAttributes redirectAttributes){
         if(bindingResult.hasErrors()){
            redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
            redirectAttributes.addFlashAttribute("project", project);
-           return "redirect:" + ProjectBinding.BASE_PATH + ProjectBinding.UPDATE;
+           return "redirect:" + BASE_PATH + UPDATE;
         }
         projectService.update(id, project);
-        return "redirect:" + ProjectBinding.BASE_PATH;
+        return "redirect:" + BASE_PATH;
     }
-
-    @RequestMapping(path = ProjectBinding.DELETE, method = RequestMethod.GET)
+//======================================================= END ===========================================================================
+    @RequestMapping(path = DELETE, method = RequestMethod.GET)
     public String delete(@PathVariable long id){
         projectService.delete(id);
-        return "redirect:" + ProjectBinding.BASE_PATH;
+        return "redirect:" + BASE_PATH;
     }
 
 }

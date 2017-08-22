@@ -1,5 +1,6 @@
 package com.web.link.checker.project.service;
 
+import com.web.link.checker.project.controllers.ProjectInsert;
 import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.repository.ProjectRepository;
 import lombok.NonNull;
@@ -17,7 +18,9 @@ public class ProjectService {
     public ProjectRepository projectRepository;
 
     @Transactional
-    public void save(Project project) {
+    public void save(ProjectInsert projectInsert) {
+        String projectInsertName = projectInsert.getName();
+        Project project = new Project(projectInsertName);
         projectRepository.save(project);
     }
 
@@ -33,7 +36,6 @@ public class ProjectService {
 
     @Transactional
     public void update(Long id, Project project){
-       // Project exproject = projectRepository.findOne(id);
         project.setId(id);
         projectRepository.save(project);
     }

@@ -10,6 +10,8 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Project {
 
     @Id
@@ -18,6 +20,13 @@ public class Project {
 
     @NotNull
     @Size(min = 3, max = 255)
-    private String name;
+    @NonNull private String name;
 
+    /*
+    public Project (){}
+
+    public Project(String name){
+        this.name = name;
+   }
+   */
 }
