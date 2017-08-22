@@ -22,11 +22,4 @@ public class Project {
     @Size(min = 3, max = 255)
     @NonNull private String name;
 
-    /*
-    public Project (){}
-
-    public Project(String name){
-        this.name = name;
-   }
-   */
 }

@@ -17,6 +17,11 @@ public class ProjectService {
     @NonNull
     public ProjectRepository projectRepository;
 
+    @Transactional(readOnly = true)
+    public List<Project> findAll() {
+        return projectRepository.findAll();
+    }
+
     @Transactional
     public void save(ProjectInsert projectInsert) {
         String projectInsertName = projectInsert.getName();
@@ -25,18 +30,15 @@ public class ProjectService {
     }
 
     @Transactional
-    public void delete(Long id){
-        projectRepository.delete(id);
-    }
-
-    @Transactional(readOnly = true)
-    public List<Project> findAll() {
-        return projectRepository.findAll();
-    }
-
-    @Transactional
     public void update(Long id, Project project){
         project.setId(id);
         projectRepository.save(project);
     }
+
+    @Transactional
+    public void delete(Long id){
+        projectRepository.delete(id);
+    }
+
+
 }
