@@ -10,7 +10,7 @@
 <body>
     <h1>Edit Project</h1>
 
-    <form method="post" action="">
+    <form method="post" action="update">
         <p>Project Name:
         <@spring.bind "project.name"/>
             <input type="text" name="name" value="${project.name!}">
