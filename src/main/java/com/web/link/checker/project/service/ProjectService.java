@@ -6,6 +6,7 @@ import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.repository.ProjectRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,10 +14,10 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProjectService {
+public  class ProjectService {
 
     @NonNull
-    public ProjectRepository projectRepository;
+    public final ProjectRepository projectRepository;
 
     @Transactional(readOnly = true)
     public List<Project> findAll() {
@@ -24,7 +25,8 @@ public class ProjectService {
     }
 
     @Transactional
-    public void save(ProjectInsert projectInsert) {
+    public void insert(ProjectInsert projectInsert) {
+        Validate.notNull(projectInsert, "ProjectInsert is null");
         Project project = new Project();
         project.setName(projectInsert.getName());
         projectRepository.save(project);
@@ -32,8 +34,8 @@ public class ProjectService {
 
     @Transactional
     public void update(Long id, ProjectUpdate projectUpdate){
-        Project project = new Project();
-        project.setId(id);
+        Validate.notNull(projectUpdate, "ProjectUpdate is null");
+        Project project = projectRepository.findOne(id);
         project.setName(projectUpdate.getName());
         projectRepository.save(project);
     }
