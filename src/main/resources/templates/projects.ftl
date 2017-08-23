@@ -10,7 +10,7 @@
 
 <body>
 
-    <h1>Project</h1>
+    <h1>Projects</h1>
     <table border="1" cellpadding="5" cellspacing="0" width="200" height="75">
         <thead>
         <tr>

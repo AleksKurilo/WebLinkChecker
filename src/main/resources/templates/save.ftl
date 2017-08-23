@@ -10,7 +10,6 @@
 
 <body>
   <h1>Add Project </h1>
-  <hr color="#008000" size="1" noshade>
 
     <form method="post" action="/projects/save">
        <p>Project Name:

@@ -9,7 +9,6 @@
 </head>
 <body>
     <h1>Edit Project</h1>
-    <hr color="#008000" size="1" noshade>
 
     <form method="post" action="">
         <p>Project Name:
