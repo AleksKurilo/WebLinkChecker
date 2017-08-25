@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.UUID;
 
 
 @Entity
@@ -21,4 +22,5 @@ public class Project {
     @Size(min = 3, max = 255)
     private String name;
 
+    private String uuid = UUID.randomUUID().toString();
 }
