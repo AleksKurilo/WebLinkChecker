@@ -1,6 +1,5 @@
 package com.web.link.checker.project.controllers;
 
-import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -74,8 +73,8 @@ public class ProjectController {
     }
 
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
-    public String delete(@PathVariable long id) {
-        projectService.delete(id);
+    public String delete(@PathVariable String uuid) {
+        projectService.delete(uuid);
         return "redirect:" + BASE_PATH;
     }
 
