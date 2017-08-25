@@ -1,4 +1,4 @@
-package com.akproject.WebLinkChecker;
+package com.web.link.checker.project;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
