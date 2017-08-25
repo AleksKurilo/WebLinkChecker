@@ -22,7 +22,7 @@
         <tbody>
         <#list projects as project>
         <tr>
-            <td>${project.id}</td>
+            <td>${project.uuid}</td>
             <td>${project.name}</td>
             <td>
                 <a href="/projects/${project.id}/delete">Delete</a>

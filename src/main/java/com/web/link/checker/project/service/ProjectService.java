@@ -41,7 +41,9 @@ public  class ProjectService {
     }
 
     @Transactional
-    public void delete(Long id){
+    public void delete(String uuid){
+        Project project = projectRepository.findByUuid(uuid);
+        Long id = project.getId();
         projectRepository.delete(id);
     }
 

@@ -74,8 +74,8 @@ public class ProjectController {
     }
 
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
-    public String delete(@PathVariable long id) {
-        projectService.delete(id);
+    public String delete(@PathVariable String uuid) {
+        projectService.delete(uuid);
         return "redirect:" + BASE_PATH;
     }
 
