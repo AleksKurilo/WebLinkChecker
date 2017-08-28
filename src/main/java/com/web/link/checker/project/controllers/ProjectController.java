@@ -62,13 +62,13 @@ public class ProjectController {
     }
 
     @RequestMapping(path = UPDATE, method = RequestMethod.POST)
-    public String update(@PathVariable Long id, @ModelAttribute("project") @Valid ProjectUpdate projectUpdate, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String update(@PathVariable String uuid, @ModelAttribute("project") @Valid ProjectUpdate projectUpdate, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if(bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
             redirectAttributes.addFlashAttribute("project", projectUpdate);
             return "redirect:" + BASE_PATH + UPDATE;
         }
-        projectService.update(id, projectUpdate);
+        projectService.update(uuid, projectUpdate);
         return "redirect:" + BASE_PATH;
     }
 

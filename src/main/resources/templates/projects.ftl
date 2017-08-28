@@ -26,7 +26,7 @@
             <td>${project.name}</td>
             <td>
                 <a href="/projects/${project.uuid}/delete">Delete</a>
-                <a href="/projects/${project.id}/update">Edit</a>
+                <a href="/projects/${project.uuid}/update">Edit</a>
             </td>
         </tr>
         </#list>

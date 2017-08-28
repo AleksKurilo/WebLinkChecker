@@ -33,9 +33,9 @@ public  class ProjectService {
     }
 
     @Transactional
-    public void update(Long id, ProjectUpdate projectUpdate){
+    public void update(String uuid, ProjectUpdate projectUpdate){
         Validate.notNull(projectUpdate, "ProjectUpdate is null");
-        Project project = projectRepository.findOne(id);
+        Project project = projectRepository.findByUuid(uuid);
         project.setName(projectUpdate.getName());
         projectRepository.save(project);
     }
