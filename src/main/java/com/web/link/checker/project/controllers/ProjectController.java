@@ -1,5 +1,6 @@
 package com.web.link.checker.project.controllers;
 
+import com.web.link.checker.project.service.ProjectFacade;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,18 @@ import static com.web.link.checker.project.controllers.ProjectBinding.*;
 @RequiredArgsConstructor
 public class ProjectController {
 
+
+    @NonNull
+    private ProjectFacade projectFacade;
+
+    @RequestMapping( method = RequestMethod.GET)
+    public ModelAndView projects() {
+        List<ProjectProjection> projectProjections = projectFacade.findAll();
+        ModelAndView modelAndView = new ModelAndView("projects");
+        modelAndView.addObject("projectProjections", projectProjections);
+        return modelAndView;
+    }
+/*
     @NonNull
     private final ProjectService projectService;
 
@@ -34,7 +47,7 @@ public class ProjectController {
         return modelAndView;
     }
 
-    @RequestMapping(path = SAVE, method = RequestMethod.GET)
+        @RequestMapping(path = SAVE, method = RequestMethod.GET)
     public String insertView(Model model) {
         if(!model.containsAttribute("project")) {
             model.addAttribute("project", new ProjectInsert());
@@ -77,5 +90,7 @@ public class ProjectController {
         projectService.delete(uuid);
         return "redirect:" + BASE_PATH;
     }
+*/
+
 
 }
