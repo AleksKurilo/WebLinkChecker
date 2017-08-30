@@ -14,7 +14,7 @@
     <table border="1" cellpadding="5" cellspacing="0" width="200" height="75">
         <thead>
         <tr>
-         <!-- <th>Id</th> -->
+            <th>UUID</th>
             <th>Name</th>
             <th>Actions</th>
         </tr>
@@ -22,11 +22,11 @@
         <tbody>
         <#list projectProjections as projectProjection>
         <tr>
-
+            <td>${projectProjection.uuid}</td>
             <td>${projectProjection.name}</td>
             <td>
-              <!--  <a href="/projects/${project.uuid}/delete">Delete</a> -->
-              <!-- <a href="/projects/${project.uuid}/update">Edit</a> -->
+              <a href="/projects/${projectProjection.uuid}/delete">Delete</a>
+              <a href="/projects/${projectProjection.uuid}/update">Edit</a>
             </td>
         </tr>
         </#list>

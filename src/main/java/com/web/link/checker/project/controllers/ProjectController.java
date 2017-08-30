@@ -1,5 +1,8 @@
 package com.web.link.checker.project.controllers;
 
+import com.web.link.checker.project.model.ProjectInsert;
+import com.web.link.checker.project.model.ProjectProjection;
+import com.web.link.checker.project.model.ProjectUpdate;
 import com.web.link.checker.project.service.ProjectFacade;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.List;
 
-import com.web.link.checker.project.model.Project;
-import com.web.link.checker.project.service.ProjectService;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static com.web.link.checker.project.controllers.ProjectBinding.*;
@@ -24,9 +25,9 @@ import static com.web.link.checker.project.controllers.ProjectBinding.*;
 @RequiredArgsConstructor
 public class ProjectController {
 
-
     @NonNull
     private ProjectFacade projectFacade;
+
 
     @RequestMapping( method = RequestMethod.GET)
     public ModelAndView projects() {
@@ -35,19 +36,8 @@ public class ProjectController {
         modelAndView.addObject("projectProjections", projectProjections);
         return modelAndView;
     }
-/*
-    @NonNull
-    private final ProjectService projectService;
 
-    @RequestMapping( method = RequestMethod.GET)
-    public ModelAndView projects() {
-        List<Project> projects = projectService.findAll();
-        ModelAndView modelAndView = new ModelAndView("projects");
-        modelAndView.addObject("projects", projects);
-        return modelAndView;
-    }
-
-        @RequestMapping(path = SAVE, method = RequestMethod.GET)
+    @RequestMapping(path = SAVE, method = RequestMethod.GET)
     public String insertView(Model model) {
         if(!model.containsAttribute("project")) {
             model.addAttribute("project", new ProjectInsert());
@@ -62,7 +52,7 @@ public class ProjectController {
             redirectAttr.addFlashAttribute("project", projectInsert);
             return "redirect:" + BASE_PATH + SAVE;
         }
-        projectService.insert(projectInsert);
+        projectFacade.insert(projectInsert);
         return "redirect:" + BASE_PATH;
     }
 
@@ -81,16 +71,14 @@ public class ProjectController {
             redirectAttributes.addFlashAttribute("project", projectUpdate);
             return "redirect:" + BASE_PATH + UPDATE;
         }
-        projectService.update(uuid, projectUpdate);
+        projectFacade.update(uuid, projectUpdate);
         return "redirect:" + BASE_PATH;
     }
 
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
     public String delete(@PathVariable String uuid) {
-        projectService.delete(uuid);
+        projectFacade.delete(uuid);
         return "redirect:" + BASE_PATH;
     }
-*/
-
 
 }

@@ -1,10 +1,11 @@
 package com.web.link.checker.project.service;
 
-import com.web.link.checker.project.controllers.ProjectProjection;
+import com.web.link.checker.project.model.ProjectInsert;
+import com.web.link.checker.project.model.ProjectProjection;
+import com.web.link.checker.project.model.ProjectUpdate;
 import com.web.link.checker.project.model.Project;
 import lombok.Data;
 import lombok.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class ProjectFacade {
     @NonNull
     private final ProjectService projectService;
 
-    @Autowired
+    @NonNull
     private ConversionService conversionService;
 
     public List<ProjectProjection>  findAll(){
@@ -32,6 +33,18 @@ public class ProjectFacade {
             projectProjections.add(projectProjection);
         }
         return projectProjections;
+    }
+
+    public void insert(ProjectInsert projectInsert){
+        projectService.insert(projectInsert);
+    }
+
+    public void update(String uuid, ProjectUpdate projectUpdate){
+        projectService.update(uuid, projectUpdate);
+    }
+
+    public void delete(String uuid){
+        projectService.delete(uuid);
     }
 
 }

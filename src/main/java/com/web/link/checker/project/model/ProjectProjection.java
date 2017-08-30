@@ -1,4 +1,4 @@
-package com.web.link.checker.project.controllers;
+package com.web.link.checker.project.model;
 
 import lombok.Data;
 
@@ -9,4 +9,6 @@ public class ProjectProjection {
 
     @NotNull
     private String name;
+
+    private String uuid;
 }
