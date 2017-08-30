@@ -36,6 +36,7 @@ public  class ProjectService {
 
     @Transactional
     public void update(String uuid, ProjectUpdate projectUpdate){
+        Validate.notNull(uuid, "uuid is null in ProjectService.class");
         Validate.notNull(projectUpdate, "projectUpdate is null in ProjectService.class");
         Project project = projectRepository.findByUuid(uuid);
         project.setName(projectUpdate.getName());

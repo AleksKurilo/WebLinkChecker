@@ -1,6 +1,6 @@
 package com.web.link.checker.project.config;
 
-import com.web.link.checker.project.service.ProjectToProjectProjection;
+import com.web.link.checker.project.service.ProjectToProjectProjectionConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ConversionServiceFactoryBean;
@@ -17,7 +17,7 @@ public class ConversionConfiguration {
     ConversionServiceFactoryBean conversionService() {
         ConversionServiceFactoryBean bean = new ConversionServiceFactoryBean();
         Set<Converter> converters = new HashSet<>();
-        converters.add(new ProjectToProjectProjection());
+        converters.add(new ProjectToProjectProjectionConverter());
         bean.setConverters(converters);
         return bean;
     }
