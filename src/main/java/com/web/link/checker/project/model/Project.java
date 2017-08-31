@@ -21,6 +21,7 @@ public class Project {
     @Size(min = 3, max = 255)
     private String name;
 
-    private String uuid = UUID.randomUUID().toString();
+    @NotNull
+    private String uuid;
 
 }

@@ -10,7 +10,9 @@ import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +32,9 @@ public  class ProjectService {
     public void insert(ProjectInsert projectInsert) {
         Validate.notNull(projectInsert, "projectInsert is null in ProjectService.class");
         Project project = new Project();
+        String uuid = UUID.randomUUID().toString();
         project.setName(projectInsert.getName());
+        project.setUuid(uuid);
         projectRepository.save(project);
     }
 

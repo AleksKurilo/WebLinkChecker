@@ -9,7 +9,6 @@ import org.springframework.core.convert.converter.Converter;
 
 public final class ProjectToProjectProjectionConverter implements Converter<Project, ProjectProjection> {
 
-
     @Override
     public ProjectProjection convert(Project project){
         Validate.notNull(project, "project is null in ProjectToProjectProjectionConverter.class");
