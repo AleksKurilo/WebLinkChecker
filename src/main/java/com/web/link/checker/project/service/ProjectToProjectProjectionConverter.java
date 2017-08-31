@@ -4,10 +4,12 @@ import com.web.link.checker.project.model.ProjectProjection;
 import com.web.link.checker.project.model.Project;
 
 import org.apache.commons.lang3.Validate;
+
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
-
-public final class ProjectToProjectProjectionConverter implements Converter<Project, ProjectProjection> {
+@Component
+public class ProjectToProjectProjectionConverter implements Converter<Project, ProjectProjection> {
 
     @Override
     public ProjectProjection convert(Project project){
@@ -18,5 +20,4 @@ public final class ProjectToProjectProjectionConverter implements Converter<Proj
         return projectProjection;
     }
 
-
-}
+ }

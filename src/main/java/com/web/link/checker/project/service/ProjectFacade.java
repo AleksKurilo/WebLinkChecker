@@ -11,8 +11,8 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,8 +27,8 @@ public class ProjectFacade {
     public List<ProjectProjection>  findAll(){
         List<Project> projects = projectService.findAll();
         List<ProjectProjection> projectProjections = projects.stream()
-                    .map(project -> conversionService.convert(project, ProjectProjection.class))
-                    .collect(Collectors.toList());
+                .map(project -> conversionService.convert(project, ProjectProjection.class))
+                .collect(Collectors.toList());
         return projectProjections;
     }
 
