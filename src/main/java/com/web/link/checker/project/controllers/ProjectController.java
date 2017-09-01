@@ -26,7 +26,7 @@ import static com.web.link.checker.project.controllers.ProjectBinding.*;
 public class ProjectController {
 
     @NonNull
-    private ProjectFacade projectFacade;
+    private final ProjectFacade projectFacade;
 
 
     @RequestMapping( method = RequestMethod.GET)

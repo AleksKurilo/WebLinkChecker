@@ -10,6 +10,7 @@ import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +24,6 @@ public  class ProjectService {
     @Transactional(readOnly = true)
     public List<Project> findAll() {
         List<Project> projects =  projectRepository.findAll();
-        Validate.notNull(projects, "List<Project> projects is null in ProjectService.class");
         return projects;
     }
 
@@ -39,19 +39,17 @@ public  class ProjectService {
 
     @Transactional
     public void update(String uuid, ProjectUpdate projectUpdate){
-        Validate.notNull(uuid, "uuid is null in ProjectService.class");
+        Validate.notBlank(uuid, "uuid is blank in ProjectService.class");
         Validate.notNull(projectUpdate, "projectUpdate is null in ProjectService.class");
-        Project project = projectRepository.findByUuid(uuid);
+        Project project = projectRepository.findOneByUuid(uuid);
         project.setName(projectUpdate.getName());
         projectRepository.save(project);
     }
 
     @Transactional
     public void delete(String uuid){
-        Project project = projectRepository.findByUuid(uuid);
-        Validate.notNull(project, "project is null in ProjectService.class");
-        Long id = project.getId();
-        projectRepository.delete(id);
+        Validate.notNull(uuid, "project is null in ProjectService.class");
+        projectRepository.deleteByUuid(uuid);
     }
 
 }
