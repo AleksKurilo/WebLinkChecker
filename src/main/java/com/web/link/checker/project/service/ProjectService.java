@@ -29,7 +29,8 @@ public  class ProjectService {
 
     @Transactional
     public void insert(ProjectInsert projectInsert) {
-        Validate.notNull(projectInsert, "projectInsert is null in ProjectService.class");
+        Validate.notNull(projectInsert, "projectInsert is null");
+
         Project project = new Project();
         String uuid = UUID.randomUUID().toString();
         project.setName(projectInsert.getName());
@@ -39,8 +40,9 @@ public  class ProjectService {
 
     @Transactional
     public void update(String uuid, ProjectUpdate projectUpdate){
-        Validate.notBlank(uuid, "uuid is blank in ProjectService.class");
-        Validate.notNull(projectUpdate, "projectUpdate is null in ProjectService.class");
+        Validate.notBlank(uuid, "uuid is blank");
+        Validate.notNull(projectUpdate, "projectUpdate is null");
+
         Project project = projectRepository.findOneByUuid(uuid);
         project.setName(projectUpdate.getName());
         projectRepository.save(project);
@@ -48,7 +50,8 @@ public  class ProjectService {
 
     @Transactional
     public void delete(String uuid){
-        Validate.notNull(uuid, "project is null in ProjectService.class");
+        Validate.notNull(uuid, "project is null");
+
         projectRepository.deleteByUuid(uuid);
     }
 
