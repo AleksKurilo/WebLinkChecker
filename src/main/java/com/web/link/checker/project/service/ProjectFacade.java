@@ -34,16 +34,19 @@ public class ProjectFacade {
 
     public void insert(ProjectInsert projectInsert){
         Validate.notNull(projectInsert, "projectInsert is null in ProjectFacade.class");
+
         projectService.insert(projectInsert);
     }
 
     public void update(String uuid, ProjectUpdate projectUpdate){
         Validate.notNull(projectUpdate, "projectUpdate is null in ProjectFacade.class");
+
         projectService.update(uuid, projectUpdate);
     }
 
     public void delete(String uuid){
         Validate.notNull(uuid, "uuid is null in ProjectService.class");
+
         projectService.delete(uuid);
     }
 

@@ -14,6 +14,7 @@ public class ProjectToProjectProjectionConverter implements Converter<Project, P
     @Override
     public ProjectProjection convert(Project project){
         Validate.notNull(project, "project is null in ProjectToProjectProjectionConverter.class");
+
         ProjectProjection projectProjection = new ProjectProjection();
         projectProjection.setName(project.getName());
         projectProjection.setUuid(project.getUuid());
