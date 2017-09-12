@@ -1,6 +1,7 @@
 package com.web.link.checker.project.model;
 
 import lombok.*;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,7 +12,7 @@ import javax.validation.constraints.Size;
 @Data
 @Table(
         indexes = {
-                @Index(columnList = "uuid", name = "uuid")
+                @Index(columnList = "uuid", name = "uuid", unique = true)
         })
 public class Project {
 
@@ -23,7 +24,7 @@ public class Project {
     @Size(min = 3, max = 255)
     private String name;
 
-    @NotNull
+    @NotEmpty
     private String uuid;
 
 }

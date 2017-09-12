@@ -29,7 +29,7 @@ public class ProjectController {
     private final ProjectFacade projectFacade;
 
 
-    @RequestMapping( method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView projects() {
         List<ProjectProjection> projectProjections = projectFacade.findAll();
         ModelAndView modelAndView = new ModelAndView("projects");

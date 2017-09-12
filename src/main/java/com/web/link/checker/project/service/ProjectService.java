@@ -24,12 +24,12 @@ public  class ProjectService {
     @Transactional(readOnly = true)
     public List<Project> findAll() {
         List<Project> projects =  projectRepository.findAll();
-        return projects;
+       return projects;
     }
 
     @Transactional
     public void insert(ProjectInsert projectInsert) {
-        Validate.notNull(projectInsert, "projectInsert is null");
+        ValidateService.validateNotNull(projectInsert, "projectInsert");
 
         Project project = new Project();
         String uuid = UUID.randomUUID().toString();
@@ -40,8 +40,8 @@ public  class ProjectService {
 
     @Transactional
     public void update(String uuid, ProjectUpdate projectUpdate){
-        Validate.notBlank(uuid, "uuid is blank");
-        Validate.notNull(projectUpdate, "projectUpdate is null");
+        ValidateService.validateNotBlank(uuid, "projectUpdate");
+        ValidateService.validateNotNull(projectUpdate, "projectUpdate");
 
         Project project = projectRepository.findOneByUuid(uuid);
         project.setName(projectUpdate.getName());
@@ -50,7 +50,7 @@ public  class ProjectService {
 
     @Transactional
     public void delete(String uuid){
-        Validate.notNull(uuid, "project is null");
+        ValidateService.validateNotNull(uuid, "in delete method");
 
         projectRepository.deleteByUuid(uuid);
     }
