@@ -4,6 +4,7 @@ import com.web.link.checker.project.model.ProjectInsert;
 import com.web.link.checker.project.model.ProjectUpdate;
 import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.repository.ProjectRepository;
+import com.web.link.checker.project.utils.ValidateUtils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public  class ProjectService {
 
     @Transactional
     public void insert(ProjectInsert projectInsert) {
-        ValidateService.validateNotNull(projectInsert, "projectInsert");
+        ValidateUtils.notNull(projectInsert, "projectInsert");
 
         Project project = new Project();
         String uuid = UUID.randomUUID().toString();
@@ -38,9 +39,9 @@ public  class ProjectService {
 
     @Transactional
     public void update(String uuid, ProjectUpdate projectUpdate){
-        ValidateService.validateNotBlank(uuid, "projectUpdate");
-        ValidateService.validateNotEmpty(uuid, "projectUpdate");
-        ValidateService.validateNotNull(projectUpdate, "projectUpdate");
+        ValidateUtils.notBlank(uuid, "uuid");
+        ValidateUtils.notEmpty(uuid, "uuid");
+        ValidateUtils.notNull(projectUpdate, "projectUpdate");
 
         Project project = projectRepository.findOneByUuid(uuid);
         project.setName(projectUpdate.getName());
@@ -49,7 +50,7 @@ public  class ProjectService {
 
     @Transactional
     public void delete(String uuid){
-        ValidateService.validateNotBlank(uuid, "in delete method");
+       ValidateUtils.notBlank(uuid, "uuid");
 
         projectRepository.deleteByUuid(uuid);
     }
