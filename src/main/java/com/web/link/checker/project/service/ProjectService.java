@@ -6,7 +6,6 @@ import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.repository.ProjectRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +22,7 @@ public  class ProjectService {
 
     @Transactional(readOnly = true)
     public List<Project> findAll() {
-        List<Project> projects =  projectRepository.findAll();
-       return projects;
+       return projectRepository.findAll();
     }
 
     @Transactional
@@ -41,6 +39,7 @@ public  class ProjectService {
     @Transactional
     public void update(String uuid, ProjectUpdate projectUpdate){
         ValidateService.validateNotBlank(uuid, "projectUpdate");
+        ValidateService.validateNotEmpty(uuid, "projectUpdate");
         ValidateService.validateNotNull(projectUpdate, "projectUpdate");
 
         Project project = projectRepository.findOneByUuid(uuid);
@@ -50,7 +49,7 @@ public  class ProjectService {
 
     @Transactional
     public void delete(String uuid){
-        ValidateService.validateNotNull(uuid, "in delete method");
+        ValidateService.validateNotBlank(uuid, "in delete method");
 
         projectRepository.deleteByUuid(uuid);
     }
