@@ -16,14 +16,14 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public  class ProjectService {
+public class ProjectService {
 
     @NonNull
     public final ProjectRepository projectRepository;
 
     @Transactional(readOnly = true)
     public List<Project> findAll() {
-       return projectRepository.findAll();
+        return projectRepository.findAll();
     }
 
     @Transactional
@@ -38,7 +38,7 @@ public  class ProjectService {
     }
 
     @Transactional
-    public void update(String uuid, ProjectUpdate projectUpdate){
+    public void update(String uuid, ProjectUpdate projectUpdate) {
         ValidateUtils.notBlank(uuid, "uuid");
         ValidateUtils.notNull(projectUpdate, "projectUpdate");
 
@@ -48,8 +48,8 @@ public  class ProjectService {
     }
 
     @Transactional
-    public void delete(String uuid){
-       ValidateUtils.notBlank(uuid, "uuid");
+    public void delete(String uuid) {
+        ValidateUtils.notBlank(uuid, "uuid");
 
         projectRepository.deleteByUuid(uuid);
     }
