@@ -53,5 +53,4 @@ public class ProjectService {
 
         projectRepository.deleteByUuid(uuid);
     }
-
 }
