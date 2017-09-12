@@ -40,7 +40,6 @@ public  class ProjectService {
     @Transactional
     public void update(String uuid, ProjectUpdate projectUpdate){
         ValidateUtils.notBlank(uuid, "uuid");
-        ValidateUtils.notEmpty(uuid, "uuid");
         ValidateUtils.notNull(projectUpdate, "projectUpdate");
 
         Project project = projectRepository.findOneByUuid(uuid);
