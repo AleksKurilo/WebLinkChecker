@@ -8,8 +8,10 @@ import java.util.List;
 
 @Repository
 public interface ProjectRepository extends CrudRepository<Project, Long> {
-    List<Project> findByName(String name);
+
+    Project findOneByUuid(String uuid);
 
     List<Project> findAll();
 
+    void deleteByUuid(String uuid);
 }

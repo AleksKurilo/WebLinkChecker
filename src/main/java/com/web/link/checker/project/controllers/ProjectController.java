@@ -1,6 +1,9 @@
 package com.web.link.checker.project.controllers;
 
-import lombok.AccessLevel;
+import com.web.link.checker.project.model.ProjectInsert;
+import com.web.link.checker.project.model.ProjectProjection;
+import com.web.link.checker.project.model.ProjectUpdate;
+import com.web.link.checker.project.service.ProjectFacade;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,8 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.List;
 
-import com.web.link.checker.project.model.Project;
-import com.web.link.checker.project.service.ProjectService;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static com.web.link.checker.project.controllers.ProjectBinding.*;
@@ -25,13 +26,14 @@ import static com.web.link.checker.project.controllers.ProjectBinding.*;
 public class ProjectController {
 
     @NonNull
-    private final ProjectService projectService;
+    private final ProjectFacade projectFacade;
 
-    @RequestMapping( method = RequestMethod.GET)
+
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView projects() {
-        List<Project> projects = projectService.findAll();
+        List<ProjectProjection> projectProjections = projectFacade.findAll();
         ModelAndView modelAndView = new ModelAndView("projects");
-        modelAndView.addObject("projects", projects);
+        modelAndView.addObject("projectProjections", projectProjections);
         return modelAndView;
     }
 
@@ -50,7 +52,7 @@ public class ProjectController {
             redirectAttr.addFlashAttribute("project", projectInsert);
             return "redirect:" + BASE_PATH + SAVE;
         }
-        projectService.insert(projectInsert);
+        projectFacade.insert(projectInsert);
         return "redirect:" + BASE_PATH;
     }
 
@@ -63,19 +65,19 @@ public class ProjectController {
     }
 
     @RequestMapping(path = UPDATE, method = RequestMethod.POST)
-    public String update(@PathVariable Long id, @ModelAttribute("project") @Valid ProjectUpdate projectUpdate, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String update(@PathVariable String uuid, @ModelAttribute("project") @Valid ProjectUpdate projectUpdate, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if(bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
             redirectAttributes.addFlashAttribute("project", projectUpdate);
             return "redirect:" + BASE_PATH + UPDATE;
         }
-        projectService.update(id, projectUpdate);
+        projectFacade.update(uuid, projectUpdate);
         return "redirect:" + BASE_PATH;
     }
 
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
-    public String delete(@PathVariable long id) {
-        projectService.delete(id);
+    public String delete(@PathVariable String uuid) {
+        projectFacade.delete(uuid);
         return "redirect:" + BASE_PATH;
     }
 

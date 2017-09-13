@@ -1,15 +1,19 @@
 package com.web.link.checker.project.model;
 
 import lombok.*;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 @Entity
 @Data
+@Table(
+        indexes = {
+                @Index(columnList = "uuid", name = "uuid", unique = true)
+        })
 public class Project {
 
     @Id
@@ -19,5 +23,8 @@ public class Project {
     @NotNull
     @Size(min = 3, max = 255)
     private String name;
+
+    @NotEmpty
+    private String uuid;
 
 }

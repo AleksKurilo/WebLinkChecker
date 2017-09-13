@@ -1,20 +1,22 @@
 package com.web.link.checker.project.service;
 
-import com.web.link.checker.project.controllers.ProjectInsert;
-import com.web.link.checker.project.controllers.ProjectUpdate;
+import com.web.link.checker.project.model.ProjectInsert;
+import com.web.link.checker.project.model.ProjectUpdate;
 import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.repository.ProjectRepository;
+import com.web.link.checker.project.utils.ValidateUtils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public  class ProjectService {
+public class ProjectService {
 
     @NonNull
     public final ProjectRepository projectRepository;
@@ -26,24 +28,29 @@ public  class ProjectService {
 
     @Transactional
     public void insert(ProjectInsert projectInsert) {
-        Validate.notNull(projectInsert, "ProjectInsert is null");
+        ValidateUtils.notNull(projectInsert, "projectInsert");
+
         Project project = new Project();
+        String uuid = UUID.randomUUID().toString();
         project.setName(projectInsert.getName());
+        project.setUuid(uuid);
         projectRepository.save(project);
     }
 
     @Transactional
-    public void update(Long id, ProjectUpdate projectUpdate){
-        Validate.notNull(projectUpdate, "ProjectUpdate is null");
-        Project project = projectRepository.findOne(id);
+    public void update(String uuid, ProjectUpdate projectUpdate) {
+        ValidateUtils.notBlank(uuid, "uuid");
+        ValidateUtils.notNull(projectUpdate, "projectUpdate");
+
+        Project project = projectRepository.findOneByUuid(uuid);
         project.setName(projectUpdate.getName());
         projectRepository.save(project);
     }
 
     @Transactional
-    public void delete(Long id){
-        projectRepository.delete(id);
+    public void delete(String uuid) {
+        ValidateUtils.notBlank(uuid, "uuid");
+
+        projectRepository.deleteByUuid(uuid);
     }
-
-
 }
