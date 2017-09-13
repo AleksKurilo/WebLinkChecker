@@ -14,19 +14,17 @@
     <table border="1" cellpadding="5" cellspacing="0" width="200" height="75">
         <thead>
         <tr>
-            <th>Id</th>
             <th>Name</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <#list projects as project>
+        <#list projectProjections as projectProjection>
         <tr>
-            <td>${project.id}</td>
-            <td>${project.name}</td>
+            <td>${projectProjection.name}</td>
             <td>
-                <a href="/projects/${project.id}/delete">Delete</a>
-                <a href="/projects/${project.id}/update">Edit</a>
+              <a href="/projects/${projectProjection.uuid}/delete">Delete</a>
+              <a href="/projects/${projectProjection.uuid}/update">Edit</a>
             </td>
         </tr>
         </#list>

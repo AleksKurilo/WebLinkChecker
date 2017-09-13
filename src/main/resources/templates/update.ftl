@@ -7,6 +7,7 @@
 <head>
     <title>Edit Project</title>
 </head>
+
 <body>
     <h1>Edit Project</h1>
     <form method="post" action="update">
