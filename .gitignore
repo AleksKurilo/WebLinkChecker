@@ -25,3 +25,5 @@ nbdist/
 .ideaDataSources/
 .mvn/
 
+.shelf/
+com.web.link.checker.project.model.Project/
