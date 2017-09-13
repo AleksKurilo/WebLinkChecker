@@ -26,5 +26,4 @@ public class Project {
 
     @NotEmpty
     private String uuid;
-
 }
