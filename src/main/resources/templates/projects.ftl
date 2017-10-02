@@ -25,6 +25,9 @@
     <!-- body -->
     <div class="container">
         <h1>Projects</h1>
+        <p>
+            <a href="/projects/save" class="btn btn-primary">Add</a>
+        </p>
         <table class="table table-striped">
             <thead >
             <tr>
@@ -50,10 +53,6 @@
             </#list>
             </tbody>
         </table>
-
-        <p>
-          <a href="/projects/save" class="btn btn-primary">Add Project</a>
-        </p>
     </div>
   </body>
 </html>
