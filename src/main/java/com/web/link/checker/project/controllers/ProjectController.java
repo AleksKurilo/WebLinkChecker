@@ -32,7 +32,6 @@ public class ProjectController {
     @NonNull
     private final ProjectFacade projectFacade;
 
-
     @RequestMapping(path = "/{page}",method = RequestMethod.GET)
     public ModelAndView projects(@PathVariable("page") int page) {
         ModelAndView modelAndView = new ModelAndView("projects");
