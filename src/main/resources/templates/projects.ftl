@@ -17,13 +17,7 @@
      <div class="navbar navbar-inverse navbar-static-top">
          <div class="container">
              <div class="navbar-header">
-                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
-                     <span class="sr-only">Открыть навигацию</span>
-                     <span class="icon-bar"></span>
-                     <span class="icon-bar"></span>
-                     <span class="icon-bar"></span>
-                 </button>
-                 <a class="navbar-brand" href="/projects/">Логотип</a>
+               <a class="navbar-brand" href="/projects/">Логотип</a>
              </div>
           </div>
      </div>
@@ -39,12 +33,18 @@
             </tr>
             </thead>
             <tbody>
-            <#list projectProjections as projectProjection>
+            <#list projectPage as project>
             <tr>
-               <td>${projectProjection.name}</td>
+               <td>${project.name}</td>
                 <td>
-                  <a href="/projects/${projectProjection.uuid}/delete">Delete &nbsp;</a>
-                  <a href="/projects/${projectProjection.uuid}/update">Edit</a>
+                  <a href="/projects/${project.uuid}/update">
+                      <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
+                      <!--Edit-->
+                  </a>
+                  <a href="/projects/${project.uuid}/delete">
+                      <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+                      <!--Delete &nbsp;-->
+                  </a>
                 </td>
             </tr>
             </#list>

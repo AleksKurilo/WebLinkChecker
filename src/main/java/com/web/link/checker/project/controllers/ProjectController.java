@@ -1,11 +1,15 @@
 package com.web.link.checker.project.controllers;
 
+import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.model.ProjectInsert;
 import com.web.link.checker.project.model.ProjectProjection;
 import com.web.link.checker.project.model.ProjectUpdate;
 import com.web.link.checker.project.service.ProjectFacade;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,11 +33,12 @@ public class ProjectController {
     private final ProjectFacade projectFacade;
 
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView projects() {
-        List<ProjectProjection> projectProjections = projectFacade.findAll();
+    @RequestMapping(path = "/{page}",method = RequestMethod.GET)
+    public ModelAndView projects(@PathVariable("page") int page) {
         ModelAndView modelAndView = new ModelAndView("projects");
-        modelAndView.addObject("projectProjections", projectProjections);
+        Pageable pageable =  new PageRequest (page, 5);
+        Page<Project> projectPage = projectFacade.findAll(pageable);
+        modelAndView.addObject("projectPage", projectPage.getContent());
         return modelAndView;
     }
 

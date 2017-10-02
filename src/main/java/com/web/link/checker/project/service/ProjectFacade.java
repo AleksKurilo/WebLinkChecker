@@ -1,18 +1,16 @@
 package com.web.link.checker.project.service;
 
 import com.web.link.checker.project.model.ProjectInsert;
-import com.web.link.checker.project.model.ProjectProjection;
 import com.web.link.checker.project.model.ProjectUpdate;
 import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.utils.ValidateUtils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -24,12 +22,15 @@ public class ProjectFacade {
     @NonNull
     private final ConversionService conversionService;
 
-    public List<ProjectProjection> findAll() {
-        List<Project> projects = projectService.findAll();
+    public Page<Project> findAll(Pageable pageable) {
+        Page<Project> projects = projectService.findAll(pageable);
+        //ADD CONVERTING TO ProjectProjection!!!!
+        /*
         List<ProjectProjection> projectProjections = projects.stream()
                 .map(project -> conversionService.convert(project, ProjectProjection.class))
                 .collect(Collectors.toList());
-        return projectProjections;
+                */
+        return projects;
     }
 
     public void insert(ProjectInsert projectInsert) {

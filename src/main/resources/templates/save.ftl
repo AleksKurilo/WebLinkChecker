@@ -17,12 +17,6 @@
   <div class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
-                    <span class="sr-only">Открыть навигацию</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 <a class="navbar-brand" href="/projects/">Логотип</a>
             </div>
         </div>

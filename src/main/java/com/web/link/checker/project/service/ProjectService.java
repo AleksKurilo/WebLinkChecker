@@ -7,6 +7,8 @@ import com.web.link.checker.project.repository.ProjectRepository;
 import com.web.link.checker.project.utils.ValidateUtils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +24,8 @@ public class ProjectService {
     public final ProjectRepository projectRepository;
 
     @Transactional(readOnly = true)
-    public List<Project> findAll() {
-        return projectRepository.findAll();
+    public Page<Project> findAll(Pageable pageable) {
+        return projectRepository.findAll(pageable);
     }
 
     @Transactional
