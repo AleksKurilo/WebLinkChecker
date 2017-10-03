@@ -39,6 +39,8 @@ public class ProjectController {
         Pageable pageable =  new PageRequest (page, 5);
         Page<Project> projectPage = projectFacade.findAll(pageable);
         modelAndView.addObject("projectPage", projectPage.getContent());
+        modelAndView.addObject("p", page);
+        modelAndView.addObject("totalPages", projectPage);
         return modelAndView;
     }
 
