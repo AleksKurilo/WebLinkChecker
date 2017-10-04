@@ -60,7 +60,7 @@
                 <div id="pagination">
                 <#-- Previous page -->
                     <#if (currentPage > 1)>
-                         <a href="#">Prev</a>
+                        <a href="/projects/${currentPage-1}">Prev</a>
                     </#if>
 
                 <#-- Page number -->
@@ -80,7 +80,7 @@
             </#if>
         </#macro>
 
-        <h3><@pagination 5 10/></h3>
+        <h3><@pagination ${currentPage?round} 10/></h3>
 
 
     </div>
