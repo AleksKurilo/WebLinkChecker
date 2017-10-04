@@ -80,7 +80,7 @@
             </#if>
         </#macro>
 
-        <h3><@pagination ${currentPage?round} 10/></h3>
+        <h3><@pagination currentPage 10/></h3>
 
 
     </div>
