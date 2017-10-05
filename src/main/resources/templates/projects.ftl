@@ -80,9 +80,11 @@
             </#if>
         </#macro>
 
-        <div class="pagination">
-            <@pagination currentPage totalPages/>
-        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <@pagination currentPage totalPages/>
+            </ul>
+        </nav>
 
     </div>
   </body>
