@@ -33,14 +33,15 @@ public class ProjectController {
     private final ProjectFacade projectFacade;
 
 
-    @RequestMapping(path = "/{page}",method = RequestMethod.GET)
-    public ModelAndView projects(@PathVariable("page") int page) {
+    @RequestMapping(path = "/page={currentPage}",method = RequestMethod.GET)
+    public ModelAndView projects(@PathVariable("currentPage") int page) {
         ModelAndView modelAndView = new ModelAndView("projects");
-        Pageable pageable =  new PageRequest (page, 5);
+        int pageDatabase = (page-1); //Changes in the first page number from 0(used in the database) to 1(used in the output)
+        Pageable pageable =  new PageRequest (pageDatabase, 5);
         Page<Project> projectPage = projectFacade.findAll(pageable);
         modelAndView.addObject("projectPage", projectPage.getContent());
         modelAndView.addObject("currentPage", page);
-        modelAndView.addObject("totalPages", projectPage.getSize());
+        modelAndView.addObject("totalPages", projectPage.getTotalPages());
         return modelAndView;
     }
 
@@ -60,7 +61,7 @@ public class ProjectController {
             return "redirect:" + BASE_PATH + SAVE;
         }
         projectFacade.insert(projectInsert);
-        return "redirect:" + BASE_PATH;
+        return "redirect:" + BASE_PATH + "/page=1";
     }
 
     @RequestMapping(path = UPDATE, method = RequestMethod.GET)
@@ -79,13 +80,13 @@ public class ProjectController {
             return "redirect:" + BASE_PATH + UPDATE;
         }
         projectFacade.update(uuid, projectUpdate);
-        return "redirect:" + BASE_PATH;
+        return "redirect:" + BASE_PATH + "/page=1";
     }
 
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
     public String delete(@PathVariable String uuid) {
         projectFacade.delete(uuid);
-        return "redirect:" + BASE_PATH;
+        return "redirect:" + BASE_PATH + "/page=1";
     }
 
 }

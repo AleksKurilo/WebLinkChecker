@@ -41,12 +41,12 @@
                <td>${project.name}</td>
                 <td>
                   <a href="/projects/${project.uuid}/update">
-                      <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
-                      <!--Edit-->
+                      <i class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp</i>
+                      <!--Edit icon -->
                   </a>
                   <a href="/projects/${project.uuid}/delete">
                       <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
-                      <!--Delete &nbsp;-->
+                      <!--Delete icon -->
                   </a>
                 </td>
             </tr>
@@ -56,11 +56,11 @@
 
         <!-- Pagination -->
          <#macro pagination currentPage totalPages >
-            <#if (totalPages > 1)>
+             <#if (totalPages > 1)>
                 <div id="pagination">
                 <#-- Previous page -->
                     <#if (currentPage > 1)>
-                        <a href="/projects/${currentPage-1}">Prev</a>
+                        <a href="/projects/page=${currentPage - 1}">Prev</a>
                     </#if>
 
                 <#-- Page number -->
@@ -68,19 +68,21 @@
                         <#if (pageNumber == currentPage)>
                             <div id="currentPage">${pageNumber}</div>
                         <#else>
-                            <div><a href="/projects/${pageNumber}">${pageNumber}</a></div>
+                            <div><a href="/projects/page=${pageNumber}">${pageNumber}</a></div>
                         </#if>
                     </#list>
 
                 <#-- Next page -->
                     <#if (currentPage < totalPages)>
-                        <a href="#">Next</a>
+                        <a href="/projects/page=${currentPage + 1}">Next</a>
                     </#if>
                 </div>
             </#if>
         </#macro>
 
-        <h3><@pagination currentPage 10/></h3>
+        <div class="pagination">
+            <@pagination currentPage totalPages/>
+        </div>
 
 
     </div>
