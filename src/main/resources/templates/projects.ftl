@@ -66,9 +66,9 @@
                 <#-- Page number -->
                     <#list 1 .. totalPages as pageNumber>
                         <#if (pageNumber == currentPage)>
-                            <div id="currentPage">${pageNumber}</div>
+                           < ${pageNumber} >
                         <#else>
-                            <div><a href="/projects/page=${pageNumber}">${pageNumber}</a></div>
+                            <a href="/projects/page=${pageNumber}">${pageNumber}</a>
                         </#if>
                     </#list>
 
@@ -83,7 +83,6 @@
         <div class="pagination">
             <@pagination currentPage totalPages/>
         </div>
-
 
     </div>
   </body>
