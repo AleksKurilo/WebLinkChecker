@@ -36,7 +36,7 @@ public class ProjectController {
     @RequestMapping(path = "/page={currentPage}",method = RequestMethod.GET)
     public ModelAndView projects(@PathVariable("currentPage") int page) {
         ModelAndView modelAndView = new ModelAndView("projects");
-        int pageDatabase = (page-1); //Changes in the first page number from 0(used in the database) to 1(used in the output)
+        int pageDatabase = (page-1); //coordination of page numbers
         Pageable pageable =  new PageRequest (pageDatabase, 5);
         Page<Project> projectPage = projectFacade.findAll(pageable);
         modelAndView.addObject("projectPage", projectPage.getContent());
