@@ -56,35 +56,35 @@
 
         <!-- Pagination -->
          <#macro pagination currentPage totalPages >
-             <#if (totalPages > 1)>
-                <div id="pagination">
-                <#-- Previous page -->
-                    <#if (currentPage > 1)>
-                        <a href="/projects/page=${currentPage - 1}">Prev</a>
-                    </#if>
+             <nav aria-label="Page navigation">
+                 <ul class="pagination">
+                     <#if (totalPages > 1)>
 
-                <#-- Page number -->
-                    <#list 1 .. totalPages as pageNumber>
-                        <#if (pageNumber == currentPage)>
-                           < ${pageNumber} >
-                        <#else>
-                            <a href="/projects/page=${pageNumber}">${pageNumber}</a>
-                        </#if>
-                    </#list>
+                        <#-- Previous page -->
+                            <#if (currentPage > 1)>
+                                <li><a href="/projects/page=${currentPage - 1}">Prev</a></li>
+                            </#if>
 
-                <#-- Next page -->
-                    <#if (currentPage < totalPages)>
-                        <a href="/projects/page=${currentPage + 1}">Next</a>
+                        <#-- Page number -->
+                            <#list 1 .. totalPages as pageNumber>
+                                <#if (pageNumber == currentPage)>
+                                    <li class="active"><a href="#">${pageNumber}</a></li>
+                                <#else>
+                                    <li><a href="/projects/page=${pageNumber}">${pageNumber}</a></li>
+                                </#if>
+                            </#list>
+
+                        <#-- Next page -->
+                            <#if (currentPage < totalPages)>
+                                <li><a href="/projects/page=${currentPage + 1}">Next</a></li>
+                            </#if>
+                        </div>
                     </#if>
-                </div>
-            </#if>
+                 </ul>
+             </nav>
         </#macro>
 
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <@pagination currentPage totalPages/>
-            </ul>
-        </nav>
+      <@pagination currentPage totalPages/>
 
     </div>
   </body>
