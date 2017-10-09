@@ -35,7 +35,7 @@ public class ProjectController {
 
 
     @RequestMapping(path = "/page/", method = RequestMethod.GET)
-    public ModelAndView projects(@RequestParam("currentPage") int currentPage) {
+    public ModelAndView projects(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
         ModelAndView modelAndView = new ModelAndView("projects");
         int pageDatabase = (currentPage-1); //coordination of page numbers
         Pageable pageable =  new PageRequest (pageDatabase, PAGE_SIZE);
