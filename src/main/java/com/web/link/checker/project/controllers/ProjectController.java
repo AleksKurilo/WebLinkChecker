@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.List;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -32,15 +31,17 @@ public class ProjectController {
     @NonNull
     private final ProjectFacade projectFacade;
 
+    public static final int PAGE_SIZE = 5;
 
-    @RequestMapping(path = "/page={currentPage}",method = RequestMethod.GET)
-    public ModelAndView projects(@PathVariable("currentPage") int page) {
+
+    @RequestMapping(path = "/page/", method = RequestMethod.GET)
+    public ModelAndView projects(@RequestParam("currentPage") int currentPage) {
         ModelAndView modelAndView = new ModelAndView("projects");
-        int pageDatabase = (page-1); //coordination of page numbers
-        Pageable pageable =  new PageRequest (pageDatabase, 5);
+        int pageDatabase = (currentPage-1); //coordination of page numbers
+        Pageable pageable =  new PageRequest (pageDatabase, PAGE_SIZE);
         Page<Project> projectPage = projectFacade.findAll(pageable);
         modelAndView.addObject("projectPage", projectPage.getContent());
-        modelAndView.addObject("currentPage", page);
+        modelAndView.addObject("currentPage", currentPage);
         modelAndView.addObject("totalPages", projectPage.getTotalPages());
         return modelAndView;
     }

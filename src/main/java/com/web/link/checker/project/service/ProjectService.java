@@ -25,6 +25,8 @@ public class ProjectService {
 
     @Transactional(readOnly = true)
     public Page<Project> findAll(Pageable pageable) {
+        ValidateUtils.notNull(pageable, "pageable");
+
         return projectRepository.findAll(pageable);
     }
 

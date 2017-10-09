@@ -23,6 +23,8 @@ public class ProjectFacade {
     private final ConversionService conversionService;
 
     public Page<Project> findAll(Pageable pageable) {
+        ValidateUtils.notNull(pageable, "pageable");
+
         Page<Project> projects = projectService.findAll(pageable);
         //ADD CONVERTING TO ProjectProjection!!!!
         /*

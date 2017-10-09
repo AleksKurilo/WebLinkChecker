@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
     <title>Project Page</title>
 </head>
 
@@ -57,12 +56,13 @@
         <!-- Pagination -->
          <#macro pagination currentPage totalPages >
              <nav aria-label="Page navigation">
+                 <div class="text-center">
                  <ul class="pagination">
                      <#if (totalPages > 1)>
 
                         <#-- Previous page -->
                             <#if (currentPage > 1)>
-                                <li><a href="/projects/page=${currentPage - 1}">Prev</a></li>
+                                <li><a href="/projects/page/?currentPage=${currentPage - 1}">Prev</a></li>
                             </#if>
 
                         <#-- Page number -->
@@ -70,21 +70,21 @@
                                 <#if (pageNumber == currentPage)>
                                     <li class="active"><a href="#">${pageNumber}</a></li>
                                 <#else>
-                                    <li><a href="/projects/page=${pageNumber}">${pageNumber}</a></li>
+                                    <li><a href="/projects/page/?currentPage=${pageNumber}">${pageNumber}</a></li>
                                 </#if>
                             </#list>
 
                         <#-- Next page -->
                             <#if (currentPage < totalPages)>
-                                <li><a href="/projects/page=${currentPage + 1}">Next</a></li>
+                                <li><a href="/projects/page/?currentPage=${currentPage + 1}">Next</a></li>
                             </#if>
-                        </div>
-                    </#if>
-                 </ul>
-             </nav>
+                      </#if>
+                   </ul>
+                 </div>
+              </nav>
         </#macro>
 
-      <@pagination currentPage totalPages/>
+        <@pagination currentPage totalPages/>
 
     </div>
   </body>
