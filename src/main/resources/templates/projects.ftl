@@ -35,21 +35,21 @@
             </tr>
             </thead>
             <tbody>
-            <#list projectPage as project>
-            <tr>
-               <td>${project.name}</td>
-                <td>
-                  <a href="/projects/${project.uuid}/update">
-                      <i class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp</i>
-                      <!--Edit icon -->
-                  </a>
-                  <a href="/projects/${project.uuid}/delete">
-                      <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
-                      <!--Delete icon -->
-                  </a>
-                </td>
-            </tr>
-            </#list>
+                <#list projectProjectionPage as projectProjection>
+                <tr>
+                   <td>${projectProjection.name}</td>
+                    <td>
+                      <a href="/projects/${projectProjection.uuid}/update">
+                          <i class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp</i>
+                          <!--Edit icon -->
+                      </a>
+                      <a href="/projects/${projectProjection.uuid}/delete">
+                          <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+                          <!--Delete icon -->
+                      </a>
+                    </td>
+                </tr>
+                </#list>
             </tbody>
         </table>
 
@@ -84,6 +84,7 @@
               </nav>
         </#macro>
 
+        <h3>Total page ${totalPages}</h3>
         <@pagination currentPage totalPages/>
 
     </div>

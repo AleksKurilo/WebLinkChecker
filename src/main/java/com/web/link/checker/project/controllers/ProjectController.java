@@ -8,6 +8,7 @@ import com.web.link.checker.project.service.ProjectFacade;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -36,13 +37,13 @@ public class ProjectController {
 
     @RequestMapping(path = "/page/", method = RequestMethod.GET)
     public ModelAndView projects(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
-        ModelAndView modelAndView = new ModelAndView("projects");
         int pageDatabase = (currentPage-1); //coordination of page numbers
         Pageable pageable =  new PageRequest (pageDatabase, PAGE_SIZE);
-        Page<Project> projectPage = projectFacade.findAll(pageable);
-        modelAndView.addObject("projectPage", projectPage.getContent());
+        PageImpl<ProjectProjection> projectProjectionPage = projectFacade.findAll(pageable);
+        ModelAndView modelAndView = new ModelAndView("projects");
+        modelAndView.addObject("projectProjectionPage", projectProjectionPage.getContent());
         modelAndView.addObject("currentPage", currentPage);
-        modelAndView.addObject("totalPages", projectPage.getTotalPages());
+        modelAndView.addObject("totalPages", projectProjectionPage.getTotalPages());
         return modelAndView;
     }
 
@@ -62,7 +63,7 @@ public class ProjectController {
             return "redirect:" + BASE_PATH + SAVE;
         }
         projectFacade.insert(projectInsert);
-        return "redirect:" + BASE_PATH + "/page=1";
+        return "redirect:" + BASE_PATH + "page/";
     }
 
     @RequestMapping(path = UPDATE, method = RequestMethod.GET)
@@ -81,13 +82,13 @@ public class ProjectController {
             return "redirect:" + BASE_PATH + UPDATE;
         }
         projectFacade.update(uuid, projectUpdate);
-        return "redirect:" + BASE_PATH + "/page=1";
+        return "redirect:" + BASE_PATH + "page/";
     }
 
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
     public String delete(@PathVariable String uuid) {
         projectFacade.delete(uuid);
-        return "redirect:" + BASE_PATH + "/page=1";
+        return "redirect:" + BASE_PATH + "page/";
     }
 
 }

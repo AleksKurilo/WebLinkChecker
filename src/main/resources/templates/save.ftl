@@ -16,7 +16,7 @@
   <div class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/projects/">Логотип</a>
+                <a class="navbar-brand" href="/projects/page/">Логотип</a>
             </div>
         </div>
   </div>
