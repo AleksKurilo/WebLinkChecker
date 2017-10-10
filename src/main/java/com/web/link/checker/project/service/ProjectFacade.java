@@ -32,13 +32,11 @@ public class ProjectFacade {
 
         Page<Project> projectsPage = projectService.findAll(pageable);
         List<Project> projectList = projectsPage.getContent();
-
         List<ProjectProjection> projectProjectionsList = projectList.stream()
                 .map(project -> conversionService.convert(project, ProjectProjection.class))
                 .collect(Collectors.toList());
-
-        PageImpl<ProjectProjection> projectProjectionsPage = new PageImpl(projectProjectionsList, pageable, 5);
-        return projectProjectionsPage;
+        PageImpl<ProjectProjection> projectProjections = new PageImpl(projectProjectionsList, pageable, projectsPage.getTotalElements());
+        return projectProjections;
     }
 
     public void insert(ProjectInsert projectInsert) {
