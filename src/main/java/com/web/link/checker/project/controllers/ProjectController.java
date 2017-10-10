@@ -1,13 +1,11 @@
 package com.web.link.checker.project.controllers;
 
-import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.model.ProjectInsert;
 import com.web.link.checker.project.model.ProjectProjection;
 import com.web.link.checker.project.model.ProjectUpdate;
 import com.web.link.checker.project.service.ProjectFacade;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -63,7 +61,7 @@ public class ProjectController {
             return "redirect:" + BASE_PATH + SAVE;
         }
         projectFacade.insert(projectInsert);
-        return "redirect:" + BASE_PATH + "page/";
+        return "redirect:" + BASE_PATH + PAGE;
     }
 
     @RequestMapping(path = UPDATE, method = RequestMethod.GET)
@@ -82,13 +80,13 @@ public class ProjectController {
             return "redirect:" + BASE_PATH + UPDATE;
         }
         projectFacade.update(uuid, projectUpdate);
-        return "redirect:" + BASE_PATH + "page/";
+        return "redirect:" + BASE_PATH + PAGE;
     }
 
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
     public String delete(@PathVariable String uuid) {
         projectFacade.delete(uuid);
-        return "redirect:" + BASE_PATH + "page/";
+        return "redirect:" + BASE_PATH + PAGE;
     }
 
 }
