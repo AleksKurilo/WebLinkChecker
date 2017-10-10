@@ -84,7 +84,6 @@
               </nav>
         </#macro>
 
-        <h3>Total page ${totalPages}</h3>
         <@pagination currentPage totalPages/>
 
     </div>
