@@ -30,7 +30,7 @@ public class ProjectController {
     @NonNull
     private final ProjectFacade projectFacade;
 
-    public static final int PAGE_SIZE = 5;
+    private static final int PAGE_SIZE = 5;
 
 
     @RequestMapping(path = "/page/", method = RequestMethod.GET)
