@@ -27,16 +27,15 @@ public class ProjectFacade {
     @NonNull
     private final ConversionService conversionService;
 
-    public PageImpl<ProjectProjection> findAll(Pageable pageable) {
+    public Page<ProjectProjection> findAll(Pageable pageable) {
         ValidateUtils.notNull(pageable, "pageable");
 
         Page<Project> projectsPage = projectService.findAll(pageable);
-        List<Project> projectList = projectsPage.getContent();
-        List<ProjectProjection> projectProjectionsList = projectList.stream()
+        List<ProjectProjection> projectProjections = projectsPage.getContent().stream()
                 .map(project -> conversionService.convert(project, ProjectProjection.class))
                 .collect(Collectors.toList());
-        PageImpl<ProjectProjection> projectProjections = new PageImpl(projectProjectionsList, pageable, projectsPage.getTotalElements());
-        return projectProjections;
+        PageImpl<ProjectProjection> projectProjectionPage = new PageImpl(projectProjections, pageable, projectsPage.getTotalElements());
+        return projectProjectionPage;
     }
 
     public void insert(ProjectInsert projectInsert) {

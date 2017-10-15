@@ -19,16 +19,14 @@
             </tr>
             </thead>
             <tbody>
-                <#list projectProjectionPage as projectProjection>
+                <#list projectProjectionPage.getContent() as projectProjection>
                 <tr>
                    <td>${projectProjection.name}</td>
                     <td>
                       <a href="/projects/${projectProjection.uuid}/update">
-                          <!--Edit icon -->
                           <i class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp</i>
                       </a>
                       <a href="/projects/${projectProjection.uuid}/delete">
-                          <!--Delete icon -->
                           <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
                       </a>
                     </td>
@@ -37,7 +35,7 @@
             </tbody>
         </table>
         <#import "layout/pagination.ftl" as layout>
-        <@layout.pagination currentPage totalPages/>
+        <@layout.pagination currentPage projectProjectionPage.getTotalPages()/>
       </div>
   </body>
 </html>
