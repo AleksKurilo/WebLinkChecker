@@ -6,7 +6,7 @@ import com.web.link.checker.project.model.ProjectUpdate;
 import com.web.link.checker.project.service.ProjectFacade;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -33,11 +33,10 @@ public class ProjectController {
     private static final int PAGE_SIZE = 5;
 
 
-    @RequestMapping(path = "/page/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView projects(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
-        int pageDatabase = (currentPage-1); //coordination of page numbers
-        Pageable pageable =  new PageRequest (pageDatabase, PAGE_SIZE);
-        PageImpl<ProjectProjection> projectProjectionPage = projectFacade.findAll(pageable);
+        Pageable pageable =  new PageRequest (currentPage - 1, PAGE_SIZE);
+        Page<ProjectProjection> projectProjectionPage = projectFacade.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("projects");
         modelAndView.addObject("projectProjectionPage", projectProjectionPage.getContent());
         modelAndView.addObject("currentPage", currentPage);
@@ -61,7 +60,7 @@ public class ProjectController {
             return "redirect:" + BASE_PATH + SAVE;
         }
         projectFacade.insert(projectInsert);
-        return "redirect:" + BASE_PATH + PAGE;
+        return "redirect:" + BASE_PATH;
     }
 
     @RequestMapping(path = UPDATE, method = RequestMethod.GET)
@@ -80,13 +79,13 @@ public class ProjectController {
             return "redirect:" + BASE_PATH + UPDATE;
         }
         projectFacade.update(uuid, projectUpdate);
-        return "redirect:" + BASE_PATH + PAGE;
+        return "redirect:" + BASE_PATH;
     }
 
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
     public String delete(@PathVariable String uuid) {
         projectFacade.delete(uuid);
-        return "redirect:" + BASE_PATH + PAGE;
+        return "redirect:" + BASE_PATH;
     }
 
 }
