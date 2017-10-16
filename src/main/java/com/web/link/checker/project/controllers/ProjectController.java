@@ -40,7 +40,6 @@ public class ProjectController {
         ModelAndView modelAndView = new ModelAndView("projects");
         modelAndView.addObject("projectProjectionPage", projectProjectionPage);
         modelAndView.addObject("currentPage", currentPage);
-
         return modelAndView;
     }
 
