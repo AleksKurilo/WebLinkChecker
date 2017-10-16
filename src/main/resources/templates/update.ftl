@@ -4,10 +4,8 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <html>
-      <#import "layout/header.ftl" as layout>
-      <@layout.header "Edit Project"/>
-    <body>
-        <div class="container">
+      <#import "layout/defaultLayaout.ftl" as layout>
+      <@layout.defaultLayaout "Edit Project">
             <h1>Edit Project</h1>
             <form method="post" action="update">
                 <p>New Project Name:
@@ -20,6 +18,5 @@
                     <input type="submit" value="Submit" class="btn btn-primary"/>
                 </p>
             </form>
-        </div>
-    </body>
+      </@layout.defaultLayaout>
 </html>

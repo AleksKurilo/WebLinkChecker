@@ -3,24 +3,20 @@
 <#import "/spring.ftl" as spring/>
 <!DOCTYPE html>
 <html>
-        <#import "layout/header.ftl" as layout>
-        <@layout.header "Add Project"/>
-    <body>
-      <div class="container">
+    <#import "layout/defaultLayaout.ftl" as layout>
+    <@layout.defaultLayaout "Add Project">
         <h1>Add Project </h1>
-
         <form method="post" action="/projects/save">
-           <p>Project Name:
-             <@spring.bind "project.name"/>
-               <input type="text" name="name" value="${project.name!}">
-              <#if spring.status.error>
-                 <span><@spring.showErrors separator="," /></span>
-              </#if>
+            <p>Project Name:
+            <@spring.bind "project.name"/>
+                <input type="text" name="name" value="${project.name!}">
+            <#if spring.status.error>
+                <span><@spring.showErrors separator="," /></span>
+            </#if>
             </p>
             <p>
                 <input type="submit" value="Submit" class="btn btn-primary"/>
             </p>
         </form>
-      </div>
-    </body>
+    </@layout.defaultLayaout>
 </html>
