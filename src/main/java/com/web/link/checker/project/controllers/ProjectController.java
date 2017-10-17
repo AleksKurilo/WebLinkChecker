@@ -32,7 +32,6 @@ public class ProjectController {
 
     private static final int PAGE_SIZE = 5;
 
-
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView projects(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
         Pageable pageable =  new PageRequest (currentPage - 1, PAGE_SIZE);

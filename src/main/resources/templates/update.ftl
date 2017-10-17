@@ -1,10 +1,9 @@
 <#--@ftlvariable name="projects" type="java.util.List"-->
 <#-- @ftlvariable name="projects" type="com.web.link.checker.project.model.Project"-->
 <#import "/spring.ftl" as spring/>
-<!DOCTYPE html>
 <meta charset="utf-8">
 <html>
-      <#import "layout/defaultLayaout.ftl" as layout>
+      <#import "layout/defaultLayout.ftl" as layout>
       <@layout.defaultLayaout "Edit Project">
             <h1>Edit Project</h1>
             <form method="post" action="update">

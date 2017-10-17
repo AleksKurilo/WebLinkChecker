@@ -34,8 +34,7 @@ public class ProjectFacade {
         List<ProjectProjection> projectProjections = projectsPage.getContent().stream()
                 .map(project -> conversionService.convert(project, ProjectProjection.class))
                 .collect(Collectors.toList());
-        Page<ProjectProjection> projectProjectionPage = new PageImpl(projectProjections, pageable, projectsPage.getTotalElements());
-        return projectProjectionPage;
+        return new PageImpl(projectProjections, pageable, projectsPage.getTotalElements());
     }
 
     public void insert(ProjectInsert projectInsert) {

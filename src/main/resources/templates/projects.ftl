@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <html>
-    <#import "layout/defaultLayaout.ftl" as layout>
+    <#import "layout/defaultLayout.ftl" as layout>
     <@layout.defaultLayaout "Projects">
         <h1>Projects</h1>
         <p>
@@ -32,7 +32,7 @@
                 </#list>
             </tbody>
         </table>
-            <#import "layout/pagination.ftl" as layout>
-            <@layout.pagination currentPage projectProjectionPage.getTotalPages()/>
+            <#import "layout/pagination.ftl" as pagination>
+            <@pagination.pagination currentPage projectProjectionPage.getTotalPages()/>
     </@layout.defaultLayaout>
 </html>
