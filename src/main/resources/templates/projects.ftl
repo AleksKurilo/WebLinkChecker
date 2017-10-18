@@ -33,19 +33,5 @@
         </table>
             <#import "layout/pagination.ftl" as pagination>
             <@pagination.pagination currentPage projectProjectionPage.getTotalPages()/>
-
-    <h2> Welcom to jQuery</h2>
-    <button id="btnn1">jQuery</button>
-
-    <script type="text/javascript">
-        $(function() {
-            $("#btnn1").click(function () {
-                $(this).css('background-color', 'red');
-                alert('Word jQuery')
-            })
-        })
-    </script>
-
-
     </@layout.defaultLayaout>
 </html>
