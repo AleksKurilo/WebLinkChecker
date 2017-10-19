@@ -1,5 +1,6 @@
 package com.web.link.checker.project.controllers;
 
+import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.model.ProjectInsert;
 import com.web.link.checker.project.model.ProjectProjection;
 import com.web.link.checker.project.model.ProjectUpdate;
@@ -79,11 +80,17 @@ public class ProjectController {
         projectFacade.update(uuid, projectUpdate);
         return "redirect:" + BASE_PATH;
     }
-
+/*
     @RequestMapping(path = DELETE, method = RequestMethod.GET)
     public String delete(@PathVariable String uuid) {
         projectFacade.delete(uuid);
         return "redirect:" + BASE_PATH;
     }
-
+*/
+    @RequestMapping(path = DELETE, method = RequestMethod.DELETE)
+    @ResponseBody
+    public String delete(@PathVariable String uuid){
+        projectFacade.delete(uuid);
+        return "redirect:" + BASE_PATH;
+    }
 }

@@ -26,6 +26,13 @@
                         <a href="/projects/${projectProjection.uuid}/delete">
                             <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
                         </a>
+
+                                         <!-- Begin TEST-->
+                        <form action="projects/${projectProjection.uuid}/delete" method="post">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="submit"  value="del"/>
+                        </form>
+                                         <!-- End TEST-->
                     </td>
                 </tr>
                 </#list>
