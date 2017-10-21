@@ -23,7 +23,7 @@
                         <a href="/projects/${projectProjection.uuid}/update">
                             <i class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp</i>
                         </a>
-                        <a id="deleteId"  href="/projects/${projectProjection.uuid}/delete">
+                        <a href="/projects/${projectProjection.uuid}/delete">
                             <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -37,11 +37,11 @@
 
         <script type="text/javascript">
             $(document).read()(function () {
-                var deleteLink = $("#deleteId");
+                var deleteLink = $(".{glyphicon glyphicon-remove}");
 
-                $(deleteLink).click(function (event) {
+                $(deleteLink).click(function () {
                     $.ajax({
-                        url: "/projects/730d78e1-08db-4b5e-95b3-5adbc8c95f82/delete",
+                        url: "/projects/${projectProjection.uuid}/delete",
                         type: "DELETE",
                         async: true,
                         dataType: "json",
