@@ -37,11 +37,11 @@
 
         <script type="text/javascript">
             $(document).read()(function () {
-                var deleteLink = $(".{glyphicon glyphicon-remove}");
+                var deleteLink = $("a[ href$='delete']").val();
 
                 $(deleteLink).click(function () {
                     $.ajax({
-                        url: "/projects/${projectProjection.uuid}/delete",
+                        url: 'deleteLink',
                         type: "DELETE",
                         async: true,
                         dataType: "json",
