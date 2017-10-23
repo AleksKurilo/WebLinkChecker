@@ -19,7 +19,7 @@
                 <td>${projectProjection.name}</td>
                 <td>
                     <a href="/projects/${projectProjection.uuid}/update">
-                        <i class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp</i>
+                        <i class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;</i>
                     </a>
                     <a href="/projects/${projectProjection.uuid}/delete" class="remove-project">
                         <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>

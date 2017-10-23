@@ -18,7 +18,7 @@
     </div>
         <div class="container">
             <#nested/>
-        <div>
+        </div>
     </body>
 </html>
 </#macro>
