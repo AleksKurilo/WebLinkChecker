@@ -34,14 +34,14 @@
     <script>
         $(function () {
             $(document).on("click", ".remove-project", function () {
+                var rowToDelete = $(event.target).closest("tr");
                 $.ajax({
                     url: $(this).attr("href"),
                     type: "DELETE",
                     dataType: "text",
                     success: function (response) {
-                        var rowToDelete = $(event.target).closest("tr");
-                        rowToDelete.remove();
-                        alert("SUCCESS");
+                            rowToDelete.remove();
+                       alert("SUCCESS");
                     },
                     error: function (e) {
                         alert("Project doesn't found" + e);
