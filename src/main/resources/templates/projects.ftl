@@ -37,8 +37,10 @@
                 $.ajax({
                     url: $(this).attr("href"),
                     type: "DELETE",
-                    dataType: "json",
+                    dataType: "text",
                     success: function (response) {
+                        var rowToDelete = $(event.target).closest("tr");
+                        rowToDelete.remove();
                         alert("SUCCESS");
                     },
                     error: function (e) {
