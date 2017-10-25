@@ -3,10 +3,11 @@
 <#import "layout/defaultLayout.ftl" as layout>
 <@layout.defaultLayaout "Projects">
     <h1>Projects</h1>
+    <div id="formResponse"></div>
     <p>
         <a href="/projects/save" class="btn btn-primary">Add</a>
     </p>
-    <table class="table table-striped">
+    <table class="table table-striped table-hover">
         <thead>
         <tr>
             <th>Name</th>
@@ -41,7 +42,11 @@
                     dataType: "text",
                     success: function (response) {
                             rowToDelete.remove();
-                       alert("SUCCESS");
+                            var respContent = "";
+                            respContent += "<div class=\"alert alert-success\">" +
+                                                "<span class='success'><strong>Success!</strong> Project was delete</span>" +
+                                             "</div>";
+                            $("#formResponse").html(respContent);
                     },
                     error: function (e) {
                         alert("Project doesn't found" + e);
