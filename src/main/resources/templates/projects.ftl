@@ -32,5 +32,5 @@
     </table>
     <#import "layout/pagination.ftl" as pagination>
     <@pagination.pagination currentPage projectProjectionPage.getTotalPages()/>
-    <script src="/js/ajaxDelete.js"> </script>
+    <script src="/js/ajax-delete.js"> </script>
 </@layout.defaultLayaout>
