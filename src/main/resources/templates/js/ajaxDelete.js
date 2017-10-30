@@ -1,4 +1,5 @@
-$(function () {
+$(document).ready(function() {
+    alert('test');
     $(document).on("click", ".remove-project", function () {
         var rowToDelete = $(event.target).closest("tr");
         $.ajax({
@@ -9,7 +10,7 @@ $(function () {
                 rowToDelete.remove();
                 var respContent = "";
                 respContent += "<div class=\"alert alert-success\">" +
-                    "<span class='success'><strong>Success!</strong> Project was deleted</span></div>";
+                    "<span class='success'><strong>Success!</strong> Project was delete</span></div>";
                 $("#formResponse").html(respContent);
             },
             error: function (e) {
