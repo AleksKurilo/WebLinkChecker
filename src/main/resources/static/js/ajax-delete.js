@@ -18,6 +18,9 @@ $(document).ready(function () {
                 respContent += "<div class=\"alert alert-success\">" +
                     "<span class='success'><strong>Success!</strong> Project was delete</span></div>";
                 $("#formResponse").html(respContent);
+                if($(".remove-project").length ==0){
+                    document.location.href = "/projects/";
+                }
             },
             error: function (e) {
                 alert("Project doesn't found" + e);
