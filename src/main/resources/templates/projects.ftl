@@ -22,7 +22,7 @@
                     <a href="/projects/${projectProjection.uuid}/update">
                         <i class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;</i>
                     </a>
-                    <a href="/projects/${projectProjection.uuid}/delete" class="remove-project">
+                    <a href="/projects/${projectProjection.uuid}/delete" class="remove-project" data-toggle="confirmation">
                         <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
                     </a>
                 </td>
@@ -32,5 +32,5 @@
     </table>
     <#import "layout/pagination.ftl" as pagination>
     <@pagination.pagination currentPage projectProjectionPage.getTotalPages()/>
-    <script src="/js/ajax-delete.js"> </script>
+     <script src="/js/ajax-delete.js"> </script>
 </@layout.defaultLayaout>

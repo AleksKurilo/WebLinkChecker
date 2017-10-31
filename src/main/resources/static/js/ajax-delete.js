@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    alert('test');
-    $(document).on("click", ".remove-project", function () {
+    $(document).on("click", ".remove-project", function (){
+        if (confirm('Are you sure you want to delete this?')) {
         var rowToDelete = $(event.target).closest("tr");
         $.ajax({
             url: $(this).attr("href"),
@@ -18,5 +18,6 @@ $(document).ready(function() {
             }
         });
         return false;
+    }
     });
 });
