@@ -3,7 +3,7 @@ $(document).ready(function () {
         var rowToDelete = $(event.target).closest("tr");
         $.ajax({
             beforeSend: function (request) {
-                if (confirm('Are you sure you want to delete this?')) {
+                if (confirm('Are you sure you want to delete this ?')) {
                 }
                 else {
                     return false;
@@ -18,8 +18,7 @@ $(document).ready(function () {
                 respContent += "<div class=\"alert alert-success\">" +
                     "<span class='success'><strong>Success!</strong> Project was deleted</span></div>";
                 $("#formResponse").html(respContent);
-                if ($(document).is(".remove-project")) {
-                } else {
+                if ($(".remove-project").length ==0) {
                     setTimeout(function(){
                         document.location.href = "/projects/";
                     }, 1000);
