@@ -20,7 +20,9 @@ $(document).ready(function () {
                 $("#formResponse").html(respContent);
                 if ($(document).is(".remove-project")) {
                 } else {
-                    document.location.href = "/projects/";
+                    setTimeout(function(){
+                        document.location.href = "/projects/";
+                    }, 1000);
                 }
             },
             error: function (e) {
