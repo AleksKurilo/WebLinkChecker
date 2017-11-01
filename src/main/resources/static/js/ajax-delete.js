@@ -18,7 +18,8 @@ $(document).ready(function () {
                 respContent += "<div class=\"alert alert-success\">" +
                     "<span class='success'><strong>Success!</strong> Project was deleted</span></div>";
                 $("#formResponse").html(respContent);
-                if($(".remove-project").length ==0){
+                if ($(document).is(".remove-project")) {
+                } else {
                     document.location.href = "/projects/";
                 }
             },
