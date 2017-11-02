@@ -1,9 +1,9 @@
 $(document).ready(function () {
     $(document).on("click", ".remove-project", function () {
-        var rowToDelete = $(event.target).closest("tr");
+        var rowToDelete = $(this).closest("tr");
         $.ajax({
             beforeSend: function (request) {
-                if (confirm('Are you sure you want to delete this ?')) {
+                if (confirm('Are you sure you want to delete this project ?')) {
                 }
                 else {
                     return false;
