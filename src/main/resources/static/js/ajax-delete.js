@@ -3,11 +3,7 @@ $(document).ready(function () {
         var rowToDelete = $(this).closest("tr");
         $.ajax({
             beforeSend: function (request) {
-                if (confirm('Are you sure you want to delete this project ?')) {
-                }
-                else {
-                    return false;
-                }
+                return confirm('Are you sure you want to delete this project ?');
             },
             url: $(this).attr("href"),
             type: "DELETE",
