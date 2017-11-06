@@ -3,7 +3,14 @@
 <#import "layout/defaultLayout.ftl" as layout>
 <@layout.defaultLayaout "Projects">
     <h1>Projects</h1>
-    <div id="formResponse"></div>
+    <div id="formResponse">
+        <#if projectProjectionPage.getContent()?has_content>
+        <#else>
+            <div class="alert alert-warning">
+                <span class='success'><strong>WARNING!</strong> You do not have any projects</span>
+            </div>
+        </#if>
+    </div>
     <p>
         <a href="/projects/save" class="btn btn-primary">Add</a>
     </p>
@@ -33,14 +40,4 @@
     <#import "layout/pagination.ftl" as pagination>
     <@pagination.pagination currentPage projectProjectionPage.getTotalPages()/>
      <script src="/js/ajax-delete.js"> </script>
-     <script>
-        $(document).ready(function () {
-            if ($(".remove-project").length ==0) {
-                var respContent = "";
-                respContent += "<div class=\"alert alert-warning\">" +
-                        "<span class='success'><strong>WARNING!</strong> You do not have any Projects</span></div>";
-                $("#formResponse").html(respContent);
-            }
-        });
-     </script>
 </@layout.defaultLayaout>
