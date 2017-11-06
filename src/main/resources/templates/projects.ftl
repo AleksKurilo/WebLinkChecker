@@ -1,13 +1,14 @@
 <#--@ftlvariable name="projects" type="java.util.List"-->
 <#-- @ftlvariable name="projects" type="com.web.link.checker.project.model.Project"-->
 <#import "layout/defaultLayout.ftl" as layout>
-<@layout.defaultLayaout "Projects">
+<#assign title = "Projects">
+<@layout.defaultLayaout title>
     <h1>Projects</h1>
     <div id="formResponse">
         <#if projectProjectionPage.getContent()?has_content>
         <#else>
             <div class="alert alert-warning">
-                <span class='label-remove-project'> You do not have any projects</span>
+                <span class='label-remove-project'>You do not have any projects</span>
             </div>
         </#if>
     </div>
@@ -27,10 +28,10 @@
                 <td>${projectProjection.name}</td>
                 <td>
                     <a href="/projects/${projectProjection.uuid}/update">
-                        <i class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;</i>
+                        <i class="glyphicon glyphicon-pencil">&nbsp;</i>
                     </a>
-                    <a href="/projects/${projectProjection.uuid}/delete" class="remove-project" data-toggle="confirmation">
-                        <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+                    <a href="/projects/${projectProjection.uuid}/delete" class="remove-project">
+                        <i class="glyphicon glyphicon-remove"></i>
                     </a>
                 </td>
             </tr>
@@ -39,5 +40,5 @@
     </table>
     <#import "layout/pagination.ftl" as pagination>
     <@pagination.pagination currentPage projectProjectionPage.getTotalPages()/>
-     <script src="/js/ajax-delete.js"> </script>
+    <script src="/js/ajax-delete.js"></script>
 </@layout.defaultLayaout>

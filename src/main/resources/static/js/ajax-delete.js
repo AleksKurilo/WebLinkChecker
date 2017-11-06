@@ -20,7 +20,7 @@ $(document).ready(function () {
             },
             error: function (e) {
                 var respContent  = "<div class=\"alert alert-danger\">" +
-                    "<span class='label-remove-project'><strong>Fail !</strong> Can not delete this project</span></div>";
+                    "<span class='label-remove-project'><strong>Fail!</strong> Can not delete this project</span></div>";
                 $("#formResponse").html(respContent);
             }
         });

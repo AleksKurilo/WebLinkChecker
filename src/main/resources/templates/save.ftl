@@ -2,10 +2,11 @@
 <#-- @ftlvariable name="projects" type="com.web.link.checker.project.model.Project"-->
 <#import "/spring.ftl" as spring/>
 <#import "layout/defaultLayout.ftl" as layout>
-<@layout.defaultLayaout "Add Project">
-    <h1>Add Project </h1>
+<#assign title = "Add Project">
+<@layout.defaultLayaout title>
+    <h1>Add Project</h1>
     <form method="post" action="/projects/save">
-        <p>Project Name:
+        <p><label>Project Name:</label>
         <@spring.bind "project.name"/>
             <input type="text" name="name" value="${project.name!}">
         <#if spring.status.error>
