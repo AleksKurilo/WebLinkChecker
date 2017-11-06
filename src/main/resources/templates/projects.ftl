@@ -7,7 +7,7 @@
         <#if projectProjectionPage.getContent()?has_content>
         <#else>
             <div class="alert alert-warning">
-                <span class='success'><strong>WARNING!</strong> You do not have any projects</span>
+                <span class='label-remove-project'> You do not have any projects</span>
             </div>
         </#if>
     </div>

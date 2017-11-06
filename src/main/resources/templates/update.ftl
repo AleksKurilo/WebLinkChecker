@@ -5,7 +5,7 @@
 <@layout.defaultLayaout "Edit Project">
     <h1>Edit Project</h1>
     <form method="post" action="update">
-        <p>New Project Name:
+        <p>Name:
         <@spring.bind "project.name"/>
             <input type="text" name="name" value="${project.name!}">
         <#if spring.status.error>
