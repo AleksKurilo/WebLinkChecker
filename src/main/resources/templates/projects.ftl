@@ -8,7 +8,7 @@
         <a href="/projects/save" class="btn btn-primary">Add</a>
     </p>
     <#if projectProjectionPage.getContent()?has_content>
-        <div id="formResponse">
+        <div id="alerts">
         </div>
         <table class="table table-striped">
             <thead>

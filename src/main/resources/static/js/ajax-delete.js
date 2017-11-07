@@ -11,7 +11,7 @@ $(document).ready(function () {
                 $($this).closest("tr").remove();
                 var respContent = "<div class=\"alert alert-success\">" +
                     "<span class='label-remove-project'><strong>Success!</strong> Project was deleted</span></div>";
-                $("#formResponse").html(respContent);
+                $("#alerts").html(respContent);
                 if ($(".remove-project").length == 0) {
                     setTimeout(function () {
                         document.location.href = "/projects/";
@@ -21,7 +21,7 @@ $(document).ready(function () {
             error: function (e) {
                 var respContent  = "<div class=\"alert alert-danger\">" +
                     "<span class='label-remove-project'><strong>Fail!</strong> Can not delete this project</span></div>";
-                $("#formResponse").html(respContent);
+                $("#alerts").html(respContent);
             }
         });
         return false;
