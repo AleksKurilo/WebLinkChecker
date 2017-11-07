@@ -1,6 +1,8 @@
 $(document).ready(function () {
     $(document).on("click", ".remove-project", function () {
         var $this = $(this);
+        var test = $(this).attr("href");
+        alert(window.location.href);
         $.ajax({
             beforeSend: function (request) {
                 return confirm('Are you sure you want to delete this project ?');
