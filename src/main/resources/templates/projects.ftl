@@ -38,7 +38,7 @@
         <script src="/js/ajax-delete.js"></script>
     <#else>
         <div class="alert alert-warning">
-           <span class='label-remove-project'>You do not have any projects</span>
+           <span>You do not have any projects</span>
         </div>
     </#if>
 </@layout.defaultLayaout>

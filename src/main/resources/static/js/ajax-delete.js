@@ -1,8 +1,6 @@
 $(document).ready(function () {
     $(document).on("click", ".remove-project", function () {
         var $this = $(this);
-        var test = $(this).attr("href");
-        alert(window.location.href);
         $.ajax({
             beforeSend: function (request) {
                 return confirm('Are you sure you want to delete this project ?');
@@ -11,9 +9,9 @@ $(document).ready(function () {
             type: "DELETE",
             success: function (response) {
                 $($this).closest("tr").remove();
-                var respContent = "<div class=\"alert alert-success\">" +
-                    "<span class='label-remove-project'><strong>Success!</strong> Project was deleted</span></div>";
-                $("#alerts").html(respContent);
+                var responseContent = "<div class=\"alert alert-success\">" +
+                    "<span><strong>Success!</strong> Project was deleted</span></div>";
+                $("#alerts").html(responseContent);
                 if ($(".remove-project").length == 0) {
                     setTimeout(function () {
                         document.location.href = "/projects/";
@@ -21,9 +19,9 @@ $(document).ready(function () {
                 }
             },
             error: function (e) {
-                var respContent  = "<div class=\"alert alert-danger\">" +
-                    "<span class='label-remove-project'><strong>Fail!</strong> Can not delete this project</span></div>";
-                $("#alerts").html(respContent);
+                var responseContent  = "<div class=\"alert alert-danger\">" +
+                    "<span><strong>Fail!</strong> Can not delete this project</span></div>";
+                $("#alerts").html(responseContent);
             }
         });
         return false;

@@ -6,9 +6,9 @@
 <@layout.defaultLayaout title>
     <h1>Edit Project</h1>
     <form method="post" action="update">
-        <p><label for="name-project">Name:</label>
+        <p><label for="project-name">Name:</label>
         <@spring.bind "project.name"/>
-            <input type="text" name="name" value="${project.name!}" id="name-project">
+            <input type="text" name="name" value="${project.name!}" id="project-name">
         <#if spring.status.error>
             <span><@spring.showErrors separator="," /></span>
         </#if>
