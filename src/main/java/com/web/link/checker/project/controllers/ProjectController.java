@@ -54,6 +54,7 @@ public class ProjectController {
         if(bindingResult.hasErrors()) {
             redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
             redirectAttr.addFlashAttribute("project", projectInsert);
+
             return "redirect:" + BASE_PATH + SAVE;
         }
         projectFacade.insert(projectInsert);
