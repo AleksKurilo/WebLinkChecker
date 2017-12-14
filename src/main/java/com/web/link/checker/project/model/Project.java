@@ -29,6 +29,6 @@ public class Project {
     private String uuid;
 
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
-    private Set<Link> link;
+    private Set<Link> links;
 
 }
