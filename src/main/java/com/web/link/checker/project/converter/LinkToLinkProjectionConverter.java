@@ -17,10 +17,12 @@ public class LinkToLinkProjectionConverter implements Converter<Link, LinkProjec
         ValidateUtils.notNull(link, "LINK_IS_NULL");
 
         LinkProjection linkProjection = new LinkProjection();
+        linkProjection.setId(link.getId());
         linkProjection.setAnchor(link.getAnchor());
         linkProjection.setFollow(link.getFollow());
         linkProjection.setDofollow(link.getDofollow());
-
+        linkProjection.setLocation(link.getLocation());
+        linkProjection.setProjectId(link.getProject().getId());
         return linkProjection;
     }
 }

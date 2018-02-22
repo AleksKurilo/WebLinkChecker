@@ -30,7 +30,7 @@ public class Link {
     private String anchor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "link_id", nullable = false)
+    @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
 }

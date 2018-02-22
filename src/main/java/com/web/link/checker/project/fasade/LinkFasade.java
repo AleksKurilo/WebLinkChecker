@@ -2,7 +2,9 @@ package com.web.link.checker.project.fasade;
 
 import com.web.link.checker.project.model.Link;
 import com.web.link.checker.project.model.LinkProjection;
+import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.service.LinkService;
+import com.web.link.checker.project.service.ProjectService;
 import com.web.link.checker.project.utils.ValidateUtils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,9 @@ public class LinkFasade {
     private final LinkService linkService;
 
     @NonNull
+    private final ProjectService projectService;
+
+    @NonNull
     private final ConversionService conversionService;
 
     public List<LinkProjection> findAll() {
@@ -30,9 +35,11 @@ public class LinkFasade {
         return linkProjections;
     }
 
-    public void insert(LinkProjection linkProjection) {
+    public void insert(String projectUuid, LinkProjection linkProjection) {
         ValidateUtils.notNull(linkProjection, "linkProjection");
 
+        Project project = projectService.findByUuid(projectUuid);
+        linkProjection.setProjectId(project.getId());
         linkService.insert(linkProjection);
     }
 }

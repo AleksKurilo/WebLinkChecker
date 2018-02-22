@@ -5,7 +5,7 @@
 <@layout.defaultLayaout title>
     <h1> ${projectProjection.name} links</h1>
     <p>
-        <a href="/links/save" class="btn btn-primary">Add link</a>
+        <a href="/links/${projectProjection.uuid}/save" class="btn btn-primary">Add link</a>
     </p>
     <#if projectProjection.getLinks()?has_content>
         <div id="alerts">
@@ -13,7 +13,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Name</th>
+                <th>Anchor</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -22,7 +22,7 @@
                 <tr>
                     <td>${linkProjection.anchor}</td>
                     <td>
-                        <a href="/projects/${linkProjection.id}/update">
+                        <a href="/links/${linkProjection.id}/update">
                             <i class="glyphicon glyphicon-pencil">&nbsp;</i>
                         </a>
                         <a href="/projects/${linkProjection.id}/delete" class="remove-project">
