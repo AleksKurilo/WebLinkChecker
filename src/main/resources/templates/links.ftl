@@ -3,11 +3,11 @@
 <#import "layout/defaultLayout.ftl" as layout>
 <#assign title = "Projects">
 <@layout.defaultLayaout title>
-    <h1>Projects</h1>
+    <h1> ${projectProjection.name} links</h1>
     <p>
-        <a href="/projects/save" class="btn btn-primary">Add</a>
+        <a href="/links/save" class="btn btn-primary">Add link</a>
     </p>
-    <#if linkProjections?has_content>
+    <#if projectProjection.getLinks()?has_content>
         <div id="alerts">
         </div>
         <table class="table table-striped">
@@ -18,7 +18,7 @@
             </tr>
             </thead>
             <tbody>
-                <#list linkProjections as linkProjection>
+                <#list projectProjection.getLinks() as linkProjection>
                 <tr>
                     <td>${linkProjection.anchor}</td>
                     <td>

@@ -1,9 +1,10 @@
-package com.web.link.checker.project.service;
+package com.web.link.checker.project.fasade;
 
 import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.model.ProjectInsert;
 import com.web.link.checker.project.model.ProjectProjection;
 import com.web.link.checker.project.model.ProjectUpdate;
+import com.web.link.checker.project.service.ProjectService;
 import com.web.link.checker.project.utils.ValidateUtils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,11 @@ public class ProjectFacade {
                 .map(project -> conversionService.convert(project, ProjectProjection.class))
                 .collect(Collectors.toList());
         return new PageImpl(projectProjections, pageable, projectsPage.getTotalElements());
+    }
+
+    public ProjectProjection getByUuid(String uuid) {
+        Project project = projectService.findByUuid(uuid);
+        return conversionService.convert(project, ProjectProjection.class);
     }
 
     public void insert(ProjectInsert projectInsert) {

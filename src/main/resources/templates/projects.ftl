@@ -20,7 +20,7 @@
             <tbody>
                 <#list projectProjectionPage.getContent() as projectProjection>
                 <tr>
-                    <td>${projectProjection.name}</td>
+                    <td><a href="/projects/${projectProjection.uuid}/links"> ${projectProjection.name} </a></td>
                     <td>
                         <a href="/projects/${projectProjection.uuid}/update">
                             <i class="glyphicon glyphicon-pencil">&nbsp;</i>

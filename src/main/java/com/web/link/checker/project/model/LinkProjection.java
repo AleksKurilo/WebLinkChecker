@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class LinkProjection {
 
-    private Long id;
     private String location;
     private String follow;
     private Boolean dofollow;

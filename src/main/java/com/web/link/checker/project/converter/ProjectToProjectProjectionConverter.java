@@ -1,4 +1,4 @@
-package com.web.link.checker.project.service;
+package com.web.link.checker.project.converter;
 
 import com.web.link.checker.project.model.Link;
 import com.web.link.checker.project.model.LinkProjection;
@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProjectToProjectProjectionConverter implements Converter<Project, ProjectProjection> {
 
-    //@NonNull
     @Lazy
     @Autowired
     private ConversionService conversionService;

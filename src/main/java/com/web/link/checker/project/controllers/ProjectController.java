@@ -1,9 +1,9 @@
 package com.web.link.checker.project.controllers;
 
+import com.web.link.checker.project.fasade.ProjectFacade;
 import com.web.link.checker.project.model.ProjectInsert;
 import com.web.link.checker.project.model.ProjectProjection;
 import com.web.link.checker.project.model.ProjectUpdate;
-import com.web.link.checker.project.service.ProjectFacade;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -84,5 +84,14 @@ public class ProjectController {
     @ResponseBody
     public void delete(@PathVariable String uuid){
         projectFacade.delete(uuid);
+    }
+
+    @RequestMapping(path = "/{uuid}/links", method = RequestMethod.GET)
+    public ModelAndView projectLinks(@PathVariable String uuid) {
+        ProjectProjection projectProjection = projectFacade.getByUuid(uuid);
+        ModelAndView modelAndView = new ModelAndView("links");
+        modelAndView.addObject("projectProjection", projectProjection);
+        // modelAndView.addObject("currentPage", currentPage);
+        return modelAndView;
     }
 }

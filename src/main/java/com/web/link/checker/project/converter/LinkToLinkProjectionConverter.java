@@ -1,4 +1,4 @@
-package com.web.link.checker.project.service;
+package com.web.link.checker.project.converter;
 
 import com.web.link.checker.project.model.Link;
 import com.web.link.checker.project.model.LinkProjection;
@@ -17,7 +17,6 @@ public class LinkToLinkProjectionConverter implements Converter<Link, LinkProjec
         ValidateUtils.notNull(link, "LINK_IS_NULL");
 
         LinkProjection linkProjection = new LinkProjection();
-        linkProjection.setId(link.getId());
         linkProjection.setAnchor(link.getAnchor());
         linkProjection.setFollow(link.getFollow());
         linkProjection.setDofollow(link.getDofollow());

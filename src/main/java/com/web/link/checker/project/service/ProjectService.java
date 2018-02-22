@@ -1,8 +1,8 @@
 package com.web.link.checker.project.service;
 
+import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.model.ProjectInsert;
 import com.web.link.checker.project.model.ProjectUpdate;
-import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.repository.ProjectRepository;
 import com.web.link.checker.project.utils.ValidateUtils;
 import lombok.NonNull;
@@ -12,8 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -28,6 +26,11 @@ public class ProjectService {
         ValidateUtils.notNull(pageable, "pageable");
 
         return projectRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public Project findByUuid(String uuid) {
+        return projectRepository.findOneByUuid(uuid);
     }
 
     @Transactional

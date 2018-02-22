@@ -1,6 +1,7 @@
 package com.web.link.checker.project.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import java.util.Set;
         indexes = {
                 @Index(columnList = "uuid", name = "uuid", unique = true)
         })
+@EqualsAndHashCode(exclude = {"links"})
 public class Project {
 
     @Id
