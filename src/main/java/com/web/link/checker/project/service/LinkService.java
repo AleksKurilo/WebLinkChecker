@@ -2,6 +2,7 @@ package com.web.link.checker.project.service;
 
 import com.web.link.checker.project.model.Link;
 import com.web.link.checker.project.model.LinkProjection;
+import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.repository.LinkRepository;
 import com.web.link.checker.project.utils.ValidateUtils;
 import lombok.NonNull;
@@ -29,6 +30,9 @@ public class LinkService {
         link.setDofollow(linkProjection.getDofollow());
         link.setFollow(linkProjection.getFollow());
         link.setLocation(linkProjection.getLocation());
+        Project project = new Project();
+        project.setId(linkProjection.getProjectId());
+        link.setProject(project);
         linkRepository.save(link);
     }
 }

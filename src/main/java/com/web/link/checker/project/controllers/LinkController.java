@@ -2,6 +2,7 @@ package com.web.link.checker.project.controllers;
 
 import com.web.link.checker.project.fasade.LinkFasade;
 import com.web.link.checker.project.model.LinkProjection;
+import com.web.link.checker.project.model.ProjectProjection;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -34,9 +35,12 @@ public class LinkController {
     }
 */
     @RequestMapping(path = "/{projectUuid}/save", method = RequestMethod.GET)
-    public String insertView(Model model) {
+    public String insertView(@PathVariable("projectUuid")String projectUuid, Model model) {
         if (!model.containsAttribute("link")) {
             model.addAttribute("link", new LinkProjection());
+            ProjectProjection projectProjection = new ProjectProjection();
+            projectProjection.setUuid(projectUuid);
+            model.addAttribute("projectProjection", projectProjection);
         }
         return "LinkSave";
     }

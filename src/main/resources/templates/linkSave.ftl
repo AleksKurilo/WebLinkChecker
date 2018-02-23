@@ -5,7 +5,7 @@
 <#assign title = "Add link">
 <@layout.defaultLayaout title>
     <h1>Add Link</h1>
-    <form method="post" action="/links/save">
+    <form method="post" action="/links/${projectProjection.uuid}/save">
 
         <p><label for="link-anchor">Link anchor:</label>
         <@spring.bind "link.anchor"/>
