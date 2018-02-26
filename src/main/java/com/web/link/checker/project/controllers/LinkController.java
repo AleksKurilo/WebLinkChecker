@@ -25,15 +25,17 @@ public class LinkController {
 
     @NonNull
     private final LinkFasade linkFasade;
-/*    //http://localhost:8080/projects/
+
+    //http://localhost:8080/projects/
+    //add action
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView links() {
+    public ModelAndView links(String projectUuid) {
         List<LinkProjection> linkProjections = linkFasade.findAll();
         ModelAndView modelAndView = new ModelAndView("links");
         modelAndView.addObject("linkProjections", linkProjections);
         return modelAndView;
     }
-*/
+
     @RequestMapping(path = "/{projectUuid}/save", method = RequestMethod.GET)
     public String insertView(@PathVariable("projectUuid")String projectUuid, Model model) {
         if (!model.containsAttribute("link")) {
