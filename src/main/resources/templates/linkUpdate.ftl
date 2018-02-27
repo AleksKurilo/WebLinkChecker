@@ -2,10 +2,10 @@
 <#-- @ftlvariable name="links" type="com.web.link.checker.project.model.Link"-->
 <#import "/spring.ftl" as spring/>
 <#import "layout/defaultLayout.ftl" as layout>
-<#assign title = "Add link">
+<#assign title = "Update link">
 <@layout.defaultLayaout title>
-    <h1>Add Link</h1>
-    <form method="post" action="/links/project/${projectProjection.uuid}/save">
+    <h1>Update Link</h1>
+    <form method="post" action="/links/project/${projectProjection.uuid}/link/${link.id}">
         <table>
             <tbody>
             <tr>

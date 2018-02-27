@@ -5,7 +5,7 @@
 <@layout.defaultLayaout title>
     <h1> ${projectProjection.name} links</h1>
     <p>
-        <a href="/links/${projectProjection.uuid}/save" class="btn btn-primary">Add link</a>
+        <a href="/links/project/${projectProjection.uuid}/save" class="btn btn-primary">Add link</a>
     </p>
     <#if projectProjection.getLinks()?has_content>
         <div id="alerts">
@@ -22,10 +22,10 @@
                 <tr>
                     <td>${linkProjection.anchor}</td>
                     <td>
-                        <a href="/links/${linkProjection.id}/update">
+                        <a href="/links/project/${projectProjection.uuid}/link/${linkProjection.id}">
                             <i class="glyphicon glyphicon-pencil">&nbsp;</i>
                         </a>
-                        <a href="/projects/${linkProjection.id}/delete" class="remove-project">
+                        <a href="/links/link/${linkProjection.id}/delete" class="remove-link">
                             <i class="glyphicon glyphicon-remove"></i>
                         </a>
                     </td>
@@ -33,6 +33,7 @@
                 </#list>
             </tbody>
         </table>
-
+    <!-- for delete -->
+    <script src="/js/ajax-delete-link.js"></script>
     </#if>
 </@layout.defaultLayaout>

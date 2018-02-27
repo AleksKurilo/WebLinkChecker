@@ -9,7 +9,7 @@ public interface LinkRepository extends CrudRepository<Link, Long> {
 
     List<Link> findAll();
 
-    Link findById(String id);
+    Link findById(Long id);
 
     void deleteById(Long id);
 }
