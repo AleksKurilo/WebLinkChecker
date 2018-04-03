@@ -3,6 +3,7 @@ package com.web.link.checker.project.controllers;
 import com.web.link.checker.project.fasade.ProjectFacade;
 import com.web.link.checker.project.model.ProjectInsert;
 import com.web.link.checker.project.model.ProjectProjection;
+import com.web.link.checker.project.model.ProjectProjectionWithoutLinks;
 import com.web.link.checker.project.model.ProjectUpdate;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +35,7 @@ public class ProjectController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView projects(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
         Pageable pageable = new PageRequest(currentPage - 1, PAGE_SIZE);
-        Page<ProjectProjection> projectProjectionPage = projectFacade.findAll(pageable);
+        Page<ProjectProjectionWithoutLinks> projectProjectionPage = projectFacade.findAllWithoutLinks(pageable);
         ModelAndView modelAndView = new ModelAndView("projects");
         modelAndView.addObject("projectProjectionPage", projectProjectionPage);
         modelAndView.addObject("currentPage", currentPage);
@@ -54,7 +55,6 @@ public class ProjectController {
         if (bindingResult.hasErrors()) {
             redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
             redirectAttr.addFlashAttribute("project", projectInsert);
-
             return "redirect:" + BASE_PATH + SAVE;
         }
         projectFacade.insert(projectInsert);

@@ -1,9 +1,6 @@
 package com.web.link.checker.project.fasade;
 
-import com.web.link.checker.project.model.Project;
-import com.web.link.checker.project.model.ProjectInsert;
-import com.web.link.checker.project.model.ProjectProjection;
-import com.web.link.checker.project.model.ProjectUpdate;
+import com.web.link.checker.project.model.*;
 import com.web.link.checker.project.service.ProjectService;
 import com.web.link.checker.project.utils.ValidateUtils;
 import lombok.NonNull;
@@ -28,12 +25,12 @@ public class ProjectFacade {
     @NonNull
     private final ConversionService conversionService;
 
-    public Page<ProjectProjection> findAll(Pageable pageable) {
+    public Page<ProjectProjectionWithoutLinks> findAllWithoutLinks(Pageable pageable) {
         ValidateUtils.notNull(pageable, "pageable");
 
         Page<Project> projectsPage = projectService.findAll(pageable);
-        List<ProjectProjection> projectProjections = projectsPage.getContent().stream()
-                .map(project -> conversionService.convert(project, ProjectProjection.class))
+        List<ProjectProjectionWithoutLinks> projectProjections = projectsPage.getContent().stream()
+                .map(project -> conversionService.convert(project, ProjectProjectionWithoutLinks.class))
                 .collect(Collectors.toList());
         return new PageImpl(projectProjections, pageable, projectsPage.getTotalElements());
     }
