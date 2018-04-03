@@ -29,7 +29,7 @@ public class LinkService {
 
     @Transactional
     public void insert(LinkInsert linkInsert) {
-        ValidateUtils.notNull(linkInsert, "LINK_PROJECTION_IS_NULL");
+        ValidateUtils.notNull(linkInsert, "linkInsert");
 
         Link link = new Link();
         link.setAnchor(linkInsert.getAnchor());
@@ -46,7 +46,7 @@ public class LinkService {
 
     @Transactional
     public void update(String uuid, LinkUpdate linkUpdate) {
-        ValidateUtils.notNull(linkUpdate, "LINK_PROJECTION_IS_NULL");
+        ValidateUtils.notNull(linkUpdate, "linkUpdate");
 
         Link existLink = linkRepository.findByUuid(uuid);
         existLink.setAnchor(linkUpdate.getAnchor());
@@ -61,7 +61,7 @@ public class LinkService {
 
     @Transactional
     public void delete(String uuid) {
-        ValidateUtils.notNull(uuid, "UUID_IS_EMPTY");
+        ValidateUtils.notNull(uuid, "uuid");
 
         linkRepository.deleteByUuid(uuid);
     }

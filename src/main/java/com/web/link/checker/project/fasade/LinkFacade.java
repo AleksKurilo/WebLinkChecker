@@ -24,14 +24,14 @@ public class LinkFacade {
     private final ConversionService conversionService;
 
     public LinkProjection findByUuid(String uuid) {
-        ValidateUtils.notBlank(uuid, "UUID_IS_BLANK");
+        ValidateUtils.notBlank(uuid, "uuid");
 
         Link link = linkService.findByUuid(uuid);
         return conversionService.convert(link, LinkProjection.class);
     }
 
     public void insert(String projectUuid, LinkInsert linkInsert) {
-        ValidateUtils.notNull(linkInsert, "LINK_INSERT_IS_NULL");
+        ValidateUtils.notNull(linkInsert, "linkInsert");
 
         Project project = projectService.findByUuid(projectUuid);
         linkInsert.setProjectId(project.getId());
@@ -39,8 +39,8 @@ public class LinkFacade {
     }
 
     public void update(String projectUuid, String linkUuid, LinkUpdate linkUpdate) {
-        ValidateUtils.notNull(linkUpdate, "LINK_UPDATE_IS_NULL");
-        ValidateUtils.notBlank(projectUuid, "PROJECT_UUID_IS_BLANK");
+        ValidateUtils.notNull(linkUpdate, "linkUpdate");
+        ValidateUtils.notBlank(projectUuid, "projectUuid");
 
         Project project = projectService.findByUuid(projectUuid);
         if (linkUpdate.getDofollow() == null) {
@@ -51,7 +51,7 @@ public class LinkFacade {
     }
 
     public void delete(String uuid) {
-        ValidateUtils.notNull(uuid, "UUID_IS_EMPTY");
+        ValidateUtils.notNull(uuid, "uuid");
 
         linkService.delete(uuid);
     }
