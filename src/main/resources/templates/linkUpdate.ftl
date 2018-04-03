@@ -5,7 +5,7 @@
 <#assign title = "Update link">
 <@layout.defaultLayaout title>
     <h1>Update Link</h1>
-    <form method="post" action="/links/project/${projectProjection.uuid}/link/${link.id}">
+    <form method="post" action="/projects/${projectProjection.uuid}/links/${link.uuid}/update">
         <table>
             <tbody>
             <tr>

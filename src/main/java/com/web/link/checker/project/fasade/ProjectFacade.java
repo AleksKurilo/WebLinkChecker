@@ -39,6 +39,8 @@ public class ProjectFacade {
     }
 
     public ProjectProjection getByUuid(String uuid) {
+        ValidateUtils.notNull(uuid, "uuid");
+
         Project project = projectService.findByUuid(uuid);
         return conversionService.convert(project, ProjectProjection.class);
     }

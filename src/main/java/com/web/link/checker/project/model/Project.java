@@ -3,6 +3,8 @@ package com.web.link.checker.project.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -32,7 +34,8 @@ public class Project {
     @NotEmpty
     private String uuid;
 
-    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "project")
+    @Fetch(FetchMode.JOIN)
     private Set<Link> links;
 
 }

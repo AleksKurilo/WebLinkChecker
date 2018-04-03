@@ -30,6 +30,8 @@ public class ProjectService {
 
     @Transactional
     public Project findByUuid(String uuid) {
+        ValidateUtils.notBlank(uuid, "uuid");
+
         return projectRepository.findOneByUuid(uuid);
     }
 

@@ -22,7 +22,7 @@ import static com.web.link.checker.project.controllers.ProjectBinding.*;
 
 
 @Controller
-@RequestMapping(path = PROJECT_BASE_PATH)
+@RequestMapping(path = BASE_PATH)
 @RequiredArgsConstructor
 public class ProjectController {
 
@@ -41,7 +41,7 @@ public class ProjectController {
         return modelAndView;
     }
 
-    @RequestMapping(path = PROJECT_SAVE, method = RequestMethod.GET)
+    @RequestMapping(path = SAVE, method = RequestMethod.GET)
     public String insertView(Model model) {
         if (!model.containsAttribute("project")) {
             model.addAttribute("project", new ProjectInsert());
@@ -49,19 +49,19 @@ public class ProjectController {
         return "save";
     }
 
-    @RequestMapping(path = PROJECT_SAVE, method = RequestMethod.POST)
+    @RequestMapping(path = SAVE, method = RequestMethod.POST)
     public String insert(@ModelAttribute("project") @Valid ProjectInsert projectInsert, BindingResult bindingResult, RedirectAttributes redirectAttr) {
         if (bindingResult.hasErrors()) {
             redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
             redirectAttr.addFlashAttribute("project", projectInsert);
 
-            return "redirect:" + PROJECT_BASE_PATH + PROJECT_SAVE;
+            return "redirect:" + BASE_PATH + SAVE;
         }
         projectFacade.insert(projectInsert);
-        return "redirect:" + PROJECT_BASE_PATH;
+        return "redirect:" + BASE_PATH;
     }
 
-    @RequestMapping(path = PROJECT_UPDATE, method = RequestMethod.GET)
+    @RequestMapping(path = UPDATE, method = RequestMethod.GET)
     public String updateView(Model model) {
         if (!model.containsAttribute("project")) {
             model.addAttribute("project", new ProjectUpdate());
@@ -69,29 +69,23 @@ public class ProjectController {
         return "update";
     }
 
-    @RequestMapping(path = PROJECT_UPDATE, method = RequestMethod.POST)
-    public String update(@PathVariable String uuid, @ModelAttribute("project") @Valid ProjectUpdate projectUpdate, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    @RequestMapping(path = UPDATE, method = RequestMethod.POST)
+    public String update(@PathVariable String uuid,
+                         @ModelAttribute("project") @Valid ProjectUpdate projectUpdate,
+                         BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
             redirectAttributes.addFlashAttribute("project", projectUpdate);
-            return "redirect:" + PROJECT_BASE_PATH + PROJECT_UPDATE;
+            return "redirect:" + BASE_PATH + UPDATE;
         }
         projectFacade.update(uuid, projectUpdate);
-        return "redirect:" + PROJECT_BASE_PATH;
+        return "redirect:" + BASE_PATH;
     }
 
-    @RequestMapping(path = PROJECT_DELETE, method = RequestMethod.DELETE)
+    @RequestMapping(path = DELETE, method = RequestMethod.DELETE)
     @ResponseBody
     public void delete(@PathVariable String uuid) {
         projectFacade.delete(uuid);
-    }
-
-    @RequestMapping(path = "/{uuid}/links", method = RequestMethod.GET)
-    public ModelAndView projectLinks(@PathVariable String uuid) {
-        ProjectProjection projectProjection = projectFacade.getByUuid(uuid);
-        ModelAndView modelAndView = new ModelAndView("links");
-        modelAndView.addObject("projectProjection", projectProjection);
-        // modelAndView.addObject("currentPage", currentPage);
-        return modelAndView;
     }
 }

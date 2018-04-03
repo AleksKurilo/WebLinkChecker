@@ -39,9 +39,4 @@ public class ProjectToProjectProjectionConverter implements Converter<Project, P
         projectProjection.setLinks(linkProjections);
         return projectProjection;
     }
-
-    public void setConversionService(ConversionService conversionService) {
-        this.conversionService = conversionService;
-    }
-
 }

@@ -14,10 +14,10 @@ public class LinkToLinkProjectionConverter implements Converter<Link, LinkProjec
 
     @Override
     public LinkProjection convert(Link link) {
-        ValidateUtils.notNull(link, "LINK_IS_NULL");
+        ValidateUtils.notNull(link, "link");
 
         LinkProjection linkProjection = new LinkProjection();
-        linkProjection.setId(link.getId());
+        linkProjection.setUuid(link.getUuid());
         linkProjection.setAnchor(link.getAnchor());
         linkProjection.setFollow(link.getFollow());
         linkProjection.setDofollow(link.getDofollow());

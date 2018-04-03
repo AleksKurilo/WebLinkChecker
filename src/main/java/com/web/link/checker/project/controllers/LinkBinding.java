@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class LinkBinding {
-    public static final String LINK_BASE_PATH = "/links/";
-    public static final String GET_PROJECT_LINKS = "project/{projectUuid}";
-    public static final String LINK_SAVE = "project/{projectUuid}/save";
-    public static final String LINK_UPDATE = "project/{projectUuid}/link/{linkId}";
-    public static final String LINK_DELETE = "link/{linkId}/delete";
+    public static final String BASE_PATH = "/projects/{projectUuid}/links/";
+    public static final String SAVE = "save";
+    public static final String UPDATE = "{linkUuid}/update";
+    public static final String DELETE = "{linkUuid}/delete";
+    public static final String REDIRECT = "redirect:";
 }

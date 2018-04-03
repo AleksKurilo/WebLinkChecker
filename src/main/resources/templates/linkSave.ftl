@@ -5,7 +5,7 @@
 <#assign title = "Add link">
 <@layout.defaultLayaout title>
     <h1>Add Link</h1>
-    <form method="post" action="/links/project/${projectProjection.uuid}/save">
+    <form method="post" action="/projects/${projectProjection.uuid}/links/save">
         <table>
             <tbody>
             <tr>
@@ -15,7 +15,7 @@
                         <@spring.bind "link.anchor"/>
                         <input type="text" name="anchor" value="${link.anchor!}" id="link-anchor">
                         <#if spring.status.error>
-                        <span><@spring.showErrors separator="," /></span>
+                        <span><@spring.showErrors separator=" " /></span>
                         </#if>
                     </p>
                 </td>

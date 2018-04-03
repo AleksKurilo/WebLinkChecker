@@ -9,6 +9,10 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Data
+@Table(
+        indexes = {
+                @Index(columnList = "uuid", name = "uuid", unique = true)
+        })
 public class Link {
 
     @Id
@@ -16,20 +20,23 @@ public class Link {
     private Long id;
 
     @NotEmpty
+    private String uuid;
+
+    @NotEmpty
     @Size(min = 3, max = 255)
     private String location;
 
     @NotEmpty
-    @Size(min = 3, max = 255)
     private String follow;
 
     @NotNull
     private Boolean dofollow;
 
     @NotEmpty
+    @Size(min = 1, max = 255)
     private String anchor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 

@@ -1,8 +1,10 @@
 package com.web.link.checker.project.controllers;
 
-import com.web.link.checker.project.fasade.LinkFasade;
+import com.web.link.checker.project.fasade.LinkFacade;
 import com.web.link.checker.project.fasade.ProjectFacade;
+import com.web.link.checker.project.model.LinkInsert;
 import com.web.link.checker.project.model.LinkProjection;
+import com.web.link.checker.project.model.LinkUpdate;
 import com.web.link.checker.project.model.ProjectProjection;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -19,96 +21,89 @@ import static com.web.link.checker.project.controllers.LinkBinding.*;
 
 
 @Controller
-@RequestMapping(path = LINK_BASE_PATH)
+@RequestMapping(path = BASE_PATH)
 @RequiredArgsConstructor
 public class LinkController {
 
+    private static final String PROJECT_PROJECTION = "projectProjection";
+
     @NonNull
-    private final LinkFasade linkFasade;
+    private final LinkFacade linkFacade;
 
     @NonNull
     private final ProjectFacade projectFacade;
 
-    //http://localhost:8080/projects/
-
-    @RequestMapping(path = GET_PROJECT_LINKS, method = RequestMethod.GET)
-    public ModelAndView linksProject(@PathVariable("projectUuid") String projectUuid) {
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView findAllOfProject(@PathVariable("projectUuid") String projectUuid) {
         ProjectProjection projectProjection = projectFacade.getByUuid(projectUuid);
         ModelAndView modelAndView = new ModelAndView("links");
-        modelAndView.addObject("projectProjection", projectProjection);
+        modelAndView.addObject(PROJECT_PROJECTION, projectProjection);
         return modelAndView;
     }
 
-
-    @RequestMapping(path = LINK_SAVE, method = RequestMethod.GET)
+    @RequestMapping(path = SAVE, method = RequestMethod.GET)
     public String insertView(@PathVariable("projectUuid") String projectUuid, Model model) {
-        ProjectProjection projectProjection = new ProjectProjection();
-        projectProjection.setUuid(projectUuid);
-        model.addAttribute("projectProjection", projectProjection);
+        ProjectProjection projectProjection = projectFacade.getByUuid(projectUuid);
+        model.addAttribute(PROJECT_PROJECTION, projectProjection);
         if (!model.containsAttribute("link")) {
             model.addAttribute("link", new LinkProjection());
-         }
+        }
         return "linkSave";
     }
 
-    @RequestMapping(path = LINK_SAVE, method = RequestMethod.POST)
+    @RequestMapping(path = SAVE, method = RequestMethod.POST)
     public String insert(@PathVariable("projectUuid") String projectUuid,
-                         @ModelAttribute("link") @Valid LinkProjection linkProjection,
+                         @ModelAttribute("link") @Valid LinkInsert linkInsert,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttr) {
         if (bindingResult.hasErrors()) {
             redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "link", bindingResult);
-            redirectAttr.addFlashAttribute("link", linkProjection);
+            redirectAttr.addFlashAttribute("link", linkInsert);
 
-            return "redirect:" + "/links/project/" + projectUuid + "/save";
+            return REDIRECT + ProjectBinding.BASE_PATH + projectUuid + "/links/save";
         }
-        if (linkProjection.getDofollow() == null) {
-            linkProjection.setDofollow(false);
+        if (linkInsert.getDofollow() == null) {
+            linkInsert.setDofollow(false);
         }
-        linkFasade.insert(projectUuid, linkProjection);
-        return "redirect:" + "/links/project/" + projectUuid;
+        linkFacade.insert(projectUuid, linkInsert);
+        return REDIRECT + ProjectBinding.BASE_PATH  + projectUuid + "/links/";
     }
 
-    @RequestMapping(path = LINK_UPDATE, method = RequestMethod.GET)
+    @RequestMapping(path = UPDATE, method = RequestMethod.GET)
     public String updateView(@PathVariable("projectUuid") String projectUuid,
-                             @PathVariable("linkId") Long linkId,
+                             @PathVariable("linkUuid") String linkUuid,
                              Model model) {
-        ProjectProjection projectProjection = new ProjectProjection();
-        projectProjection.setUuid(projectUuid);
-        model.addAttribute("projectProjection", projectProjection);
+        ProjectProjection projectProjection = projectFacade.getByUuid(projectUuid);
+        model.addAttribute(PROJECT_PROJECTION, projectProjection);
         if (!model.containsAttribute("link")) {
-            LinkProjection linkProjection = new LinkProjection();
-            linkProjection.setId(linkId);
-            model.addAttribute("link", linkProjection);
-            model.addAttribute("projectProjection", projectProjection);
+            LinkUpdate linkUpdate = new LinkUpdate();
+            linkUpdate.setUuid(linkUuid);
+            model.addAttribute("link", linkUpdate);
+            model.addAttribute(PROJECT_PROJECTION, projectProjection);
         }
         return "linkUpdate";
     }
 
-    @RequestMapping(path = LINK_UPDATE, method = RequestMethod.POST)
+    @RequestMapping(path = UPDATE, method = RequestMethod.POST)
     public String update(@PathVariable("projectUuid") String projectUuid,
-                         @PathVariable("linkId") Long linkId,
-                         @ModelAttribute("link") @Valid LinkProjection linkProjection,
+                         @PathVariable("linkUuid") String linkUuid,
+                         @ModelAttribute("link") @Valid LinkUpdate linkUpdate,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttr) {
-        linkProjection.setId(linkId);
+        linkUpdate.setUuid(linkUuid);
         if (bindingResult.hasErrors()) {
             redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "link", bindingResult);
-            redirectAttr.addFlashAttribute("link", linkProjection);
+            redirectAttr.addFlashAttribute("link", linkUpdate);
 
-            return "redirect:" + "/links/project/" + projectUuid + "/link/" + linkId;
+            return REDIRECT + ProjectBinding.BASE_PATH  + projectUuid + "/links/" + linkUuid + "/update";
         }
-        if (linkProjection.getDofollow() == null) {
-            linkProjection.setDofollow(false);
-        }
-        linkProjection.setId(linkId);
-        linkFasade.update(projectUuid, linkProjection);
-        return "redirect:" + "/links/project/" + projectUuid;
+        linkFacade.update(projectUuid, linkUuid, linkUpdate);
+        return REDIRECT + ProjectBinding.BASE_PATH  + projectUuid + "/links/";
     }
 
-    @RequestMapping(path = LINK_DELETE, method = RequestMethod.DELETE)
+    @RequestMapping(path = DELETE, method = RequestMethod.DELETE)
     @ResponseBody
-    public void delete(@PathVariable Long linkId) {
-        linkFasade.delete(linkId);
+    public void delete(@PathVariable String linkUuid) {
+        linkFacade.delete(linkUuid);
     }
 }
