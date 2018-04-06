@@ -39,5 +39,4 @@ public class Link {
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
-
 }
