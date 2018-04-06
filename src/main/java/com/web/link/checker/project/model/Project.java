@@ -35,7 +35,6 @@ public class Project {
     private String uuid;
 
     @OneToMany(mappedBy = "project")
-    @Fetch(FetchMode.JOIN)
     private Set<Link> links;
 
 }
