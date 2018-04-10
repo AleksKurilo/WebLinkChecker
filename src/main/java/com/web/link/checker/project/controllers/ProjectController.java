@@ -26,10 +26,11 @@ import static com.web.link.checker.project.controllers.ProjectBinding.*;
 @RequiredArgsConstructor
 public class ProjectController {
 
+    private static final int PAGE_SIZE = 5;
+    private static final String PROJECT = "project";
+
     @NonNull
     private final ProjectFacade projectFacade;
-
-    private static final int PAGE_SIZE = 5;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView projects(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
@@ -43,8 +44,8 @@ public class ProjectController {
 
     @RequestMapping(path = SAVE, method = RequestMethod.GET)
     public String insertView(Model model) {
-        if (!model.containsAttribute("project")) {
-            model.addAttribute("project", new ProjectInsert());
+        if (!model.containsAttribute(PROJECT)) {
+            model.addAttribute(PROJECT, new ProjectInsert());
         }
         return "save";
     }
@@ -52,8 +53,8 @@ public class ProjectController {
     @RequestMapping(path = SAVE, method = RequestMethod.POST)
     public String insert(@ModelAttribute("project") @Valid ProjectInsert projectInsert, BindingResult bindingResult, RedirectAttributes redirectAttr) {
         if (bindingResult.hasErrors()) {
-            redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
-            redirectAttr.addFlashAttribute("project", projectInsert);
+            redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + PROJECT, bindingResult);
+            redirectAttr.addFlashAttribute(PROJECT, projectInsert);
             return REDIRECT_TO_SAVE;
         }
         projectFacade.insert(projectInsert);
@@ -62,8 +63,8 @@ public class ProjectController {
 
     @RequestMapping(path = UPDATE, method = RequestMethod.GET)
     public String updateView(Model model) {
-        if (!model.containsAttribute("project")) {
-            model.addAttribute("project", new ProjectUpdate());
+        if (!model.containsAttribute(PROJECT)) {
+            model.addAttribute(PROJECT, new ProjectUpdate());
         }
         return "update";
     }
@@ -74,8 +75,8 @@ public class ProjectController {
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
-            redirectAttributes.addFlashAttribute("project", projectUpdate);
+            redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + PROJECT, bindingResult);
+            redirectAttributes.addFlashAttribute(PROJECT, projectUpdate);
             return REDIRECT_TO_UPDATE;
         }
         projectFacade.update(uuid, projectUpdate);
