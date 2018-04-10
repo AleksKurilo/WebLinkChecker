@@ -22,11 +22,11 @@
             <tr>
 
             <tr>
-                <td>Link follow:</td>
+                <td>Link href:</td>
                 <td>
-                    <p><label for="link-follow"></label>
-                         <@spring.bind "link.follow"/>
-                        <input type="text" name="follow" value="${link.follow!}" id="link-follow">
+                    <p><label for="link-href"></label>
+                         <@spring.bind "link.href"/>
+                        <input type="text" name="href" value="${link.href!}" id="link-href">
                          <#if spring.status.error>
                          <span><@spring.showErrors separator="," /></span>
                          </#if>

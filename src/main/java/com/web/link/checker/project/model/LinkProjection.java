@@ -10,12 +10,12 @@ public class LinkProjection {
 
     private String location;
 
-    private String follow;
+    private String href;
 
     private boolean dofollow;
 
     private String anchor;
 
-    private Long projectId;
+    private String projectUuid;
 
 }

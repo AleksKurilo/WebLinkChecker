@@ -32,22 +32,16 @@ public class LinkFacade {
 
     public void insert(String projectUuid, LinkInsert linkInsert) {
         ValidateUtils.notNull(linkInsert, "linkInsert");
+        ValidateUtils.notNull(projectUuid, "projectUuid");
 
-        Project project = projectService.findByUuid(projectUuid);
-        linkInsert.setProjectId(project.getId());
-        linkService.insert(linkInsert);
+        linkService.insert(projectUuid, linkInsert);
     }
 
     public void update(String projectUuid, String linkUuid, LinkUpdate linkUpdate) {
         ValidateUtils.notNull(linkUpdate, "linkUpdate");
         ValidateUtils.notBlank(projectUuid, "projectUuid");
 
-        Project project = projectService.findByUuid(projectUuid);
-        if (linkUpdate.getDofollow() == null) {
-            linkUpdate.setDofollow(false);
-        }
-        linkUpdate.setProjectId(project.getId());
-        linkService.update(linkUuid, linkUpdate);
+        linkService.update(projectUuid, linkUuid, linkUpdate);
     }
 
     public void delete(String uuid) {

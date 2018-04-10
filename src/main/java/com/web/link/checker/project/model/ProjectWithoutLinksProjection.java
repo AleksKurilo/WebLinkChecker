@@ -3,7 +3,7 @@ package com.web.link.checker.project.model;
 import lombok.Data;
 
 @Data
-public class ProjectProjectionWithoutLinks {
+public class ProjectWithoutLinksProjection {
 
     private String name;
 

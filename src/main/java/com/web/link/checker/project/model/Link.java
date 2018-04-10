@@ -23,20 +23,19 @@ public class Link {
     private String uuid;
 
     @NotEmpty
-    @Size(min = 3, max = 255)
     private String location;
 
     @NotEmpty
-    private String follow;
+    private String href;
 
     @NotNull
-    private Boolean dofollow;
+    private boolean dofollow;
 
-    @NotEmpty
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 1000)
     private String anchor;
 
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
+
 }

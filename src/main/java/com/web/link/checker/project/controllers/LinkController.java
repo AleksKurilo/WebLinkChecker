@@ -26,6 +26,7 @@ import static com.web.link.checker.project.controllers.LinkBinding.*;
 public class LinkController {
 
     private static final String PROJECT_PROJECTION = "projectProjection";
+    private static final String LINK = "link";
 
     @NonNull
     private final LinkFacade linkFacade;
@@ -34,7 +35,7 @@ public class LinkController {
     private final ProjectFacade projectFacade;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView findAllOfProject(@PathVariable("projectUuid") String projectUuid) {
+    public ModelAndView findByProjectUuid(@PathVariable("projectUuid") String projectUuid) {
         ProjectProjection projectProjection = projectFacade.getByUuid(projectUuid);
         ModelAndView modelAndView = new ModelAndView("links");
         modelAndView.addObject(PROJECT_PROJECTION, projectProjection);
@@ -45,8 +46,8 @@ public class LinkController {
     public String insertView(@PathVariable("projectUuid") String projectUuid, Model model) {
         ProjectProjection projectProjection = projectFacade.getByUuid(projectUuid);
         model.addAttribute(PROJECT_PROJECTION, projectProjection);
-        if (!model.containsAttribute("link")) {
-            model.addAttribute("link", new LinkProjection());
+        if (!model.containsAttribute(LINK)) {
+            model.addAttribute(LINK, new LinkProjection());
         }
         return "linkSave";
     }
@@ -58,15 +59,11 @@ public class LinkController {
                          RedirectAttributes redirectAttr) {
         if (bindingResult.hasErrors()) {
             redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "link", bindingResult);
-            redirectAttr.addFlashAttribute("link", linkInsert);
-
-            return REDIRECT + ProjectBinding.BASE_PATH + projectUuid + "/links/save";
-        }
-        if (linkInsert.getDofollow() == null) {
-            linkInsert.setDofollow(false);
+            redirectAttr.addFlashAttribute(LINK, linkInsert);
+            return REDIRECT_TO_SAVE;
         }
         linkFacade.insert(projectUuid, linkInsert);
-        return REDIRECT + ProjectBinding.BASE_PATH  + projectUuid + "/links/";
+        return REDIRECT_TO_LINKS;
     }
 
     @RequestMapping(path = UPDATE, method = RequestMethod.GET)
@@ -75,10 +72,10 @@ public class LinkController {
                              Model model) {
         ProjectProjection projectProjection = projectFacade.getByUuid(projectUuid);
         model.addAttribute(PROJECT_PROJECTION, projectProjection);
-        if (!model.containsAttribute("link")) {
+        if (!model.containsAttribute(LINK)) {
             LinkUpdate linkUpdate = new LinkUpdate();
             linkUpdate.setUuid(linkUuid);
-            model.addAttribute("link", linkUpdate);
+            model.addAttribute(LINK, linkUpdate);
             model.addAttribute(PROJECT_PROJECTION, projectProjection);
         }
         return "linkUpdate";
@@ -93,12 +90,11 @@ public class LinkController {
         linkUpdate.setUuid(linkUuid);
         if (bindingResult.hasErrors()) {
             redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "link", bindingResult);
-            redirectAttr.addFlashAttribute("link", linkUpdate);
-
-            return REDIRECT + ProjectBinding.BASE_PATH  + projectUuid + "/links/" + linkUuid + "/update";
+            redirectAttr.addFlashAttribute(LINK, linkUpdate);
+            return REDIRECT_TO_UPDATE;
         }
         linkFacade.update(projectUuid, linkUuid, linkUpdate);
-        return REDIRECT + ProjectBinding.BASE_PATH  + projectUuid + "/links/";
+        return REDIRECT_TO_LINKS;
     }
 
     @RequestMapping(path = DELETE, method = RequestMethod.DELETE)

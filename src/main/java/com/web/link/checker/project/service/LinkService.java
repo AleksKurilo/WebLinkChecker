@@ -24,38 +24,44 @@ public class LinkService {
 
     @Transactional
     public Link findByUuid(String uuid) {
+        ValidateUtils.notNull(uuid, "uuid");
+
         return linkRepository.findByUuid(uuid);
     }
 
     @Transactional
-    public void insert(LinkInsert linkInsert) {
+    public void insert(String projectUuid, LinkInsert linkInsert) {
         ValidateUtils.notNull(linkInsert, "linkInsert");
 
+        Project projectExist = projectRepository.findOneByUuid(projectUuid);
         Link link = new Link();
         link.setAnchor(linkInsert.getAnchor());
+        link.setHref(linkInsert.getHref());
         link.setDofollow(linkInsert.getDofollow());
-        link.setFollow(linkInsert.getFollow());
+        if (linkInsert.getDofollow() == null) {
+            link.setDofollow(false);
+        }
         link.setLocation(linkInsert.getLocation());
         String uuid = UUID.randomUUID().toString();
         link.setUuid(uuid);
-        Project project = new Project();
-        project.setId(linkInsert.getProjectId());
-        link.setProject(project);
+        link.setProject(projectExist);
         linkRepository.save(link);
     }
 
     @Transactional
-    public void update(String uuid, LinkUpdate linkUpdate) {
+    public void update(String projectUuid, String uuid, LinkUpdate linkUpdate) {
         ValidateUtils.notNull(linkUpdate, "linkUpdate");
 
+        Project projectExist = projectRepository.findOneByUuid(projectUuid);
         Link existLink = linkRepository.findByUuid(uuid);
         existLink.setAnchor(linkUpdate.getAnchor());
+        existLink.setHref(linkUpdate.getHref());
         existLink.setDofollow(linkUpdate.getDofollow());
-        existLink.setFollow(linkUpdate.getFollow());
+        if (linkUpdate.getDofollow() == null) {
+            existLink.setDofollow(false);
+        }
         existLink.setLocation(linkUpdate.getLocation());
-        Project project = new Project();
-        project.setId(linkUpdate.getProjectId());
-        existLink.setProject(project);
+        existLink.setProject(projectExist);
         linkRepository.save(existLink);
     }
 

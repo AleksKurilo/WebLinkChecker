@@ -25,12 +25,12 @@ public class ProjectFacade {
     @NonNull
     private final ConversionService conversionService;
 
-    public Page<ProjectProjectionWithoutLinks> findAllWithoutLinks(Pageable pageable) {
+    public Page<ProjectWithoutLinksProjection> findAllWithoutLinks(Pageable pageable) {
         ValidateUtils.notNull(pageable, "pageable");
 
         Page<Project> projectsPage = projectService.findAll(pageable);
-        List<ProjectProjectionWithoutLinks> projectProjections = projectsPage.getContent().stream()
-                .map(project -> conversionService.convert(project, ProjectProjectionWithoutLinks.class))
+        List<ProjectWithoutLinksProjection> projectProjections = projectsPage.getContent().stream()
+                .map(project -> conversionService.convert(project, ProjectWithoutLinksProjection.class))
                 .collect(Collectors.toList());
         return new PageImpl(projectProjections, pageable, projectsPage.getTotalElements());
     }

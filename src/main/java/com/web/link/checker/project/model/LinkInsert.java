@@ -13,13 +13,11 @@ public class LinkInsert {
     private String location;
 
     @NotEmpty
-    private String follow;
+    private String href;
 
     private Boolean dofollow;
 
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 1000)
     private String anchor;
-
-    private Long projectId;
 }

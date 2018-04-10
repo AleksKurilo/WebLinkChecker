@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class ProjectToProjectProjectionWithoutLinksConverter implements Converter<Project, ProjectProjection> {
+class ProjectToProjectProjectionConverter implements Converter<Project, ProjectProjection> {
 
     @Lazy
     @Autowired

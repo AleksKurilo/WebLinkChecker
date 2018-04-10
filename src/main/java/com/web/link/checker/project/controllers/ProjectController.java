@@ -2,8 +2,7 @@ package com.web.link.checker.project.controllers;
 
 import com.web.link.checker.project.fasade.ProjectFacade;
 import com.web.link.checker.project.model.ProjectInsert;
-import com.web.link.checker.project.model.ProjectProjection;
-import com.web.link.checker.project.model.ProjectProjectionWithoutLinks;
+import com.web.link.checker.project.model.ProjectWithoutLinksProjection;
 import com.web.link.checker.project.model.ProjectUpdate;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +34,7 @@ public class ProjectController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView projects(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
         Pageable pageable = new PageRequest(currentPage - 1, PAGE_SIZE);
-        Page<ProjectProjectionWithoutLinks> projectProjectionPage = projectFacade.findAllWithoutLinks(pageable);
+        Page<ProjectWithoutLinksProjection> projectProjectionPage = projectFacade.findAllWithoutLinks(pageable);
         ModelAndView modelAndView = new ModelAndView("projects");
         modelAndView.addObject("projectProjectionPage", projectProjectionPage);
         modelAndView.addObject("currentPage", currentPage);
@@ -55,10 +54,10 @@ public class ProjectController {
         if (bindingResult.hasErrors()) {
             redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
             redirectAttr.addFlashAttribute("project", projectInsert);
-            return "redirect:" + BASE_PATH + SAVE;
+            return REDIRECT_TO_SAVE;
         }
         projectFacade.insert(projectInsert);
-        return "redirect:" + BASE_PATH;
+        return REDIRECT_PROJECT;
     }
 
     @RequestMapping(path = UPDATE, method = RequestMethod.GET)
@@ -77,10 +76,10 @@ public class ProjectController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "project", bindingResult);
             redirectAttributes.addFlashAttribute("project", projectUpdate);
-            return "redirect:" + BASE_PATH + UPDATE;
+            return REDIRECT_TO_UPDATE;
         }
         projectFacade.update(uuid, projectUpdate);
-        return "redirect:" + BASE_PATH;
+        return REDIRECT_PROJECT;
     }
 
     @RequestMapping(path = DELETE, method = RequestMethod.DELETE)
