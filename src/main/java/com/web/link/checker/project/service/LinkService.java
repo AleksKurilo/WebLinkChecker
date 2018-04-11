@@ -1,5 +1,6 @@
 package com.web.link.checker.project.service;
 
+import com.web.link.checker.project.converter.ConverterHelper;
 import com.web.link.checker.project.model.*;
 import com.web.link.checker.project.repository.LinkRepository;
 import com.web.link.checker.project.repository.ProjectRepository;
@@ -36,13 +37,10 @@ public class LinkService {
         Project projectExist = projectRepository.findOneByUuid(projectUuid);
         if (projectExist != null) {
             Link link = new Link();
-            link.setAnchor(linkInsert.getAnchor());
-            link.setHref(linkInsert.getHref());
-            link.setDofollow(linkInsert.getDofollow());
             if (linkInsert.getDofollow() == null) {
                 link.setDofollow(false);
             }
-            link.setLocation(linkInsert.getLocation());
+            ConverterHelper.combine2Objects(linkInsert, link);
             String uuid = UUID.randomUUID().toString();
             link.setUuid(uuid);
             link.setProject(projectExist);
@@ -57,13 +55,10 @@ public class LinkService {
         Project projectExist = projectRepository.findOneByUuid(projectUuid);
         Link existLink = linkRepository.findByUuid(uuid);
         if (projectExist != null && existLink != null) {
-            existLink.setAnchor(linkUpdate.getAnchor());
-            existLink.setHref(linkUpdate.getHref());
-            existLink.setDofollow(linkUpdate.getDofollow());
             if (linkUpdate.getDofollow() == null) {
                 existLink.setDofollow(false);
             }
-            existLink.setLocation(linkUpdate.getLocation());
+            ConverterHelper.combine2Objects(linkUpdate, existLink);
             existLink.setProject(projectExist);
             linkRepository.save(existLink);
         }
