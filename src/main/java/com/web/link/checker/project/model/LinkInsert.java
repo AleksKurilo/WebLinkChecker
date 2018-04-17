@@ -15,7 +15,7 @@ public class LinkInsert {
     @NotEmpty
     private String href;
 
-    private Boolean dofollow;
+    private boolean dofollow;
 
     @NotNull
     @Size(min = 1, max = 1000)

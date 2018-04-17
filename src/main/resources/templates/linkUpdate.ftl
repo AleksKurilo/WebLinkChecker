@@ -6,6 +6,28 @@
 <@layout.defaultLayaout title>
     <h1>Update Link</h1>
     <form method="post" action="/projects/${projectProjection.uuid}/links/${link.uuid}/update">
+
+        <table>
+            <tbody>
+            <tr>
+                <td>Link old anchor:</td>
+                <td>${llinkProjection.anchor}</td>
+            </tr>
+            <tr>
+                <td>Link old href:</td>
+                <td>${llinkProjection.href}</td>
+            </tr>
+            <tr>
+                <td>Link old location:</td>
+                <td>${llinkProjection.location}</td>
+            </tr>
+            <tr>
+                <td>Link old dofollow:</td>
+                <td>${llinkProjection.dofollow?c}</td>
+            </tr>
+            </tbody>
+        </table>
+
         <table>
             <tbody>
             <tr>
@@ -53,10 +75,21 @@
                     <p><label for="link-dofollow"></label>
                          <@spring.bind "link.dofollow"/>
                         <input type="checkbox" checked="checked" name="dofollow" value="true" id="link-dofollow">
+                        <input type="hidden" checked="checked" name="dofollow" value="false" name="_link-dofollow"/>
                         <#if spring.status.error>
                         <span><@spring.showErrors separator="," /></span>
                         </#if>
                     </p>
+                </td>
+            <tr>
+
+            <tr>
+                <td>
+                    <@spring.bind "link.uuid"/>
+                    <input type="hidden" name="uuid" value="${link.uuid!}" id="link-uuid">
+                    <#if spring.status.error>
+                    <span><@spring.showErrors separator="," /></span>
+                    </#if>
                 </td>
             <tr>
             </tbody>

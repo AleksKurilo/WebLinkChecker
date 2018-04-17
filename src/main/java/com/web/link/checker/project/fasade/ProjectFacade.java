@@ -14,6 +14,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.web.link.checker.project.utils.ValidateUtils.notBlank;
+import static com.web.link.checker.project.utils.ValidateUtils.notNull;
+
 
 @Component
 @RequiredArgsConstructor
@@ -26,7 +29,7 @@ public class ProjectFacade {
     private final ConversionService conversionService;
 
     public Page<ProjectWithoutLinksProjection> findAllWithoutLinks(Pageable pageable) {
-        ValidateUtils.notNull(pageable, "pageable");
+        notNull(pageable, "pageable");
 
         Page<Project> projectsPage = projectService.findAll(pageable);
         List<ProjectWithoutLinksProjection> projectProjections = projectsPage.getContent().stream()
@@ -35,28 +38,28 @@ public class ProjectFacade {
         return new PageImpl(projectProjections, pageable, projectsPage.getTotalElements());
     }
 
-    public ProjectProjection getByUuid(String uuid) {
-        ValidateUtils.notNull(uuid, "uuid");
+    public ProjectWithLinksProjection getByUuid(String uuid) {
+        notNull(uuid, "uuid");
 
         Project project = projectService.findByUuid(uuid);
-        return conversionService.convert(project, ProjectProjection.class);
+        return conversionService.convert(project, ProjectWithLinksProjection.class);
     }
 
     public void insert(ProjectInsert projectInsert) {
-        ValidateUtils.notNull(projectInsert, "projectInsert");
+        notNull(projectInsert, "projectInsert");
 
         projectService.insert(projectInsert);
     }
 
     public void update(String uuid, ProjectUpdate projectUpdate) {
-        ValidateUtils.notBlank(uuid, "uuid");
-        ValidateUtils.notNull(projectUpdate, "projectUpdate");
+        notBlank(uuid, "uuid");
+        notNull(projectUpdate, "projectUpdate");
 
         projectService.update(uuid, projectUpdate);
     }
 
     public void delete(String uuid) {
-        ValidateUtils.notBlank(uuid, "uuid");
+        notBlank(uuid, "uuid");
 
         projectService.delete(uuid);
     }

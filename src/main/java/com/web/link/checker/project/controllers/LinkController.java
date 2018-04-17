@@ -5,7 +5,7 @@ import com.web.link.checker.project.fasade.ProjectFacade;
 import com.web.link.checker.project.model.LinkInsert;
 import com.web.link.checker.project.model.LinkProjection;
 import com.web.link.checker.project.model.LinkUpdate;
-import com.web.link.checker.project.model.ProjectProjection;
+import com.web.link.checker.project.model.ProjectWithLinksProjection;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ import static com.web.link.checker.project.controllers.LinkBinding.*;
 
 
 @Controller
-@RequestMapping(path = LinkBinding.BASE_PATH)
+@RequestMapping(path = BASE_PATH)
 @RequiredArgsConstructor
 public class LinkController {
 
@@ -36,15 +36,15 @@ public class LinkController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView findByProjectUuid(@PathVariable("projectUuid") String projectUuid) {
-        ProjectProjection projectProjection = projectFacade.getByUuid(projectUuid);
+        ProjectWithLinksProjection projectProjection = projectFacade.getByUuid(projectUuid);
         ModelAndView modelAndView = new ModelAndView("links");
         modelAndView.addObject(PROJECT_PROJECTION, projectProjection);
         return modelAndView;
     }
 
-    @RequestMapping(path = LinkBinding.SAVE, method = RequestMethod.GET)
+    @RequestMapping(path = SAVE, method = RequestMethod.GET)
     public String insertView(@PathVariable("projectUuid") String projectUuid, Model model) {
-        ProjectProjection projectProjection = projectFacade.getByUuid(projectUuid);
+        ProjectWithLinksProjection projectProjection = projectFacade.getByUuid(projectUuid);
         model.addAttribute(PROJECT_PROJECTION, projectProjection);
         if (!model.containsAttribute(LINK)) {
             model.addAttribute(LINK, new LinkProjection());
@@ -52,7 +52,7 @@ public class LinkController {
         return "linkSave";
     }
 
-    @RequestMapping(path = LinkBinding.SAVE, method = RequestMethod.POST)
+    @RequestMapping(path = SAVE, method = RequestMethod.POST)
     public String insert(@PathVariable("projectUuid") String projectUuid,
                          @ModelAttribute("link") @Valid LinkInsert linkInsert,
                          BindingResult bindingResult,
@@ -60,18 +60,20 @@ public class LinkController {
         if (bindingResult.hasErrors()) {
             redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "link", bindingResult);
             redirectAttr.addFlashAttribute(LINK, linkInsert);
-            return LinkBinding.REDIRECT_TO_SAVE;
+            return REDIRECT_TO_SAVE;
         }
         linkFacade.insert(projectUuid, linkInsert);
-        return LinkBinding.REDIRECT_TO_LINKS;
+        return REDIRECT_TO_LINKS;
     }
 
-    @RequestMapping(path = LinkBinding.UPDATE, method = RequestMethod.GET)
+    @RequestMapping(path = UPDATE, method = RequestMethod.GET)
     public String updateView(@PathVariable("projectUuid") String projectUuid,
                              @PathVariable("linkUuid") String linkUuid,
                              Model model) {
-        ProjectProjection projectProjection = projectFacade.getByUuid(projectUuid);
+        ProjectWithLinksProjection projectProjection = projectFacade.getByUuid(projectUuid);
+        LinkProjection linkProjection = linkFacade.findByUuid(linkUuid);
         model.addAttribute(PROJECT_PROJECTION, projectProjection);
+        model.addAttribute("llinkProjection", linkProjection);
         if (!model.containsAttribute(LINK)) {
             LinkUpdate linkUpdate = new LinkUpdate();
             linkUpdate.setUuid(linkUuid);
@@ -81,23 +83,22 @@ public class LinkController {
         return "linkUpdate";
     }
 
-    @RequestMapping(path = LinkBinding.UPDATE, method = RequestMethod.POST)
+    @RequestMapping(path = UPDATE, method = RequestMethod.POST)
     public String update(@PathVariable("projectUuid") String projectUuid,
                          @PathVariable("linkUuid") String linkUuid,
                          @ModelAttribute("link") @Valid LinkUpdate linkUpdate,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttr) {
-        linkUpdate.setUuid(linkUuid);
         if (bindingResult.hasErrors()) {
             redirectAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "link", bindingResult);
             redirectAttr.addFlashAttribute(LINK, linkUpdate);
-            return LinkBinding.REDIRECT_TO_UPDATE;
+            return REDIRECT_TO_UPDATE;
         }
         linkFacade.update(projectUuid, linkUuid, linkUpdate);
-        return LinkBinding.REDIRECT_TO_LINKS;
+        return REDIRECT_TO_LINKS;
     }
 
-    @RequestMapping(path = LinkBinding.DELETE, method = RequestMethod.DELETE)
+    @RequestMapping(path = DELETE, method = RequestMethod.DELETE)
     @ResponseBody
     public void delete(@PathVariable String linkUuid) {
         linkFacade.delete(linkUuid);

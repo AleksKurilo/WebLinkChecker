@@ -15,7 +15,4 @@ public class LinkProjection {
     private boolean dofollow;
 
     private String anchor;
-
-    private String projectUuid;
-
 }

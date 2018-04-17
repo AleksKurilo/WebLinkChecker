@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import static com.web.link.checker.project.utils.ValidateUtils.notNull;
 
 
 @Component
@@ -14,10 +15,11 @@ public class ProjectToProjectProjectionWithoutLinksConverter implements Converte
 
     @Override
     public ProjectWithoutLinksProjection convert(Project project) {
-        ValidateUtils.notNull(project, "project");
+        notNull(project, "project");
 
         ProjectWithoutLinksProjection projectProjection = new ProjectWithoutLinksProjection();
-        ConverterHelper.combine2Objects(project, projectProjection);
+        projectProjection.setName(project.getName());
+        projectProjection.setUuid(project.getUuid());
         return projectProjection;
     }
 }

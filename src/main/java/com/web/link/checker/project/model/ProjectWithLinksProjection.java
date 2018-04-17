@@ -6,7 +6,7 @@ import java.util.List;
 
 
 @Data
-public class ProjectProjection {
+public class ProjectWithLinksProjection {
 
     private String name;
 

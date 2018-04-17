@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Component;
 
+import static com.web.link.checker.project.utils.ValidateUtils.notBlank;
+import static com.web.link.checker.project.utils.ValidateUtils.notNull;
+
 
 @Component
 @RequiredArgsConstructor
@@ -18,34 +21,35 @@ public class LinkFacade {
     private final LinkService linkService;
 
     @NonNull
-    private final ProjectService projectService;
-
-    @NonNull
     private final ConversionService conversionService;
 
     public LinkProjection findByUuid(String uuid) {
-        ValidateUtils.notBlank(uuid, "uuid");
+        notBlank(uuid, "uuid");
 
         Link link = linkService.findByUuid(uuid);
-        return conversionService.convert(link, LinkProjection.class);
+        LinkProjection linkProjection = conversionService.convert(link, LinkProjection.class);
+        if (linkProjection == null) {
+            throw new IllegalArgumentException("Link uuid '%s' doesn't exist.");
+        }
+        return linkProjection;
     }
 
     public void insert(String projectUuid, LinkInsert linkInsert) {
-        ValidateUtils.notNull(linkInsert, "linkInsert");
-        ValidateUtils.notNull(projectUuid, "projectUuid");
+        notNull(linkInsert, "linkInsert");
+        notNull(projectUuid, "projectUuid");
 
         linkService.insert(projectUuid, linkInsert);
     }
 
     public void update(String projectUuid, String linkUuid, LinkUpdate linkUpdate) {
-        ValidateUtils.notNull(linkUpdate, "linkUpdate");
-        ValidateUtils.notBlank(projectUuid, "projectUuid");
+        notNull(linkUpdate, "linkUpdate");
+        notBlank(projectUuid, "projectUuid");
 
         linkService.update(projectUuid, linkUuid, linkUpdate);
     }
 
     public void delete(String uuid) {
-        ValidateUtils.notNull(uuid, "uuid");
+        notBlank(uuid, "uuid");
 
         linkService.delete(uuid);
     }

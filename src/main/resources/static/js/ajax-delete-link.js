@@ -3,7 +3,7 @@ $(document).ready(function () {
         var $this = $(this);
         $.ajax({
             beforeSend: function (request) {
-                return confirm('Are you sure you want to delete this link ?');
+                return confirm("Remove this link?");
             },
             url: $(this).attr("href"),
             type: "DELETE",

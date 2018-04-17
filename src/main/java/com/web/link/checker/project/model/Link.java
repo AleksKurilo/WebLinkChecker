@@ -28,7 +28,6 @@ public class Link {
     @NotEmpty
     private String href;
 
-    @NotNull
     private boolean dofollow;
 
     @Size(min = 1, max = 1000)

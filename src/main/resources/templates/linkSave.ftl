@@ -53,6 +53,7 @@
                     <p><label for="link-dofollow"></label>
                          <@spring.bind "link.dofollow"/>
                         <input type="checkbox" checked="checked" name="dofollow" value="true" id="link-dofollow">
+                        <input type="hidden" checked="checked" name="dofollow" value="false" name="_link-dofollow"/>
                         <#if spring.status.error>
                         <span><@spring.showErrors separator="," /></span>
                         </#if>
