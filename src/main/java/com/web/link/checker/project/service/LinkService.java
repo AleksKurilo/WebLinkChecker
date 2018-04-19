@@ -3,7 +3,6 @@ package com.web.link.checker.project.service;
 import com.web.link.checker.project.model.*;
 import com.web.link.checker.project.repository.LinkRepository;
 import com.web.link.checker.project.repository.ProjectRepository;
-import com.web.link.checker.project.utils.ValidateUtils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

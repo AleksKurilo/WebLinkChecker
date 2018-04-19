@@ -4,7 +4,6 @@ import com.web.link.checker.project.model.Link;
 import com.web.link.checker.project.model.LinkProjection;
 import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.model.ProjectWithLinksProjection;
-import com.web.link.checker.project.utils.ValidateUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;

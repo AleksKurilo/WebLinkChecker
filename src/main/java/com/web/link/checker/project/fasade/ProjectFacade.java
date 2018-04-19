@@ -2,7 +2,6 @@ package com.web.link.checker.project.fasade;
 
 import com.web.link.checker.project.model.*;
 import com.web.link.checker.project.service.ProjectService;
-import com.web.link.checker.project.utils.ValidateUtils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
@@ -10,11 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import static com.web.link.checker.project.utils.ValidateUtils.notBlank;
 import static com.web.link.checker.project.utils.ValidateUtils.notNull;
 
@@ -35,7 +31,7 @@ public class ProjectFacade {
         Page<Project> projectsPage = projectService.findAll(pageable);
         List<T> projectProjections = new ArrayList<>();
         for (Project project : projectsPage.getContent()) {
-            T convert = (T)conversionService.convert(project, projectClass);
+            T convert = conversionService.convert(project, projectClass);
              projectProjections.add(convert);
         }
         return new PageImpl(projectProjections, pageable, projectsPage.getTotalElements());
@@ -48,7 +44,7 @@ public class ProjectFacade {
         if (project == null) {
             throw new IllegalArgumentException(String.format("Project uuid '%s' doesn't exist.", uuid));
         }
-        return (T)conversionService.convert(project, projectClass);
+        return conversionService.convert(project, projectClass);
     }
 
     public void insert(ProjectInsert projectInsert) {

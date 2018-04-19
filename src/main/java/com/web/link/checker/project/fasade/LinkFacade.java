@@ -2,8 +2,6 @@ package com.web.link.checker.project.fasade;
 
 import com.web.link.checker.project.model.*;
 import com.web.link.checker.project.service.LinkService;
-import com.web.link.checker.project.service.ProjectService;
-import com.web.link.checker.project.utils.ValidateUtils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
@@ -30,8 +28,7 @@ public class LinkFacade {
         if (link == null) {
             throw new IllegalArgumentException(String.format("Link uuid '%s' doesn't exist.", uuid));
         }
-        LinkProjection linkProjection = conversionService.convert(link, LinkProjection.class);
-        return linkProjection;
+         return conversionService.convert(link, LinkProjection.class);
     }
 
     public void insert(String projectUuid, LinkInsert linkInsert) {
