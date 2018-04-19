@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import static com.web.link.checker.project.utils.ValidateUtils.notNull;
 
-
 @Component
 @RequiredArgsConstructor
 public class ProjectToProjectProjectionWithoutLinksConverter implements Converter<Project, ProjectWithoutLinksProjection> {

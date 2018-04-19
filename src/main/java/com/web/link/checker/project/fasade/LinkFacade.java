@@ -27,10 +27,10 @@ public class LinkFacade {
         notBlank(uuid, "uuid");
 
         Link link = linkService.findByUuid(uuid);
-        LinkProjection linkProjection = conversionService.convert(link, LinkProjection.class);
-        if (linkProjection == null) {
-            throw new IllegalArgumentException("Link uuid '%s' doesn't exist.");
+        if (link == null) {
+            throw new IllegalArgumentException(String.format("Link uuid '%s' doesn't exist.", uuid));
         }
+        LinkProjection linkProjection = conversionService.convert(link, LinkProjection.class);
         return linkProjection;
     }
 

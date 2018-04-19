@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,21 +29,26 @@ public class ProjectFacade {
     @NonNull
     private final ConversionService conversionService;
 
-    public Page<ProjectWithoutLinksProjection> findAllWithoutLinks(Pageable pageable) {
+    public <T> Page<T> findAllLinks(Pageable pageable, Class <T> projectClass) {
         notNull(pageable, "pageable");
 
         Page<Project> projectsPage = projectService.findAll(pageable);
-        List<ProjectWithoutLinksProjection> projectProjections = projectsPage.getContent().stream()
-                .map(project -> conversionService.convert(project, ProjectWithoutLinksProjection.class))
-                .collect(Collectors.toList());
+        List<T> projectProjections = new ArrayList<>();
+        for (Project project : projectsPage.getContent()) {
+            T convert = (T)conversionService.convert(project, projectClass);
+             projectProjections.add(convert);
+        }
         return new PageImpl(projectProjections, pageable, projectsPage.getTotalElements());
     }
 
-    public ProjectWithLinksProjection getByUuid(String uuid) {
+    public <T> T findByUuid(String uuid,  Class <T> projectClass) {
         notNull(uuid, "uuid");
 
         Project project = projectService.findByUuid(uuid);
-        return conversionService.convert(project, ProjectWithLinksProjection.class);
+        if (project == null) {
+            throw new IllegalArgumentException(String.format("Project uuid '%s' doesn't exist.", uuid));
+        }
+        return (T)conversionService.convert(project, projectClass);
     }
 
     public void insert(ProjectInsert projectInsert) {

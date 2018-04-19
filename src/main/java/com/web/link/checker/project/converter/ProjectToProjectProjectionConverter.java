@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static com.web.link.checker.project.utils.ValidateUtils.notNull;
+
 @Component
 @RequiredArgsConstructor
 class ProjectToProjectProjectionConverter implements Converter<Project, ProjectWithLinksProjection> {
@@ -26,7 +28,7 @@ class ProjectToProjectProjectionConverter implements Converter<Project, ProjectW
 
     @Override
     public ProjectWithLinksProjection convert(Project project) {
-        ValidateUtils.notNull(project, "project");
+        notNull(project, "project");
 
         ProjectWithLinksProjection projectProjection = new ProjectWithLinksProjection();
         projectProjection.setUuid(project.getUuid());

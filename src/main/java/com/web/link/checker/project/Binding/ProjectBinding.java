@@ -1,4 +1,4 @@
-package com.web.link.checker.project.controllers;
+package com.web.link.checker.project.Binding;
 
 
 public final class ProjectBinding {

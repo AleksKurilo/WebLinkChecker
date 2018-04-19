@@ -5,6 +5,7 @@
 <#assign title = "Edit Project">
 <@layout.defaultLayaout title>
     <h1>Edit Project</h1>
+    <h2>${projectProjection.name} </h2>
     <form method="post" action="update">
         <p><label for="project-name">Name:</label>
         <@spring.bind "project.name"/>

@@ -5,25 +5,25 @@
 <#assign title = "Update link">
 <@layout.defaultLayaout title>
     <h1>Update Link</h1>
-    <form method="post" action="/projects/${projectProjection.uuid}/links/${link.uuid}/update">
+    <form method="post" action="/projects/${projectProjection.uuid}/links/${linkProjection.uuid}/update">
 
         <table>
             <tbody>
             <tr>
                 <td>Link old anchor:</td>
-                <td>${llinkProjection.anchor}</td>
+                <td>${linkProjection.anchor}</td>
             </tr>
             <tr>
                 <td>Link old href:</td>
-                <td>${llinkProjection.href}</td>
+                <td>${linkProjection.href}</td>
             </tr>
             <tr>
                 <td>Link old location:</td>
-                <td>${llinkProjection.location}</td>
+                <td>${linkProjection.location}</td>
             </tr>
             <tr>
                 <td>Link old dofollow:</td>
-                <td>${llinkProjection.dofollow?c}</td>
+                <td>${linkProjection.dofollow?c}</td>
             </tr>
             </tbody>
         </table>
@@ -83,15 +83,6 @@
                 </td>
             <tr>
 
-            <tr>
-                <td>
-                    <@spring.bind "link.uuid"/>
-                    <input type="hidden" name="uuid" value="${link.uuid!}" id="link-uuid">
-                    <#if spring.status.error>
-                    <span><@spring.showErrors separator="," /></span>
-                    </#if>
-                </td>
-            <tr>
             </tbody>
         </table>
         <p>

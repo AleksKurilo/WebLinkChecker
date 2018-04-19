@@ -20,6 +20,4 @@ public class LinkUpdate {
     @NotNull
     @Size(min = 1, max = 1000)
     private String anchor;
-
-    private String uuid;
 }

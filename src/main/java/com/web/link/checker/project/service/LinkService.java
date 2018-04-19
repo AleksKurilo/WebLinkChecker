@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
+import static com.web.link.checker.project.utils.ValidateUtils.notBlank;
 import static com.web.link.checker.project.utils.ValidateUtils.notNull;
 
 
@@ -29,7 +30,7 @@ public class LinkService {
 
     @Transactional(readOnly = true)
     public Link findByUuid(String uuid) {
-        notNull(uuid, "uuid");
+        notBlank(uuid, "uuid");
 
         return linkRepository.findByUuid(uuid);
     }
@@ -38,9 +39,9 @@ public class LinkService {
     public void insert(String projectUuid, LinkInsert linkInsert) {
         notNull(linkInsert, "linkInsert");
 
-        Project existProject = projectRepository.findOneByUuid(projectUuid);
-        if (existProject == null) {
-            throw new IllegalArgumentException(INFO_PROJECT_DOES_NOT_EXIST);
+        Project project = projectRepository.findOneByUuid(projectUuid);
+        if (project == null) {
+            throw new IllegalArgumentException(String.format(INFO_PROJECT_DOES_NOT_EXIST, projectUuid));
         }
         Link link = new Link();
         link.setAnchor(linkInsert.getAnchor());
@@ -49,28 +50,30 @@ public class LinkService {
         link.setDofollow(linkInsert.isDofollow());
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         link.setUuid(uuid);
-        link.setProject(existProject);
+        link.setProject(project);
         linkRepository.save(link);
     }
 
     @Transactional
     public void update(String projectUuid, String uuid, LinkUpdate linkUpdate) {
+        notBlank(projectUuid, "projectUuid");
+        notBlank(uuid, "uuid");
         notNull(linkUpdate, "linkUpdate");
 
-        Project existProject = projectRepository.findOneByUuid(projectUuid);
-        if (existProject == null) {
-            throw new IllegalArgumentException(INFO_PROJECT_DOES_NOT_EXIST);
+        Project project = projectRepository.findOneByUuid(projectUuid);
+        if (project == null) {
+            throw new IllegalArgumentException(String.format(INFO_PROJECT_DOES_NOT_EXIST, projectUuid));
         }
-        Link existLink = linkRepository.findByUuid(uuid);
-        if (existLink == null) {
-            throw new IllegalArgumentException(INFO_LINK_DOES_NOT_EXIST);
+        Link link = linkRepository.findByUuid(uuid);
+        if (link == null) {
+            throw new IllegalArgumentException(String.format(INFO_LINK_DOES_NOT_EXIST, uuid));
         }
-        existLink.setAnchor(linkUpdate.getAnchor());
-        existLink.setHref(linkUpdate.getHref());
-        existLink.setLocation(linkUpdate.getLocation());
-        existLink.setDofollow(linkUpdate.isDofollow());
-        existLink.setProject(existProject);
-        linkRepository.save(existLink);
+        link.setAnchor(linkUpdate.getAnchor());
+        link.setHref(linkUpdate.getHref());
+        link.setLocation(linkUpdate.getLocation());
+        link.setDofollow(linkUpdate.isDofollow());
+        link.setProject(project);
+        linkRepository.save(link);
     }
 
     @Transactional
