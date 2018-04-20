@@ -1,5 +1,6 @@
 package com.web.link.checker.project.service;
 
+import com.web.link.checker.project.Exception.DomainObjectNotFoundException;
 import com.web.link.checker.project.model.*;
 import com.web.link.checker.project.repository.LinkRepository;
 import com.web.link.checker.project.repository.ProjectRepository;
@@ -18,9 +19,6 @@ import static com.web.link.checker.project.utils.ValidateUtils.notNull;
 @RequiredArgsConstructor
 public class LinkService {
 
-    private static final String INFO_PROJECT_DOES_NOT_EXIST = "Project uuid '%s' doesn't exist.";
-    private static final String INFO_LINK_DOES_NOT_EXIST = "Link uuid '%s' doesn't exist.";
-
     @NonNull
     public final LinkRepository linkRepository;
 
@@ -35,37 +33,37 @@ public class LinkService {
     }
 
     @Transactional
-    public void insert(String projectUuid, LinkInsert linkInsert) {
+    public void insert(String projectUuid, LinkInsert linkInsert) throws DomainObjectNotFoundException {
         notNull(linkInsert, "linkInsert");
 
         Project project = projectRepository.findOneByUuid(projectUuid);
         if (project == null) {
-            throw new IllegalArgumentException(String.format(INFO_PROJECT_DOES_NOT_EXIST, projectUuid));
+            throw new DomainObjectNotFoundException(projectUuid, Project.class);
         }
         Link link = new Link();
         link.setAnchor(linkInsert.getAnchor());
         link.setHref(linkInsert.getHref());
         link.setLocation(linkInsert.getLocation());
         link.setDofollow(linkInsert.isDofollow());
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        String uuid = UUID.randomUUID().toString().replace("-", "");
         link.setUuid(uuid);
         link.setProject(project);
         linkRepository.save(link);
     }
 
     @Transactional
-    public void update(String projectUuid, String uuid, LinkUpdate linkUpdate) {
+    public void update(String projectUuid, String uuid, LinkUpdate linkUpdate) throws DomainObjectNotFoundException {
         notBlank(projectUuid, "projectUuid");
         notBlank(uuid, "uuid");
         notNull(linkUpdate, "linkUpdate");
 
         Project project = projectRepository.findOneByUuid(projectUuid);
         if (project == null) {
-            throw new IllegalArgumentException(String.format(INFO_PROJECT_DOES_NOT_EXIST, projectUuid));
+            throw new DomainObjectNotFoundException(projectUuid, Project.class);
         }
         Link link = linkRepository.findByUuid(uuid);
         if (link == null) {
-            throw new IllegalArgumentException(String.format(INFO_LINK_DOES_NOT_EXIST, uuid));
+            throw new DomainObjectNotFoundException(uuid, Link.class);
         }
         link.setAnchor(linkUpdate.getAnchor());
         link.setHref(linkUpdate.getHref());

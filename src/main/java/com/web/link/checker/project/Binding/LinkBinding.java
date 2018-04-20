@@ -4,10 +4,10 @@ package com.web.link.checker.project.Binding;
 
 public final class LinkBinding {
     public static final String BASE_PATH = "/projects/{projectUuid}/links/";
-    public static final String SAVE = "save";
-    public static final String REDIRECT_TO_SAVE = "redirect:/projects/{projectUuid}/links/save";
-    public static final String REDIRECT_TO_LINKS = "redirect:/projects/{projectUuid}/links/";
-    public static final String UPDATE = "{linkUuid}/update";
-    public static final String REDIRECT_TO_UPDATE = "redirect:/projects/{projectUuid}/links/{linkUuid}/update";
-    public static final String DELETE = "{linkUuid}/delete";
+    public static final String SAVE_PATH = "save";
+    public static final String REDIRECT_TO_SAVE_PATH = "redirect:/projects/{projectUuid}/links/save";
+    public static final String REDIRECT_TO_LINKS_PATH = "redirect:/projects/{projectUuid}/links/";
+    public static final String UPDATE_PATH = "{linkUuid}/update";
+    public static final String REDIRECT_TO_UPDATE_PATH = "redirect:/projects/{projectUuid}/links/{linkUuid}/update";
+    public static final String DELETE_PATH = "{linkUuid}/delete";
 }

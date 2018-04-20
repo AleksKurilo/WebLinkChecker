@@ -33,7 +33,7 @@ public class ProjectService {
         return projectRepository.findAll(pageable);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Project findByUuid(String uuid) {
         notBlank(uuid, "uuid");
 
@@ -45,7 +45,7 @@ public class ProjectService {
         notNull(projectInsert, "projectInsert");
 
         Project project = new Project();
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        String uuid = UUID.randomUUID().toString().replace("-", "");
         project.setName(projectInsert.getName());
         project.setUuid(uuid);
         projectRepository.save(project);

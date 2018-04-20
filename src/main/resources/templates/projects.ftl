@@ -34,7 +34,7 @@
             </tbody>
         </table>
         <#import "layout/pagination.ftl" as pagination>
-        <@pagination.pagination currentPage projectProjectionPage.getTotalPages()/>
+        <@pagination.pagination projectProjectionPage.getNumber() projectProjectionPage.getTotalPages()/>
         <script src="/js/ajax-delete.js"></script>
     <#else>
         <div class="alert alert-warning">

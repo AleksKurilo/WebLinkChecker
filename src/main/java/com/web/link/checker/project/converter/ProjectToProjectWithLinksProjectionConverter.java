@@ -19,7 +19,7 @@ import static com.web.link.checker.project.utils.ValidateUtils.notNull;
 
 @Component
 @RequiredArgsConstructor
-class ProjectToProjectProjectionConverter implements Converter<Project, ProjectWithLinksProjection> {
+class ProjectToProjectWithLinksProjectionConverter implements Converter<Project, ProjectWithLinksProjection> {
 
     @Lazy
     @Autowired

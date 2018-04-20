@@ -1,5 +1,6 @@
 package com.web.link.checker.project.fasade;
 
+import com.web.link.checker.project.Exception.DomainObjectNotFoundException;
 import com.web.link.checker.project.model.*;
 import com.web.link.checker.project.service.ProjectService;
 import lombok.NonNull;
@@ -25,24 +26,26 @@ public class ProjectFacade {
     @NonNull
     private final ConversionService conversionService;
 
-    public <T> Page<T> findAllLinks(Pageable pageable, Class <T> projectClass) {
+    public <T> Page<T> findAll(Class <T> projectClass, Pageable pageable) {
         notNull(pageable, "pageable");
+        notNull(projectClass, "projectClass");
 
-        Page<Project> projectsPage = projectService.findAll(pageable);
+        Page<Project> projectPage = projectService.findAll(pageable);
         List<T> projectProjections = new ArrayList<>();
-        for (Project project : projectsPage.getContent()) {
+        for (Project project : projectPage.getContent()) {
             T convert = conversionService.convert(project, projectClass);
              projectProjections.add(convert);
         }
-        return new PageImpl(projectProjections, pageable, projectsPage.getTotalElements());
+        return new PageImpl(projectProjections, pageable, projectPage.getTotalElements());
     }
 
-    public <T> T findByUuid(String uuid,  Class <T> projectClass) {
+    public <T> T findByUuid(String uuid,  Class <T> projectClass) throws DomainObjectNotFoundException {
         notNull(uuid, "uuid");
+        notNull(projectClass, "projectClass");
 
         Project project = projectService.findByUuid(uuid);
         if (project == null) {
-            throw new IllegalArgumentException(String.format("Project uuid '%s' doesn't exist.", uuid));
+            throw new DomainObjectNotFoundException(uuid, Project.class);
         }
         return conversionService.convert(project, projectClass);
     }

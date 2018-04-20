@@ -4,34 +4,14 @@
 <#import "layout/defaultLayout.ftl" as layout>
 <#assign title = "Update link">
 <@layout.defaultLayaout title>
-    <h1>Update Link</h1>
+    <h1>Project ${projectProjection.name}</h1>
+    <h2>Update Link</h2>
     <form method="post" action="/projects/${projectProjection.uuid}/links/${linkProjection.uuid}/update">
 
         <table>
             <tbody>
             <tr>
-                <td>Link old anchor:</td>
-                <td>${linkProjection.anchor}</td>
-            </tr>
-            <tr>
-                <td>Link old href:</td>
-                <td>${linkProjection.href}</td>
-            </tr>
-            <tr>
-                <td>Link old location:</td>
-                <td>${linkProjection.location}</td>
-            </tr>
-            <tr>
-                <td>Link old dofollow:</td>
-                <td>${linkProjection.dofollow?c}</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <table>
-            <tbody>
-            <tr>
-                <td>Link anchor:</td>
+                <td>Anchor:</td>
                 <td>
                     <p><label for="link-anchor"></label>
                         <@spring.bind "link.anchor"/>
@@ -44,7 +24,7 @@
             <tr>
 
             <tr>
-                <td>Link href:</td>
+                <td>Href:</td>
                 <td>
                     <p><label for="link-href"></label>
                          <@spring.bind "link.href"/>
@@ -57,7 +37,7 @@
             <tr>
 
             <tr>
-                <td>Link location:</td>
+                <td>Location:</td>
                 <td>
                     <p><label for="link-location"></label>
                          <@spring.bind "link.location"/>
@@ -70,7 +50,7 @@
             <tr>
 
             <tr>
-                <td>Link dofollow:</td>
+                <td>Dofollow:</td>
                 <td>
                     <p><label for="link-dofollow"></label>
                          <@spring.bind "link.dofollow"/>
