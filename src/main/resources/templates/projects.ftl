@@ -3,6 +3,11 @@
 <#import "layout/defaultLayout.ftl" as layout>
 <#assign title = "Projects">
 <@layout.defaultLayaout title>
+
+    <ol class="breadcrumb">
+        <li class="active">Projects</a></li>
+    </ol>
+
     <h1>Projects</h1>
     <p>
         <a href="/projects/save" class="btn btn-primary">Add</a>

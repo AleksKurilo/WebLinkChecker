@@ -4,8 +4,16 @@
 <#import "layout/defaultLayout.ftl" as layout>
 <#assign title = "Update link">
 <@layout.defaultLayaout title>
+
+    <ol class="breadcrumb">
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/projects/${projectProjection.uuid}/links/">Links</a></li>
+        <li class="active">Update Link</li>
+    </ol>
+
     <h1>Project ${projectProjection.name}</h1>
     <h2>Update Link</h2>
+
     <form method="post" action="/projects/${projectProjection.uuid}/links/${linkProjection.uuid}/update">
 
         <table>

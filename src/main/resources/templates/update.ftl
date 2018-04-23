@@ -4,6 +4,12 @@
 <#import "layout/defaultLayout.ftl" as layout>
 <#assign title = "Edit Project">
 <@layout.defaultLayaout title>
+
+    <ol class="breadcrumb">
+        <li><a href="/projects/">Projects</a></li>
+        <li class="active">Update project</li>
+    </ol>
+
     <h1>Edit Project</h1>
     <h2>${projectProjection.name} </h2>
     <form method="post" action="update">
