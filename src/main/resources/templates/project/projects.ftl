@@ -4,9 +4,9 @@
 <#assign title = "Projects">
 <@layout.defaultLayaout title>
 
-    <ol class="breadcrumb">
+    <ul class="breadcrumb">
         <li class="active">Projects</a></li>
-    </ol>
+    </ul>
 
     <h1>Projects</h1>
     <p>

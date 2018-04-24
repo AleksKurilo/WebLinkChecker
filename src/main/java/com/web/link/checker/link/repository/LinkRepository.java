@@ -1,10 +1,8 @@
-package com.web.link.checker.project.repository;
+package com.web.link.checker.link.repository;
 
-import com.web.link.checker.project.model.Link;
+import com.web.link.checker.link.model.Link;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface LinkRepository extends CrudRepository<Link, Long> {

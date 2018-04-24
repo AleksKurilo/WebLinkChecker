@@ -1,4 +1,4 @@
-package com.web.link.checker.project.model;
+package com.web.link.checker.link.model;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
-public class LinkInsert {
+public class LinkUpdate {
 
     @NotEmpty
     private String location;

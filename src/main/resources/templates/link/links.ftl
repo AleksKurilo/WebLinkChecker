@@ -4,10 +4,10 @@
 <#assign title = "Projects">
 <@layout.defaultLayaout title>
 
-    <ol class="breadcrumb">
+    <ul class="breadcrumb">
         <li><a href="/projects/">Projects</a></li>
         <li class="active">Links</li>
-    </ol>
+    </ul>
 
 
     <h1>Project ${projectProjection.name} links</h1>

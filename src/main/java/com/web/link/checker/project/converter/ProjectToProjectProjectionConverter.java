@@ -1,10 +1,9 @@
 package com.web.link.checker.project.converter;
 
-import com.web.link.checker.project.model.Link;
-import com.web.link.checker.project.model.LinkProjection;
+import com.web.link.checker.link.model.Link;
+import com.web.link.checker.link.model.LinkProjection;
 import com.web.link.checker.project.model.Project;
-import com.web.link.checker.project.model.ProjectWithLinksProjection;
-import lombok.RequiredArgsConstructor;
+import com.web.link.checker.project.model.ProjectProjection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.core.convert.ConversionService;
@@ -15,21 +14,20 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.web.link.checker.project.utils.ValidateUtils.notNull;
+import static com.web.link.checker.utils.ValidateUtils.notNull;
 
 @Component
-@RequiredArgsConstructor
-class ProjectToProjectProjectionWithLinksConverter implements Converter<Project, ProjectWithLinksProjection> {
+class ProjectToProjectProjectionConverter implements Converter<Project, ProjectProjection> {
 
     @Lazy
     @Autowired
     private ConversionService conversionService;
 
     @Override
-    public ProjectWithLinksProjection convert(Project project) {
+    public ProjectProjection convert(Project project) {
         notNull(project, "project");
 
-        ProjectWithLinksProjection projectProjection = new ProjectWithLinksProjection();
+        ProjectProjection projectProjection = new ProjectProjection();
         projectProjection.setUuid(project.getUuid());
         projectProjection.setName(project.getName());
 

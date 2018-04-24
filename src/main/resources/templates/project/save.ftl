@@ -5,10 +5,10 @@
 <#assign title = "Add Project">
 <@layout.defaultLayaout title>
 
-    <ol class="breadcrumb">
+    <ul class="breadcrumb">
         <li><a href="/projects/">Projects</a></li>
-        <li class="active">Add project</li>
-    </ol>
+        <li class="active">Add</li>
+    </ul>
 
     <h1>Add Project</h1>
     <form method="post" action="/projects/save">

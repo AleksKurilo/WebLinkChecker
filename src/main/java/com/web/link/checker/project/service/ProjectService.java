@@ -1,6 +1,6 @@
 package com.web.link.checker.project.service;
 
-import com.web.link.checker.project.Exception.DomainObjectNotFoundException;
+import com.web.link.checker.project.exception.DomainObjectNotFoundException;
 import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.model.ProjectInsert;
 import com.web.link.checker.project.model.ProjectUpdate;
@@ -14,8 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
-import static com.web.link.checker.project.utils.ValidateUtils.notBlank;
-import static com.web.link.checker.project.utils.ValidateUtils.notNull;
+import static com.web.link.checker.utils.ValidateUtils.notBlank;
+import static com.web.link.checker.utils.ValidateUtils.notNull;
 
 @Service
 @RequiredArgsConstructor

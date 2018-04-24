@@ -1,4 +1,4 @@
-package com.web.link.checker.project.Exception;
+package com.web.link.checker.project.exception;
 
 import lombok.Getter;
 

@@ -1,18 +1,18 @@
-package com.web.link.checker.project.fasade;
+package com.web.link.checker.link.facade;
 
-import com.web.link.checker.project.Exception.DomainObjectNotFoundException;
-import com.web.link.checker.project.model.Link;
-import com.web.link.checker.project.model.LinkInsert;
-import com.web.link.checker.project.model.LinkProjection;
-import com.web.link.checker.project.model.LinkUpdate;
-import com.web.link.checker.project.service.LinkService;
+import com.web.link.checker.link.model.Link;
+import com.web.link.checker.link.model.LinkInsert;
+import com.web.link.checker.link.model.LinkProjection;
+import com.web.link.checker.link.model.LinkUpdate;
+import com.web.link.checker.link.service.LinkService;
+import com.web.link.checker.project.exception.DomainObjectNotFoundException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Component;
 
-import static com.web.link.checker.project.utils.ValidateUtils.notBlank;
-import static com.web.link.checker.project.utils.ValidateUtils.notNull;
+import static com.web.link.checker.utils.ValidateUtils.notBlank;
+import static com.web.link.checker.utils.ValidateUtils.notNull;
 
 
 @Component
@@ -36,18 +36,18 @@ public class LinkFacade {
     }
 
     public void insert(String projectUuid, LinkInsert linkInsert) {
-        notNull(linkInsert, "linkInsert");
         notNull(projectUuid, "projectUuid");
+        notNull(linkInsert, "linkInsert");
 
         linkService.insert(projectUuid, linkInsert);
     }
 
-    public void update(String projectUuid, String linkUuid, LinkUpdate linkUpdate) {
-        notNull(linkUpdate, "linkUpdate");
+    public void update(String projectUuid, String uuid, LinkUpdate linkUpdate) {
         notBlank(projectUuid, "projectUuid");
-        notBlank(linkUuid, "linkUuid");
+        notBlank(uuid, "uuid");
+        notNull(linkUpdate, "linkUpdate");
 
-        linkService.update(projectUuid, linkUuid, linkUpdate);
+        linkService.update(projectUuid, uuid, linkUpdate);
     }
 
     public void delete(String uuid) {

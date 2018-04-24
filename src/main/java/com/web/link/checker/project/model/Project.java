@@ -1,10 +1,10 @@
 package com.web.link.checker.project.model;
 
+
+import com.web.link.checker.link.model.Link;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;

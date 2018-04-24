@@ -1,10 +1,10 @@
-package com.web.link.checker.project.model;
+package com.web.link.checker.link.model;
 
+import com.web.link.checker.project.model.Project;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -20,12 +20,15 @@ public class Link {
     private Long id;
 
     @NotEmpty
+    @Column(columnDefinition = "TEXT")
     private String uuid;
 
     @NotEmpty
+    @Column(columnDefinition = "TEXT")
     private String location;
 
     @NotEmpty
+    @Column(columnDefinition = "TEXT")
     private String href;
 
     private boolean dofollow;
@@ -33,7 +36,7 @@ public class Link {
     @Size(min = 1, max = 1000)
     private String anchor;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Project.class)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 

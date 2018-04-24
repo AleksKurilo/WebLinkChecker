@@ -1,15 +1,15 @@
 <#--@ftlvariable name="links" type="java.util.List"-->
-<#-- @ftlvariable name="links" type="com.web.link.checker.project.model.Link"-->
+<#-- @ftlvariable name="links" type="com.web.link.checker.link.model.Link"-->
 <#import "/spring.ftl" as spring/>
 <#import "../layout/defaultLayout.ftl" as layout>
 <#assign title = "Add link">
 <@layout.defaultLayaout title>
 
-    <ol class="breadcrumb">
+    <ul class="breadcrumb">
         <li><a href="/projects/">Projects</a></li>
         <li><a href="/projects/${projectProjection.uuid}/links/">Links</a></li>
-        <li class="active">Add Link</li>
-    </ol>
+        <li class="active">Add</li>
+    </ul>
 
     <h1>Project ${projectProjection.name}</h1>
     <h2>Add Link</h2>

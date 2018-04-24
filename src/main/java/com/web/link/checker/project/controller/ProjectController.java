@@ -1,10 +1,10 @@
 package com.web.link.checker.project.controller;
 
-import com.web.link.checker.project.Exception.DomainObjectNotFoundException;
-import com.web.link.checker.project.fasade.ProjectFacade;
+import com.web.link.checker.project.exception.DomainObjectNotFoundException;
+import com.web.link.checker.project.facade.ProjectFacade;
 import com.web.link.checker.project.model.ProjectInsert;
+import com.web.link.checker.project.model.ProjectProjection;
 import com.web.link.checker.project.model.ProjectUpdate;
-import com.web.link.checker.project.model.ProjectWithLinksProjection;
 import com.web.link.checker.project.model.ProjectWithoutLinksProjection;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
-import static com.web.link.checker.project.Binding.ProjectBinding.*;
+import static com.web.link.checker.project.controller.ProjectBinding.*;
 
 @Controller
 @RequestMapping(path = BASE_PATH)
@@ -47,7 +47,7 @@ public class ProjectController {
         if (!model.containsAttribute(PROJECT)) {
             model.addAttribute(PROJECT, new ProjectInsert());
         }
-        return PROJECT_SAVE_VIEW;
+        return SAVE_VIEW;
     }
 
     @RequestMapping(path = SAVE_PATH, method = RequestMethod.POST)
@@ -66,12 +66,12 @@ public class ProjectController {
     @RequestMapping(path = UPDATE_PATH, method = RequestMethod.GET)
     public String updateView(@PathVariable("uuid") String projectUuid,
                              Model model) {
-        ProjectWithLinksProjection projectProjection = projectFacade.findByUuid(projectUuid, ProjectWithLinksProjection.class);
+        ProjectProjection projectProjection = projectFacade.findByUuid(projectUuid, ProjectProjection.class);
         model.addAttribute(PROJECT_PROJECTION, projectProjection);
         if (!model.containsAttribute(PROJECT)) {
             model.addAttribute(PROJECT, projectProjection);
         }
-        return PROJECT_UPDATE_VIEW;
+        return UPDATE_VIEW;
     }
 
     @RequestMapping(path = UPDATE_PATH, method = RequestMethod.POST)

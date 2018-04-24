@@ -1,4 +1,4 @@
-package com.web.link.checker.project.model;
+package com.web.link.checker.link.model;
 
 import lombok.Data;
 

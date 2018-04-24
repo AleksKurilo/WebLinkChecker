@@ -5,10 +5,10 @@
 <#assign title = "Edit Project">
 <@layout.defaultLayaout title>
 
-    <ol class="breadcrumb">
+    <ul class="breadcrumb">
         <li><a href="/projects/">Projects</a></li>
-        <li class="active">Update project</li>
-    </ol>
+        <li class="active">Update</li>
+    </ul>
 
     <h1>Edit Project</h1>
     <h2>${projectProjection.name} </h2>

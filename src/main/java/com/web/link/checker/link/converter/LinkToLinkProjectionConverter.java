@@ -1,11 +1,11 @@
-package com.web.link.checker.project.converter;
+package com.web.link.checker.link.converter;
 
-import com.web.link.checker.project.model.Link;
-import com.web.link.checker.project.model.LinkProjection;
+import com.web.link.checker.link.model.Link;
+import com.web.link.checker.link.model.LinkProjection;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import static com.web.link.checker.project.utils.ValidateUtils.notNull;
+import static com.web.link.checker.utils.ValidateUtils.notNull;
 
 @Component
 public class LinkToLinkProjectionConverter implements Converter<Link, LinkProjection> {

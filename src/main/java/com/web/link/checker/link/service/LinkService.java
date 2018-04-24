@@ -1,11 +1,11 @@
-package com.web.link.checker.project.service;
+package com.web.link.checker.link.service;
 
-import com.web.link.checker.project.Exception.DomainObjectNotFoundException;
-import com.web.link.checker.project.model.Link;
-import com.web.link.checker.project.model.LinkInsert;
-import com.web.link.checker.project.model.LinkUpdate;
+import com.web.link.checker.link.model.Link;
+import com.web.link.checker.link.model.LinkInsert;
+import com.web.link.checker.link.model.LinkUpdate;
+import com.web.link.checker.link.repository.LinkRepository;
+import com.web.link.checker.project.exception.DomainObjectNotFoundException;
 import com.web.link.checker.project.model.Project;
-import com.web.link.checker.project.repository.LinkRepository;
 import com.web.link.checker.project.repository.ProjectRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
-import static com.web.link.checker.project.utils.ValidateUtils.notBlank;
-import static com.web.link.checker.project.utils.ValidateUtils.notNull;
+import static com.web.link.checker.utils.ValidateUtils.notBlank;
+import static com.web.link.checker.utils.ValidateUtils.notNull;
 
 
 @Service
@@ -37,6 +37,7 @@ public class LinkService {
 
     @Transactional
     public void insert(String projectUuid, LinkInsert linkInsert) {
+        notBlank(projectUuid, "projectUuid");
         notNull(linkInsert, "linkInsert");
 
         Project project = projectRepository.findOneByUuid(projectUuid);
