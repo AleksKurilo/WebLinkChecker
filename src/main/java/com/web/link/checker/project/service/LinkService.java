@@ -1,7 +1,10 @@
 package com.web.link.checker.project.service;
 
 import com.web.link.checker.project.Exception.DomainObjectNotFoundException;
-import com.web.link.checker.project.model.*;
+import com.web.link.checker.project.model.Link;
+import com.web.link.checker.project.model.LinkInsert;
+import com.web.link.checker.project.model.LinkUpdate;
+import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.repository.LinkRepository;
 import com.web.link.checker.project.repository.ProjectRepository;
 import lombok.NonNull;
@@ -33,7 +36,7 @@ public class LinkService {
     }
 
     @Transactional
-    public void insert(String projectUuid, LinkInsert linkInsert) throws DomainObjectNotFoundException {
+    public void insert(String projectUuid, LinkInsert linkInsert) {
         notNull(linkInsert, "linkInsert");
 
         Project project = projectRepository.findOneByUuid(projectUuid);
@@ -45,14 +48,14 @@ public class LinkService {
         link.setHref(linkInsert.getHref());
         link.setLocation(linkInsert.getLocation());
         link.setDofollow(linkInsert.isDofollow());
-        String uuid = UUID.randomUUID().toString().replace("-", "");
+        String uuid = UUID.randomUUID().toString();
         link.setUuid(uuid);
         link.setProject(project);
         linkRepository.save(link);
     }
 
     @Transactional
-    public void update(String projectUuid, String uuid, LinkUpdate linkUpdate) throws DomainObjectNotFoundException {
+    public void update(String projectUuid, String uuid, LinkUpdate linkUpdate) {
         notBlank(projectUuid, "projectUuid");
         notBlank(uuid, "uuid");
         notNull(linkUpdate, "linkUpdate");

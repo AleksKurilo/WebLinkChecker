@@ -3,13 +3,12 @@ package com.web.link.checker.project.controller;
 import com.web.link.checker.project.Exception.DomainObjectNotFoundException;
 import com.web.link.checker.project.fasade.ProjectFacade;
 import com.web.link.checker.project.model.ProjectInsert;
+import com.web.link.checker.project.model.ProjectUpdate;
 import com.web.link.checker.project.model.ProjectWithLinksProjection;
 import com.web.link.checker.project.model.ProjectWithoutLinksProjection;
-import com.web.link.checker.project.model.ProjectUpdate;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -22,8 +21,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 import static com.web.link.checker.project.Binding.ProjectBinding.*;
-import static com.web.link.checker.project.Binding.ViewProjectBinding.*;
-
 
 @Controller
 @RequestMapping(path = BASE_PATH)
@@ -68,7 +65,7 @@ public class ProjectController {
 
     @RequestMapping(path = UPDATE_PATH, method = RequestMethod.GET)
     public String updateView(@PathVariable("uuid") String projectUuid,
-                             Model model) throws DomainObjectNotFoundException {
+                             Model model) {
         ProjectWithLinksProjection projectProjection = projectFacade.findByUuid(projectUuid, ProjectWithLinksProjection.class);
         model.addAttribute(PROJECT_PROJECTION, projectProjection);
         if (!model.containsAttribute(PROJECT)) {
@@ -81,7 +78,7 @@ public class ProjectController {
     public String update(@PathVariable String uuid,
                          @ModelAttribute("project") @Valid ProjectUpdate update,
                          BindingResult bindingResult,
-                         RedirectAttributes redirectAttributes) {
+                         RedirectAttributes redirectAttributes) throws DomainObjectNotFoundException {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + PROJECT, bindingResult);
             redirectAttributes.addFlashAttribute(PROJECT, update);

@@ -1,19 +1,16 @@
 package com.web.link.checker.project.fasade;
 
 import com.web.link.checker.project.Exception.DomainObjectNotFoundException;
-import com.web.link.checker.project.converter.ProjectToProjectProjectionWithoutLinksConverter;
-import com.web.link.checker.project.model.*;
+import com.web.link.checker.project.model.Project;
+import com.web.link.checker.project.model.ProjectInsert;
+import com.web.link.checker.project.model.ProjectUpdate;
 import com.web.link.checker.project.service.ProjectService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.web.link.checker.project.utils.ValidateUtils.notBlank;
 import static com.web.link.checker.project.utils.ValidateUtils.notNull;
@@ -37,7 +34,7 @@ public class ProjectFacade {
         return projectPage.map(project ->  conversionService.convert(project, projectClass));
     }
 
-    public <T> T findByUuid(String uuid, Class<T> projectClass) throws DomainObjectNotFoundException {
+    public <T> T findByUuid(String uuid, Class<T> projectClass) {
         notNull(uuid, "uuid");
         notNull(projectClass, "projectClass");
 

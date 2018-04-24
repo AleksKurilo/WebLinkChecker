@@ -9,4 +9,8 @@ public final class ProjectBinding {
     public static final String UPDATE_PATH = "{uuid}/update";
     public static final String REDIRECT_TO_UPDATE_PATH = "redirect:/projects/{uuid}/update";
     public static final String DELETE_PATH = "{uuid}/delete";
+
+    public static final String PROJECTS_VIEW = "projects";
+    public static final String PROJECT_SAVE_VIEW = "save";
+    public static final String PROJECT_UPDATE_VIEW = "update";
 }

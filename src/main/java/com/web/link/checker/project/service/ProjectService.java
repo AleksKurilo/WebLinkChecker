@@ -1,10 +1,10 @@
 package com.web.link.checker.project.service;
 
+import com.web.link.checker.project.Exception.DomainObjectNotFoundException;
 import com.web.link.checker.project.model.Project;
 import com.web.link.checker.project.model.ProjectInsert;
 import com.web.link.checker.project.model.ProjectUpdate;
 import com.web.link.checker.project.repository.ProjectRepository;
-import com.web.link.checker.project.utils.ValidateUtils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,8 +20,6 @@ import static com.web.link.checker.project.utils.ValidateUtils.notNull;
 @Service
 @RequiredArgsConstructor
 public class ProjectService {
-
-    private static final String INFO_PROJECT_DOES_NOT_EXIST = "Project uuid '%s' doesn't exist.";
 
     @NonNull
     public final ProjectRepository projectRepository;
@@ -45,7 +43,7 @@ public class ProjectService {
         notNull(projectInsert, "projectInsert");
 
         Project project = new Project();
-        String uuid = UUID.randomUUID().toString().replace("-", "");
+        String uuid = UUID.randomUUID().toString();
         project.setName(projectInsert.getName());
         project.setUuid(uuid);
         projectRepository.save(project);
@@ -58,7 +56,7 @@ public class ProjectService {
 
         Project project = projectRepository.findOneByUuid(uuid);
         if (project == null) {
-            throw new IllegalArgumentException(INFO_PROJECT_DOES_NOT_EXIST);
+            throw new DomainObjectNotFoundException(uuid, Project.class);
         }
         project.setName(projectUpdate.getName());
         projectRepository.save(project);
