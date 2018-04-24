@@ -1,7 +1,7 @@
 <#--@ftlvariable name="links" type="java.util.List"-->
 <#-- @ftlvariable name="links" type="com.web.link.checker.project.model.Link"-->
 <#import "/spring.ftl" as spring/>
-<#import "layout/defaultLayout.ftl" as layout>
+<#import "../layout/defaultLayout.ftl" as layout>
 <#assign title = "Update link">
 <@layout.defaultLayaout title>
 

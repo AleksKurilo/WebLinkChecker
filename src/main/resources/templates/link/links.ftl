@@ -1,6 +1,6 @@
 <#--@ftlvariable name="projects" type="java.util.List"-->
 <#-- @ftlvariable name="projects" type="com.web.link.checker.project.model.Project"-->
-<#import "layout/defaultLayout.ftl" as layout>
+<#import "../layout/defaultLayout.ftl" as layout>
 <#assign title = "Projects">
 <@layout.defaultLayaout title>
 

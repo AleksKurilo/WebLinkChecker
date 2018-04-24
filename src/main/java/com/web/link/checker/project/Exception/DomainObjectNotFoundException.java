@@ -2,7 +2,6 @@ package com.web.link.checker.project.Exception;
 
 import lombok.Getter;
 
-@SuppressWarnings("unchecked")
 public class DomainObjectNotFoundException extends RuntimeException {
 
     private final static String MESSAGE = "'%s' uuid '%s' doesn't exist.";

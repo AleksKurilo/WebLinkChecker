@@ -1,6 +1,6 @@
 <#--@ftlvariable name="projects" type="java.util.List"-->
 <#-- @ftlvariable name="projects" type="com.web.link.checker.project.model.Project"-->
-<#import "layout/defaultLayout.ftl" as layout>
+<#import "../layout/defaultLayout.ftl" as layout>
 <#assign title = "Projects">
 <@layout.defaultLayaout title>
 
@@ -38,7 +38,7 @@
                 </#list>
             </tbody>
         </table>
-        <#import "layout/pagination.ftl" as pagination>
+        <#import "../layout/pagination.ftl" as pagination>
         <@pagination.pagination projectProjectionPage.getNumber() projectProjectionPage.getTotalPages()/>
         <script src="/js/ajax-delete.js"></script>
     <#else>
