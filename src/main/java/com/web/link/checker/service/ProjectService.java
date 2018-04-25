@@ -1,9 +1,9 @@
 package com.web.link.checker.service;
 
+import com.web.link.checker.exception.DomainObjectNotFoundException;
 import com.web.link.checker.model.Project;
 import com.web.link.checker.model.ProjectInsert;
 import com.web.link.checker.model.ProjectUpdate;
-import com.web.link.checker.project.exception.DomainObjectNotFoundException;
 import com.web.link.checker.repository.ProjectRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

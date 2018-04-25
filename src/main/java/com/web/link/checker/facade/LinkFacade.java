@@ -1,10 +1,10 @@
 package com.web.link.checker.facade;
 
+import com.web.link.checker.exception.DomainObjectNotFoundException;
 import com.web.link.checker.model.Link;
 import com.web.link.checker.model.LinkInsert;
 import com.web.link.checker.model.LinkProjection;
 import com.web.link.checker.model.LinkUpdate;
-import com.web.link.checker.project.exception.DomainObjectNotFoundException;
 import com.web.link.checker.service.LinkService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

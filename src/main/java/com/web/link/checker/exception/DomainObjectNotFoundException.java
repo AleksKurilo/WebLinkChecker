@@ -1,4 +1,4 @@
-package com.web.link.checker.project.exception;
+package com.web.link.checker.exception;
 
 import lombok.Getter;
 
@@ -7,10 +7,10 @@ public class DomainObjectNotFoundException extends RuntimeException {
     private final static String MESSAGE = "'%s' uuid '%s' doesn't exist.";
 
     @Getter
-    private String uuid;
+    private final String uuid;
 
     @Getter
-    private Class clazz;
+    private final Class clazz;
 
     public DomainObjectNotFoundException(String uuid, Class clazz) {
         super(String.format(MESSAGE, clazz.getName(), uuid));

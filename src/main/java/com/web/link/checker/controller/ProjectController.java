@@ -5,7 +5,6 @@ import com.web.link.checker.model.ProjectInsert;
 import com.web.link.checker.model.ProjectProjection;
 import com.web.link.checker.model.ProjectUpdate;
 import com.web.link.checker.model.ProjectWithoutLinksProjection;
-import com.web.link.checker.project.exception.DomainObjectNotFoundException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -28,7 +27,6 @@ import static com.web.link.checker.controller.ProjectBinding.*;
 public class ProjectController {
 
     private static final String PROJECT = "project";
-    private static final String PROJECT_PROJECTION = "projectProjection";
     private static final String PROJECT_PROJECTION_PAGE = "projectProjectionPage";
 
     @NonNull
@@ -77,7 +75,7 @@ public class ProjectController {
     public String update(@PathVariable String uuid,
                          @ModelAttribute("project") @Valid ProjectUpdate update,
                          BindingResult bindingResult,
-                         RedirectAttributes redirectAttributes) throws DomainObjectNotFoundException {
+                         RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + PROJECT, bindingResult);
             redirectAttributes.addFlashAttribute(PROJECT, update);
