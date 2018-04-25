@@ -26,4 +26,4 @@ nbdist/
 .mvn/
 
 .shelf/
-com.web.link.checker.project.model.Project/
+com.web.link.checker.model.Project/
