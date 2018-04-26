@@ -1,9 +1,10 @@
 package com.web.link.checker.controller;
 
+import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ProjectBinding {
 
     public static final String BASE_PATH = "/projects/";

@@ -1,5 +1,9 @@
 package com.web.link.checker.controller;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProjectionBinding {
 
     public static final String PROJECT_PROJECTION_PAGE = "projectProjectionPage";
