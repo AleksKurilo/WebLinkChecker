@@ -1,10 +1,12 @@
 package com.web.link.checker.model;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.sql.Timestamp;
 
 @Entity
 @Data
@@ -38,5 +40,8 @@ public class Link {
     @ManyToOne(targetEntity = Project.class)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
+
+    @CreationTimestamp
+    private Timestamp createOn;
 
 }

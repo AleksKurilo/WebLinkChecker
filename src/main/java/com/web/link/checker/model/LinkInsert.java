@@ -3,9 +3,6 @@ package com.web.link.checker.model;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 @Data
 public class LinkInsert {
 
@@ -17,7 +14,6 @@ public class LinkInsert {
 
     private boolean dofollow;
 
-    @NotNull
-    @Size(min = 1, max = 1000)
+    @NotEmpty
     private String anchor;
 }

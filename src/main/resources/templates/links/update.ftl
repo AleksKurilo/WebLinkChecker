@@ -14,7 +14,7 @@
     <h1>Project ${projectProjection.name}</h1>
     <h2>Update Link</h2>
 
-    <form method="post" action="/projects/${projectProjection.uuid}/links/${linkProjection.uuid}/update">
+    <form method="post" action="/projects/${projectProjection.uuid}/links/${link.uuid}/update">
 
         <table>
             <tbody>

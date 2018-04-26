@@ -21,16 +21,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 import static com.web.link.checker.controller.LinkBinding.*;
+import static com.web.link.checker.controller.ProjectionBinding.*;
 
 
 @Controller
 @RequestMapping(path = BASE_PATH)
 @RequiredArgsConstructor
 public class LinkController {
-
-    private static final String PROJECT_PROJECTION = "projectProjection";
-    private static final String LINK = "link";
-    private static final String LINK_PROJECTION = "linkProjection";
 
     @NonNull
     private final LinkFacade linkFacade;
@@ -40,12 +37,12 @@ public class LinkController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView projectLinksView(@PathVariable String projectUuid,
-                                         @PageableDefault(sort = {"anchor"}) final Pageable pageable) {
+                                         @PageableDefault(sort = {"createOn"}) final Pageable pageable) {
         ProjectProjection projectProjection = projectFacade.findByUuid(projectUuid, ProjectProjection.class);
         Page<LinkProjection> page = linkFacade.findByProject(projectUuid, pageable);
         ModelAndView modelAndView = new ModelAndView(LINKS_VIEW);
         modelAndView.addObject(PROJECT_PROJECTION, projectProjection);
-        modelAndView.addObject("linkPage", page);
+        modelAndView.addObject(LINK_PROJECTION_PAGE, page);
         return modelAndView;
     }
 
@@ -80,7 +77,6 @@ public class LinkController {
         ProjectProjection projectProjection = projectFacade.findByUuid(projectUuid, ProjectProjection.class);
         LinkProjection linkProjection = linkFacade.findByUuid(uuid);
         model.addAttribute(PROJECT_PROJECTION, projectProjection);
-        model.addAttribute(LINK_PROJECTION, linkProjection);
         if (!model.containsAttribute(LINK)) {
             model.addAttribute(LINK, linkProjection);
         }
