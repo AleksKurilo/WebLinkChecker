@@ -12,5 +12,4 @@ public class ProjectionBinding {
 
     public static final String LINK_PROJECTION_PAGE = "linkPage";
     public static final String LINK = "link";
-    public static final String LINK_PROJECTION = "linkProjection";
 }
