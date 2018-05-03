@@ -2,16 +2,13 @@ package com.web.link.checker.model;
 
 import lombok.Data;
 
+import javax.persistence.Embeddable;
 import java.sql.Timestamp;
 
 @Data
-public class ProjectProjection {
-
-    private String name;
-
-    private String uuid;
+@Embeddable
+public class EmbeddableData {
 
     private Timestamp createOn;
-
     private Timestamp lastUpdate;
 }

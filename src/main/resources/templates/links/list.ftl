@@ -5,12 +5,11 @@
 <@layout.defaultLayaout title>
 
     <ul class="breadcrumb">
-        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/projects/">Projects ${projectProjection.name}</a></li>
         <li class="active">Links</li>
     </ul>
 
-
-    <h1>Project ${projectProjection.name} links</h1>
+    <h1>Links</h1>
     <p>
         <a href="/projects/${projectProjection.uuid}/links/insert" class="btn btn-primary">Add link</a>
     </p>

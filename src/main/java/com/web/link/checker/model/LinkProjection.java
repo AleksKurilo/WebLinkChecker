@@ -19,4 +19,6 @@ public class LinkProjection {
     private String anchor;
 
     private Timestamp createOn;
+
+    private Timestamp lastUpdate;
 }

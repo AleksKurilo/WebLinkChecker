@@ -15,5 +15,7 @@ public class ProjectProjectionWithLinksProjection {
 
     private Timestamp createOn;
 
+    private Timestamp lastUpdate;
+
     private List<LinkProjection> links;
 }

@@ -6,12 +6,11 @@
 <@layout.defaultLayaout title>
 
     <ul class="breadcrumb">
-        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/projects/">Projects ${projectProjection.name}</a></li>
         <li><a href="/projects/${projectProjection.uuid}/links/">Links</a></li>
         <li class="active">Add</li>
     </ul>
 
-    <h1>Project ${projectProjection.name}</h1>
     <h2>Add Link</h2>
 
     <form method="post" action="/projects/${projectProjection.uuid}/links/insert">

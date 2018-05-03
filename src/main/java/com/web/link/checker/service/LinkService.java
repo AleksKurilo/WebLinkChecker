@@ -30,12 +30,15 @@ public class LinkService {
     @NonNull
     public final ProjectRepository projectRepository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<Link> findByProject(String projectUuid, Pageable pageable) {
         notBlank(projectUuid, "projectUuid");
         notNull(pageable, "pageable");
 
         Project project = projectRepository.findOneByUuid(projectUuid);
+        if (project == null) {
+            throw new DomainObjectNotFoundException(projectUuid, Project.class);
+        }
         return linkRepository.findByProject(project, pageable);
     }
 

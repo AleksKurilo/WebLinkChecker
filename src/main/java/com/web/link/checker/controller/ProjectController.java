@@ -32,7 +32,7 @@ public class ProjectController {
     private final ProjectFacade projectFacade;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView projectsView(@PageableDefault(sort = {"createOn"}) final Pageable pageable) {
+    public ModelAndView projectsView(@PageableDefault(sort = {"embeddableData.createOn"}) final Pageable pageable) {
         Page<ProjectProjection> projectProjectionPage = projectFacade.findAll(ProjectProjection.class, pageable);
         ModelAndView modelAndView = new ModelAndView(PROJECTS_VIEW);
         modelAndView.addObject(PROJECT_PROJECTION_PAGE, projectProjectionPage);

@@ -1,12 +1,12 @@
 package com.web.link.checker.model;
 
+import com.web.link.checker.Audit.AuditListener;
+import com.web.link.checker.Audit.Auditable;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.sql.Timestamp;
 
 @Entity
 @Data
@@ -14,7 +14,8 @@ import java.sql.Timestamp;
         indexes = {
                 @Index(columnList = "uuid", name = "uuid", unique = true)
         })
-public class Link {
+@EntityListeners(AuditListener.class)
+public class Link implements Auditable {
 
     @Id
     @GeneratedValue
@@ -35,13 +36,13 @@ public class Link {
     private boolean dofollow;
 
     @Size(min = 1, max = 1000)
+    @Column(columnDefinition = "TEXT")
     private String anchor;
 
     @ManyToOne(targetEntity = Project.class)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
-    @CreationTimestamp
-    private Timestamp createOn;
-
+    @Embedded
+    private EmbeddableData embeddableData;
 }

@@ -30,7 +30,8 @@ class ProjectToProjectProjectionWithLinksProjectionConverter implements Converte
         ProjectProjectionWithLinksProjection projectProjection = new ProjectProjectionWithLinksProjection();
         projectProjection.setUuid(project.getUuid());
         projectProjection.setName(project.getName());
-        projectProjection.setCreateOn(project.getCreateOn());
+        projectProjection.setCreateOn(project.getEmbeddableData().getCreateOn());
+        projectProjection.setLastUpdate(project.getEmbeddableData().getLastUpdate());
 
         Set<Link> links = project.getLinks();
         List<LinkProjection> linkProjections = links.stream()

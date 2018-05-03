@@ -7,11 +7,10 @@
 
     <ul class="breadcrumb">
         <li><a href="/projects/">Projects</a></li>
-        <li class="active">Update</li>
+        <li class="active">${project.name}</li>
     </ul>
 
-    <h1>Edit Project</h1>
-    <h2>${project.name} </h2>
+    <h1>Edit</h1>
     <form method="post" action="update">
         <p><label for="project-name">Name:</label>
         <@spring.bind "project.name"/>

@@ -37,7 +37,7 @@ public class LinkController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView projectLinksView(@PathVariable String projectUuid,
-                                         @PageableDefault(sort = {"createOn"}) final Pageable pageable) {
+                                         @PageableDefault(sort = {"embeddableData.createOn"}) final Pageable pageable) {
         ProjectProjection projectProjection = projectFacade.findByUuid(projectUuid, ProjectProjection.class);
         Page<LinkProjection> page = linkFacade.findByProject(projectUuid, pageable);
         ModelAndView modelAndView = new ModelAndView(LINKS_VIEW);

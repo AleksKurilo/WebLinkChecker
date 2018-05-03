@@ -17,7 +17,8 @@ public class ProjectToProjectProjectionConverter implements Converter<Project, P
         ProjectProjection projectProjection = new ProjectProjection();
         projectProjection.setName(project.getName());
         projectProjection.setUuid(project.getUuid());
-        projectProjection.setCreateOn(project.getCreateOn());
+        projectProjection.setCreateOn(project.getEmbeddableData().getCreateOn());
+        projectProjection.setLastUpdate(project.getEmbeddableData().getLastUpdate());
         return projectProjection;
     }
 }

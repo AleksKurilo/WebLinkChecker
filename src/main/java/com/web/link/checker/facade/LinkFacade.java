@@ -30,7 +30,6 @@ public class LinkFacade {
     public Page<LinkProjection> findByProject(String projectUuid, Pageable pageable) {
         notBlank(projectUuid, "projectUuid");
         notNull(pageable, "pageable");
-
         Page<Link> page = linkService.findByProject(projectUuid, pageable);
         return page.map(link -> conversionService.convert(link, LinkProjection.class));
     }
