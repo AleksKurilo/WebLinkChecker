@@ -30,9 +30,9 @@
             <thead>
             <tr>
                 <th style="width: 20%">Anchor</th>
-                <th style="width: 15%">Dofollow</th>
+                <th style="width: 20%">Dofollow</th>
                 <th style="width: 20%">Location</th>
-                <th style="width: 25%">Href</th>
+                <th style="width: 20%">Href</th>
                 <th style="width: 20%">Actions</th>
             </tr>
             </thead>
