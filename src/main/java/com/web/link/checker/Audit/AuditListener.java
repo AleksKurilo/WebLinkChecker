@@ -20,7 +20,7 @@ public class AuditListener {
             auditable.setAudit(audit);
         }
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
-        audit.setModified(new Timestamp(now.toInstant().toEpochMilli()));
+        audit.setCreated(new Timestamp(now.toInstant().toEpochMilli()));
     }
 
     @PreUpdate

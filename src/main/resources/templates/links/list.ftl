@@ -3,6 +3,16 @@
 <#import "../layout/defaultLayout.ftl" as layout>
 <#assign title = "Projects">
 <@layout.defaultLayaout title>
+    <style>
+        table {
+            table-layout: fixed;
+        }
+
+        table th, table td {
+            overflow: auto;
+            text-align: center;
+        }
+    </style>
 
     <ul class="breadcrumb">
         <li><a href="/projects/">Projects ${projectProjection.name}</a></li>
@@ -19,11 +29,11 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Anchor</th>
-                <th>Dofollow</th>
-                <th>Location</th>
-                <th>Href</th>
-                <th>Actions</th>
+                <th style="width: 30%">Anchor</th>
+                <th style="width: 30%">Dofollow</th>
+                <th style="width: 30%">Location</th>
+                <th style="width: 30%">Href</th>
+                <th style="width: 30%">Actions</th>
             </tr>
             </thead>
             <tbody>
