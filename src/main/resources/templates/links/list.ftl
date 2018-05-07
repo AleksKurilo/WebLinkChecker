@@ -20,6 +20,9 @@
             <thead>
             <tr>
                 <th>Anchor</th>
+                <th>Dofollow</th>
+                <th>Location</th>
+                <th>Href</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -27,6 +30,9 @@
                 <#list linkPage.getContent() as linkProjection>
                 <tr>
                     <td>${linkProjection.anchor}</td>
+                    <td>${linkProjection.dofollow?then("true", "false")}</td>
+                    <td>${linkProjection.location}</td>
+                    <td>${linkProjection.href}</td>
                     <td>
                         <a href="/projects/${projectProjection.uuid}/links/${linkProjection.uuid}/update">
                             <i class="glyphicon glyphicon-pencil">&nbsp;</i>

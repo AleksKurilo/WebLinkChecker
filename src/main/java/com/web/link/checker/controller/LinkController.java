@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
+import static com.web.link.checker.controller.BindingView.*;
 import static com.web.link.checker.controller.LinkBinding.*;
 import static com.web.link.checker.controller.ProjectionBinding.*;
 
@@ -37,7 +38,7 @@ public class LinkController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView projectLinksView(@PathVariable String projectUuid,
-                                         @PageableDefault(sort = {"embeddableData.createOn"}) final Pageable pageable) {
+                                         @PageableDefault(sort = {"audit.created"}) final Pageable pageable) {
         ProjectProjection projectProjection = projectFacade.findByUuid(projectUuid, ProjectProjection.class);
         Page<LinkProjection> page = linkFacade.findByProject(projectUuid, pageable);
         ModelAndView modelAndView = new ModelAndView(LINKS_VIEW);
@@ -53,7 +54,7 @@ public class LinkController {
         if (!model.containsAttribute(LINK)) {
             model.addAttribute(LINK, new LinkProjection());
         }
-        return INSERT_VIEW;
+        return LINK_INSERT_VIEW;
     }
 
     @RequestMapping(path = INSERT_PATH, method = RequestMethod.POST)
@@ -80,7 +81,7 @@ public class LinkController {
         if (!model.containsAttribute(LINK)) {
             model.addAttribute(LINK, linkProjection);
         }
-        return UPDATE_VIEW;
+        return LINK_UPDATE_VIEW;
     }
 
     @RequestMapping(path = UPDATE_PATH, method = RequestMethod.POST)

@@ -7,8 +7,8 @@ import java.sql.Timestamp;
 
 @Data
 @Embeddable
-public class EmbeddableData {
+public class Audit {
 
-    private Timestamp createOn;
-    private Timestamp lastUpdate;
+    private Timestamp created;
+    private Timestamp modified;
 }

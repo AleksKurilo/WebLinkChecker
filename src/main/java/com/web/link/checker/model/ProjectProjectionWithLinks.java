@@ -7,15 +7,15 @@ import java.util.List;
 
 
 @Data
-public class ProjectProjectionWithLinksProjection {
+public class ProjectProjectionWithLinks {
 
     private String name;
 
     private String uuid;
 
-    private Timestamp createOn;
+    private Timestamp created;
 
-    private Timestamp lastUpdate;
+    private Timestamp modified;
 
     private List<LinkProjection> links;
 }

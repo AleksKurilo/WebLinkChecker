@@ -44,5 +44,5 @@ public class Link implements Auditable {
     private Project project;
 
     @Embedded
-    private EmbeddableData embeddableData;
+    private Audit audit;
 }

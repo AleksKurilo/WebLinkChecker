@@ -44,19 +44,19 @@ public class LinkFacade {
         return conversionService.convert(link, LinkProjection.class);
     }
 
-    public void insert(String projectUuid, LinkInsert linkInsert) {
+    public void insert(String projectUuid, LinkInsert insert) {
         notNull(projectUuid, "projectUuid");
-        notNull(linkInsert, "linkInsert");
+        notNull(insert, "insert");
 
-        linkService.insert(projectUuid, linkInsert);
+        linkService.insert(projectUuid, insert);
     }
 
-    public void update(String projectUuid, String uuid, LinkUpdate linkUpdate) {
+    public void update(String projectUuid, String uuid, LinkUpdate update) {
         notBlank(projectUuid, "projectUuid");
         notBlank(uuid, "uuid");
-        notNull(linkUpdate, "linkUpdate");
+        notNull(update, "update");
 
-        linkService.update(projectUuid, uuid, linkUpdate);
+        linkService.update(projectUuid, uuid, update);
     }
 
     public void delete(String uuid) {

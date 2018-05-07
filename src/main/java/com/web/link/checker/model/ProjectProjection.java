@@ -11,7 +11,7 @@ public class ProjectProjection {
 
     private String uuid;
 
-    private Timestamp createOn;
+    private Timestamp created;
 
-    private Timestamp lastUpdate;
+    private Timestamp modified;
 }

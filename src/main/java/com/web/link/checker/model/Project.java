@@ -40,6 +40,6 @@ public class Project implements Auditable {
     private Set<Link> links;
 
     @Embedded
-    private EmbeddableData embeddableData;
+    private Audit audit;
 
 }

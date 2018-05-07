@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
+import static com.web.link.checker.controller.BindingView.*;
 import static com.web.link.checker.controller.ProjectBinding.*;
 import static com.web.link.checker.controller.ProjectionBinding.PROJECT;
 import static com.web.link.checker.controller.ProjectionBinding.PROJECT_PROJECTION_PAGE;
@@ -32,7 +33,7 @@ public class ProjectController {
     private final ProjectFacade projectFacade;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView projectsView(@PageableDefault(sort = {"embeddableData.createOn"}) final Pageable pageable) {
+    public ModelAndView projectsView(@PageableDefault(sort = {"audit.created"}) final Pageable pageable) {
         Page<ProjectProjection> projectProjectionPage = projectFacade.findAll(ProjectProjection.class, pageable);
         ModelAndView modelAndView = new ModelAndView(PROJECTS_VIEW);
         modelAndView.addObject(PROJECT_PROJECTION_PAGE, projectProjectionPage);
@@ -44,7 +45,7 @@ public class ProjectController {
         if (!model.containsAttribute(PROJECT)) {
             model.addAttribute(PROJECT, new ProjectInsert());
         }
-        return INSERT_VIEW;
+        return PROJECT_INSERT_VIEW;
     }
 
     @RequestMapping(path = INSERT_PATH, method = RequestMethod.POST)
@@ -67,7 +68,7 @@ public class ProjectController {
         if (!model.containsAttribute(PROJECT)) {
             model.addAttribute(PROJECT, projectProjection);
         }
-        return UPDATE_VIEW;
+        return PROJECT_UPDATE_VIEW;
     }
 
     @RequestMapping(path = UPDATE_PATH, method = RequestMethod.POST)

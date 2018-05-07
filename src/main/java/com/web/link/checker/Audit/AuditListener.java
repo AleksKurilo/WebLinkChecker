@@ -1,31 +1,32 @@
 package com.web.link.checker.Audit;
 
 
-import com.web.link.checker.model.EmbeddableData;
+import com.web.link.checker.model.Audit;
 
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import java.sql.Timestamp;
-import java.util.Date;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 
 public class AuditListener {
 
     @PrePersist
     public void setCreatedOn(Auditable auditable) {
-        EmbeddableData embeddableData = auditable.getEmbeddableData();
-        if (embeddableData == null) {
-            embeddableData = new EmbeddableData();
-            auditable.setEmbeddableData(embeddableData);
+        Audit audit = auditable.getAudit();
+        if (audit == null) {
+            audit = new Audit();
+            auditable.setAudit(audit);
         }
-        Date date = new Date();
-        embeddableData.setCreateOn(new Timestamp(date.getTime()));
+        ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
+        audit.setModified(new Timestamp(now.toInstant().toEpochMilli()));
     }
 
     @PreUpdate
     public void setLastUpdate(Auditable auditable) {
-        EmbeddableData embeddableData = auditable.getEmbeddableData();
-        Date date = new Date();
-        embeddableData.setLastUpdate(new Timestamp(date.getTime()));
+        Audit audit = auditable.getAudit();
+        ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
+        audit.setModified(new Timestamp(now.toInstant().toEpochMilli()));
     }
 }

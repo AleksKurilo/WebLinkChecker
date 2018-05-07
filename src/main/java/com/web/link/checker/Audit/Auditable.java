@@ -1,10 +1,10 @@
 package com.web.link.checker.Audit;
 
-import com.web.link.checker.model.EmbeddableData;
+import com.web.link.checker.model.Audit;
 
 public interface Auditable {
 
-    EmbeddableData getEmbeddableData();
+    Audit getAudit();
 
-    void setEmbeddableData(EmbeddableData embeddableData);
+    void setAudit(Audit audit);
 }
