@@ -3,7 +3,7 @@ package com.web.link.checker.converter;
 import com.web.link.checker.model.Link;
 import com.web.link.checker.model.LinkProjection;
 import com.web.link.checker.model.Project;
-import com.web.link.checker.model.ProjectProjectionWithLinks;
+import com.web.link.checker.model.ProjectWithLinksProjection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.core.convert.ConversionService;
@@ -17,17 +17,17 @@ import java.util.stream.Collectors;
 import static com.web.link.checker.utils.ValidateUtils.notNull;
 
 @Component
-class ProjectToProjectProjectionWithLinksConverter implements Converter<Project, ProjectProjectionWithLinks> {
+class ProjectToProjectWithLinksProjectionConverter implements Converter<Project, ProjectWithLinksProjection> {
 
     @Lazy
     @Autowired
     private ConversionService conversionService;
 
     @Override
-    public ProjectProjectionWithLinks convert(Project project) {
+    public ProjectWithLinksProjection convert(Project project) {
         notNull(project, "project");
 
-        ProjectProjectionWithLinks projectProjection = new ProjectProjectionWithLinks();
+        ProjectWithLinksProjection projectProjection = new ProjectWithLinksProjection();
         projectProjection.setUuid(project.getUuid());
         projectProjection.setName(project.getName());
         projectProjection.setCreated(project.getAudit().getCreated());

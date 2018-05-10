@@ -2,8 +2,6 @@ package com.web.link.checker.model;
 
 import lombok.Data;
 
-import java.sql.Timestamp;
-
 
 @Data
 public class LinkProjection {
@@ -18,7 +16,7 @@ public class LinkProjection {
 
     private String anchor;
 
-    private Timestamp createOn;
+    private long createOn;
 
-    private Timestamp lastUpdate;
+    private long lastUpdate;
 }

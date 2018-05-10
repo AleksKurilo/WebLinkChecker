@@ -11,7 +11,7 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
 
     Page<Project> findAll(Pageable pageable);
 
-    Project findOneByUuid(String uuid);
+    Project findByUuid(String uuid);
 
     void deleteByUuid(String uuid);
 }

@@ -35,7 +35,7 @@ public class LinkService {
         notBlank(projectUuid, "projectUuid");
         notNull(pageable, "pageable");
 
-        Project project = projectRepository.findOneByUuid(projectUuid);
+        Project project = projectRepository.findByUuid(projectUuid);
         if (project == null) {
             throw new DomainObjectNotFoundException(projectUuid, Project.class);
         }
@@ -50,19 +50,19 @@ public class LinkService {
     }
 
     @Transactional
-    public void insert(String projectUuid, LinkInsert linkInsert) {
+    public void insert(String projectUuid, LinkInsert insert) {
         notBlank(projectUuid, "projectUuid");
-        notNull(linkInsert, "linkInsert");
+        notNull(insert, "insert");
 
-        Project project = projectRepository.findOneByUuid(projectUuid);
+        Project project = projectRepository.findByUuid(projectUuid);
         if (project == null) {
             throw new DomainObjectNotFoundException(projectUuid, Project.class);
         }
         Link link = new Link();
-        link.setAnchor(linkInsert.getAnchor());
-        link.setHref(linkInsert.getHref());
-        link.setLocation(linkInsert.getLocation());
-        link.setDofollow(linkInsert.isDofollow());
+        link.setAnchor(insert.getAnchor());
+        link.setHref(insert.getHref());
+        link.setLocation(insert.getLocation());
+        link.setDofollow(insert.isDofollow());
         String uuid = UUID.randomUUID().toString();
         link.setUuid(uuid);
         link.setProject(project);
@@ -70,12 +70,12 @@ public class LinkService {
     }
 
     @Transactional
-    public void update(String projectUuid, String uuid, LinkUpdate linkUpdate) {
+    public void update(String projectUuid, String uuid, LinkUpdate update) {
         notBlank(projectUuid, "projectUuid");
         notBlank(uuid, "uuid");
-        notNull(linkUpdate, "linkUpdate");
+        notNull(update, "update");
 
-        Project project = projectRepository.findOneByUuid(projectUuid);
+        Project project = projectRepository.findByUuid(projectUuid);
         if (project == null) {
             throw new DomainObjectNotFoundException(projectUuid, Project.class);
         }
@@ -83,10 +83,10 @@ public class LinkService {
         if (link == null) {
             throw new DomainObjectNotFoundException(uuid, Link.class);
         }
-        link.setAnchor(linkUpdate.getAnchor());
-        link.setHref(linkUpdate.getHref());
-        link.setLocation(linkUpdate.getLocation());
-        link.setDofollow(linkUpdate.isDofollow());
+        link.setAnchor(update.getAnchor());
+        link.setHref(update.getHref());
+        link.setLocation(update.getLocation());
+        link.setDofollow(update.isDofollow());
         link.setProject(project);
         linkRepository.save(link);
     }

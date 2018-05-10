@@ -35,7 +35,7 @@ public class ProjectService {
     public Project findByUuid(String uuid) {
         notBlank(uuid, "uuid");
 
-        return projectRepository.findOneByUuid(uuid);
+        return projectRepository.findByUuid(uuid);
     }
 
     @Transactional
@@ -54,7 +54,7 @@ public class ProjectService {
         notBlank(uuid, "uuid");
         notNull(projectUpdate, "projectUpdate");
 
-        Project project = projectRepository.findOneByUuid(uuid);
+        Project project = projectRepository.findByUuid(uuid);
         if (project == null) {
             throw new DomainObjectNotFoundException(uuid, Project.class);
         }

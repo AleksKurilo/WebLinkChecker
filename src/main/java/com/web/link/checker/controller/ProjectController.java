@@ -18,8 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
-import static com.web.link.checker.controller.BindingView.*;
 import static com.web.link.checker.controller.ProjectBinding.*;
+import static com.web.link.checker.controller.ProjectView.*;
 import static com.web.link.checker.controller.ProjectionBinding.PROJECT;
 import static com.web.link.checker.controller.ProjectionBinding.PROJECT_PROJECTION_PAGE;
 
@@ -35,7 +35,7 @@ public class ProjectController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView projectsView(@PageableDefault(sort = {"audit.created"}) final Pageable pageable) {
         Page<ProjectProjection> projectProjectionPage = projectFacade.findAll(ProjectProjection.class, pageable);
-        ModelAndView modelAndView = new ModelAndView(PROJECTS_VIEW);
+        ModelAndView modelAndView = new ModelAndView(LIST_VIEW);
         modelAndView.addObject(PROJECT_PROJECTION_PAGE, projectProjectionPage);
         return modelAndView;
     }
@@ -45,7 +45,7 @@ public class ProjectController {
         if (!model.containsAttribute(PROJECT)) {
             model.addAttribute(PROJECT, new ProjectInsert());
         }
-        return PROJECT_INSERT_VIEW;
+        return INSERT_VIEW;
     }
 
     @RequestMapping(path = INSERT_PATH, method = RequestMethod.POST)
@@ -62,13 +62,12 @@ public class ProjectController {
     }
 
     @RequestMapping(path = UPDATE_PATH, method = RequestMethod.GET)
-    public String updateView(@PathVariable("uuid") String uuid,
-                             Model model) {
+    public String updateView(@PathVariable("uuid") String uuid, Model model) {
         ProjectProjection projectProjection = projectFacade.findByUuid(uuid, ProjectProjection.class);
         if (!model.containsAttribute(PROJECT)) {
             model.addAttribute(PROJECT, projectProjection);
         }
-        return PROJECT_UPDATE_VIEW;
+        return UPDATE_VIEW;
     }
 
     @RequestMapping(path = UPDATE_PATH, method = RequestMethod.POST)

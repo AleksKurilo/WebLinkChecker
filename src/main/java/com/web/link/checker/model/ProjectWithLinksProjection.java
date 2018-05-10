@@ -2,20 +2,19 @@ package com.web.link.checker.model;
 
 import lombok.Data;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 
 @Data
-public class ProjectProjectionWithLinks {
+public class ProjectWithLinksProjection {
 
     private String name;
 
     private String uuid;
 
-    private Timestamp created;
+    private long created;
 
-    private Timestamp modified;
+    private long modified;
 
     private List<LinkProjection> links;
 }

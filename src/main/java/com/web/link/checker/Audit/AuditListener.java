@@ -5,7 +5,6 @@ import com.web.link.checker.model.Audit;
 
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -20,13 +19,13 @@ public class AuditListener {
             auditable.setAudit(audit);
         }
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
-        audit.setCreated(new Timestamp(now.toInstant().toEpochMilli()));
+        audit.setCreated(now.toInstant().toEpochMilli());
     }
 
     @PreUpdate
     public void setLastUpdate(Auditable auditable) {
         Audit audit = auditable.getAudit();
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
-        audit.setModified(new Timestamp(now.toInstant().toEpochMilli()));
+        audit.setModified(now.toInstant().toEpochMilli());
     }
 }

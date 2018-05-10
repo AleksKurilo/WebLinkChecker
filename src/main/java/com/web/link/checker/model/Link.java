@@ -6,7 +6,6 @@ import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 @Entity
 @Data
@@ -35,7 +34,6 @@ public class Link implements Auditable {
 
     private boolean dofollow;
 
-    @Size(min = 1, max = 1000)
     @Column(columnDefinition = "TEXT")
     private String anchor;
 
