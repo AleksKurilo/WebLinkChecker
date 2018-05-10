@@ -23,6 +23,8 @@
                 <th>Dofollow</th>
                 <th>Location</th>
                 <th>Href</th>
+                <th>Created</th>
+                <th>Modified</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -33,6 +35,8 @@
                     <td>${linkProjection.dofollow?then("true", "false")}</td>
                     <td>${linkProjection.location}</td>
                     <td>${linkProjection.href}</td>
+                    <td>${linkProjection.created}</td>
+                    <td>${linkProjection.modified}</td>
                     <td>
                         <a href="/projects/${projectProjection.uuid}/links/${linkProjection.uuid}/update">
                             <i class="glyphicon glyphicon-pencil">&nbsp;</i>

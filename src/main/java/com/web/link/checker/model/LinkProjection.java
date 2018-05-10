@@ -16,7 +16,7 @@ public class LinkProjection {
 
     private String anchor;
 
-    private long createOn;
+    private long created;
 
-    private long lastUpdate;
+    private long modified;
 }

@@ -20,8 +20,8 @@ public class LinkToLinkProjectionConverter implements Converter<Link, LinkProjec
         linkProjection.setLocation(link.getLocation());
         linkProjection.setDofollow(link.isDofollow());
         linkProjection.setUuid(link.getUuid());
-        linkProjection.setCreateOn(link.getAudit().getCreated());
-        linkProjection.setLastUpdate(link.getAudit().getModified());
+        linkProjection.setCreated(link.getAudit().getCreated());
+        linkProjection.setModified(link.getAudit().getModified());
         return linkProjection;
     }
 }
