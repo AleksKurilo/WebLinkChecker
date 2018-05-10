@@ -19,6 +19,8 @@
             <thead>
             <tr>
                 <th>Name</th>
+                <th>Created</th>
+                <th>Modified</th>
                 <th class="text-center">Actions</th>
             </tr>
             </thead>
@@ -26,6 +28,8 @@
                 <#list projectProjectionPage.getContent() as projectProjection>
                 <tr>
                     <td><a href="/projects/${projectProjection.uuid}/links/"> ${projectProjection.name} </a></td>
+                    <td>${projectProjection.created}</td>
+                    <td>${projectProjection.modified}</td>
                     <td class="text-center">
                         <a href="/projects/${projectProjection.uuid}/update">
                             <i class="glyphicon glyphicon-pencil">&nbsp;</i>

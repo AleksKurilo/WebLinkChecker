@@ -5,6 +5,8 @@ import com.web.link.checker.model.ProjectProjection;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+
 import static com.web.link.checker.utils.ValidateUtils.notNull;
 
 @Component
@@ -17,8 +19,8 @@ public class ProjectToProjectProjectionConverter implements Converter<Project, P
         ProjectProjection projectProjection = new ProjectProjection();
         projectProjection.setName(project.getName());
         projectProjection.setUuid(project.getUuid());
-        projectProjection.setCreated(project.getAudit().getCreated());
-        projectProjection.setModified(project.getAudit().getModified());
+        projectProjection.setCreated(new Timestamp(project.getAudit().getCreated()));
+        projectProjection.setModified(new Timestamp(project.getAudit().getModified()));
         return projectProjection;
     }
 }

@@ -5,6 +5,8 @@ import com.web.link.checker.model.LinkProjection;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+
 import static com.web.link.checker.utils.ValidateUtils.notNull;
 
 @Component
@@ -20,8 +22,8 @@ public class LinkToLinkProjectionConverter implements Converter<Link, LinkProjec
         linkProjection.setLocation(link.getLocation());
         linkProjection.setDofollow(link.isDofollow());
         linkProjection.setUuid(link.getUuid());
-        linkProjection.setCreated(link.getAudit().getCreated());
-        linkProjection.setModified(link.getAudit().getModified());
+        linkProjection.setCreated(new Timestamp(link.getAudit().getCreated()));
+        linkProjection.setModified(new Timestamp(link.getAudit().getModified()));
         return linkProjection;
     }
 }

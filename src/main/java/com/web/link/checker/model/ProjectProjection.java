@@ -2,6 +2,8 @@ package com.web.link.checker.model;
 
 import lombok.Data;
 
+import java.sql.Timestamp;
+
 @Data
 public class ProjectProjection {
 
@@ -9,7 +11,7 @@ public class ProjectProjection {
 
     private String uuid;
 
-    private long created;
+    private Timestamp created;
 
-    private long modified;
+    private Timestamp modified;
 }
