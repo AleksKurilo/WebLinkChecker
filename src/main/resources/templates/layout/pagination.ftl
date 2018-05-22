@@ -1,26 +1,56 @@
-<#macro pagination currentPage totalPages >
+<#macro paginationProjects currentPage totalPages >
 <nav aria-label="Page navigation">
     <div class="text-center">
         <ul class="pagination">
             <#if (totalPages > 1)>
 
             <#-- Previous page -->
-                <#if (currentPage > 1)>
-                    <li><a href="/projects/?currentPage=${currentPage - 1}">Prev</a></li>
+                <#if (currentPage > 0)>
+                    <li><a href="/projects/?page=${currentPage - 1}">Prev</a></li>
                 </#if>
 
             <#-- Page number -->
-                <#list 1 .. totalPages as pageNumber>
+                <#list 0 .. totalPages-1 as pageNumber>
                     <#if (pageNumber == currentPage)>
-                        <li class="active"><a href="#">${pageNumber}</a></li>
+                        <li class="active"><a href="#">${pageNumber+1}</a></li>
                     <#else>
-                        <li><a href="/projects/?currentPage=${pageNumber}">${pageNumber}</a></li>
+                        <li><a href="/projects/?page=${pageNumber}">${pageNumber+1}</a></li>
                     </#if>
                 </#list>
 
             <#-- Next page -->
-                <#if (currentPage < totalPages)>
-                    <li><a href="/projects/?currentPage=${currentPage + 1}">Next</a></li>
+                <#if (currentPage < totalPages-1)>
+                    <li><a href="/projects/?page=${currentPage + 1}">Next</a></li>
+                </#if>
+            </#if>
+        </ul>
+    </div>
+</nav>
+</#macro>
+
+<#macro paginationLinks projectUuid currentPage totalPages >
+<nav aria-label="Page navigation">
+    <div class="text-center">
+        <ul class="pagination">
+            <#if (totalPages > 1)>
+
+            <#-- Previous page -->
+                <#if (currentPage > 0)>
+                    <li><a href="/projects/${projectUuid}/links/?page=${currentPage - 1}">Prev</a></li>
+                </#if>
+
+            <#-- Page number -->
+                <#list 0 .. totalPages-1 as pageNumber>
+                    <#if (pageNumber == currentPage)>
+                        <li class="active"><a href="#">${pageNumber+1}</a></li>
+                    <#else>
+                        <li><a href="/projects/${projectUuid}/links/?page=${pageNumber}">${pageNumber+1}</a></li>
+                    </#if>
+                </#list>
+
+            <#-- Next page -->
+                <#if (currentPage < totalPages-1)>
+                    <li><a href="/projects/${projectUuid}/links/?page=${currentPage + 1}">Next</a></li>
                 </#if>
             </#if>
         </ul>
