@@ -2,6 +2,7 @@ package com.web.link.checker.converter;
 
 import com.web.link.checker.model.Link;
 import com.web.link.checker.model.LinkProjection;
+import com.web.link.checker.utils.TimeUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +24,7 @@ public class LinkToLinkProjectionConverter implements Converter<Link, LinkProjec
         linkProjection.setDofollow(link.isDofollow());
         linkProjection.setUuid(link.getUuid());
         linkProjection.setCreated(new Timestamp(link.getAudit().getCreated()));
-        linkProjection.setModified(new Timestamp(link.getAudit().getModified()));
+        linkProjection.setModified(TimeUtils.getTimeFromMilliseconds(link.getAudit().getModified()));
         return linkProjection;
     }
 }

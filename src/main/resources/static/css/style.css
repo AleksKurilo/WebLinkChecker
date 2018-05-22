@@ -2,8 +2,9 @@ table {
     table-layout: fixed;
 }
 
-table th, table td {
+.table-alignment {
     overflow: auto;
-    text-align: center;
+    /*text-align: center;*/
     width: 20%;
 }
+

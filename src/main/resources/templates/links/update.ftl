@@ -11,7 +11,7 @@
         <li class="active">${link.href}</li>
     </ul>
 
-    <h2>Edit</h2>
+    <h1>Edit</h1>
 
     <form method="post" action="/projects/${projectProjection.uuid}/links/${link.uuid}/update">
 

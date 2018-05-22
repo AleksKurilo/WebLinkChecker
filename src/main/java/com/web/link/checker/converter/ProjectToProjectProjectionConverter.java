@@ -2,6 +2,7 @@ package com.web.link.checker.converter;
 
 import com.web.link.checker.model.Project;
 import com.web.link.checker.model.ProjectProjection;
+import com.web.link.checker.utils.TimeUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +21,7 @@ public class ProjectToProjectProjectionConverter implements Converter<Project, P
         projectProjection.setName(project.getName());
         projectProjection.setUuid(project.getUuid());
         projectProjection.setCreated(new Timestamp(project.getAudit().getCreated()));
-        projectProjection.setModified(new Timestamp(project.getAudit().getModified()));
+        projectProjection.setModified(TimeUtils.getTimeFromMilliseconds(project.getAudit().getModified()));
         return projectProjection;
     }
 }

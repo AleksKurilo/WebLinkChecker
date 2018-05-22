@@ -11,7 +11,7 @@
         <li class="active">Add</li>
     </ul>
 
-    <h2>Add Link</h2>
+    <h1>Add Link</h1>
 
     <form method="post" action="/projects/${projectProjection.uuid}/links/insert">
         <table>

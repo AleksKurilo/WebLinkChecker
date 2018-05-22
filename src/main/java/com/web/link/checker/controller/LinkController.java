@@ -21,8 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 import static com.web.link.checker.controller.LinkBinding.*;
-import static com.web.link.checker.controller.LinkView.*;
 import static com.web.link.checker.controller.ProjectionBinding.*;
+import static com.web.link.checker.view.LinkView.*;
 
 
 @Controller

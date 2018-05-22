@@ -19,9 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 import static com.web.link.checker.controller.ProjectBinding.*;
-import static com.web.link.checker.controller.ProjectView.*;
 import static com.web.link.checker.controller.ProjectionBinding.PROJECT;
 import static com.web.link.checker.controller.ProjectionBinding.PROJECT_PROJECTION_PAGE;
+import static com.web.link.checker.view.ProjectView.*;
 
 
 @Controller

@@ -19,25 +19,30 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Anchor</th>
-                <th>Dofollow</th>
-                <th>Location</th>
-                <th>Href</th>
-                <th>Created</th>
-                <th>Modified</th>
-                <th>Actions</th>
+                <th class="text-center table-alignment">Anchor</th>
+                <th class="text-center table-alignment">Dofollow</th>
+                <th class="text-center table-alignment">Location</th>
+                <th class="text-center table-alignment">Href</th>
+                <th class="text-center table-alignment">Created</th>
+                <th class="text-center table-alignment">Modified</th>
+                <th class="text-center table-alignment">Actions</th>
             </tr>
             </thead>
             <tbody>
                 <#list linkPage.getContent() as linkProjection>
                 <tr>
-                    <td>${linkProjection.anchor}</td>
-                    <td>${linkProjection.dofollow?then("true", "false")}</td>
-                    <td>${linkProjection.location}</td>
-                    <td>${linkProjection.href}</td>
-                    <td>${linkProjection.created}</td>
-                    <td>${linkProjection.modified}</td>
-                    <td>
+                    <td class="text-center table-alignment">${linkProjection.anchor}</td>
+                    <td class="text-center table-alignment">${linkProjection.dofollow?then("true", "false")}</td>
+                    <td class="text-center table-alignment">${linkProjection.location}</td>
+                    <td class="text-center table-alignment">${linkProjection.href}</td>
+                    <td class="text-center table-alignment">${linkProjection.created}</td>
+                    <td class="text-center table-alignment">
+                        <#if linkProjection.modified??>
+                            ${linkProjection.modified}
+                        <#else> -
+                        </#if>
+                    </td>
+                    <td class="text-center table-alignment">
                         <a href="/projects/${projectProjection.uuid}/links/${linkProjection.uuid}/update">
                             <i class="glyphicon glyphicon-pencil">&nbsp;</i>
                         </a>

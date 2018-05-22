@@ -1,4 +1,4 @@
-package com.web.link.checker.controller;
+package com.web.link.checker.view;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
