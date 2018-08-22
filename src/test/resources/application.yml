@@ -1,0 +1,24 @@
+spring:
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/web_link_checker_database_test
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+
+  messages:
+    basename: i18n/messages
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+
+  mvc:
+    view:
+      suffix: ftl
+      prefix: /templates/
+
