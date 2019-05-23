@@ -18,9 +18,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
-import static com.web.link.checker.controller.ProjectBinding.*;
-import static com.web.link.checker.controller.ProjectionBinding.PROJECT;
-import static com.web.link.checker.controller.ProjectionBinding.PROJECT_PROJECTION_PAGE;
+import static com.web.link.checker.binding.ProjectBinding.*;
+import static com.web.link.checker.binding.ProjectionBinding.PROJECT;
+import static com.web.link.checker.binding.ProjectionBinding.PROJECT_PROJECTION_PAGE;
 import static com.web.link.checker.view.ProjectView.*;
 
 
@@ -29,7 +29,6 @@ import static com.web.link.checker.view.ProjectView.*;
 @RequiredArgsConstructor
 public class ProjectController {
 
-    @NonNull
     private final ProjectFacade projectFacade;
 
     @RequestMapping(method = RequestMethod.GET)

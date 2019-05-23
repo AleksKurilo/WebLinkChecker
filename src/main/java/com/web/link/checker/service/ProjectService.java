@@ -21,7 +21,6 @@ import static com.web.link.checker.utils.ValidateUtils.notNull;
 @RequiredArgsConstructor
 public class ProjectService {
 
-    @NonNull
     public final ProjectRepository projectRepository;
 
     @Transactional(readOnly = true)

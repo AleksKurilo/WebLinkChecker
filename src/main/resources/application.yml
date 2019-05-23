@@ -1,8 +1,8 @@
 spring:
 
   datasource:
-    url: jdbc:mysql://localhost:3306/web_link_checker_database
-    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/web_link_checker_database?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
 

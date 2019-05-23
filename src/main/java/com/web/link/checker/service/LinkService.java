@@ -24,10 +24,7 @@ import static com.web.link.checker.utils.ValidateUtils.notNull;
 @RequiredArgsConstructor
 public class LinkService {
 
-    @NonNull
     public final LinkRepository linkRepository;
-
-    @NonNull
     public final ProjectRepository projectRepository;
 
     @Transactional(readOnly = true)

@@ -20,10 +20,7 @@ import static com.web.link.checker.utils.ValidateUtils.notNull;
 @RequiredArgsConstructor
 public class ProjectFacade {
 
-    @NonNull
     private final ProjectService projectService;
-
-    @NonNull
     private final ConversionService conversionService;
 
     public <T> Page<T> findAll(Class<T> projectionClass, Pageable pageable) {

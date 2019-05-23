@@ -21,10 +21,7 @@ import static com.web.link.checker.utils.ValidateUtils.notNull;
 @RequiredArgsConstructor
 public class LinkFacade {
 
-    @NonNull
     private final LinkService linkService;
-
-    @NonNull
     private final ConversionService conversionService;
 
     public Page<LinkProjection> findByProject(String projectUuid, Pageable pageable) {

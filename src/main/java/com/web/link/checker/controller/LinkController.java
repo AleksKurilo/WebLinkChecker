@@ -20,8 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
-import static com.web.link.checker.controller.LinkBinding.*;
-import static com.web.link.checker.controller.ProjectionBinding.*;
+import static com.web.link.checker.binding.LinkBinding.*;
+import static com.web.link.checker.binding.ProjectionBinding.*;
 import static com.web.link.checker.view.LinkView.*;
 
 
@@ -30,10 +30,7 @@ import static com.web.link.checker.view.LinkView.*;
 @RequiredArgsConstructor
 public class LinkController {
 
-    @NonNull
     private final LinkFacade linkFacade;
-
-    @NonNull
     private final ProjectFacade projectFacade;
 
     @RequestMapping(method = RequestMethod.GET)
