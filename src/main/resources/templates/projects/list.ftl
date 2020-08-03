@@ -4,9 +4,13 @@
 <#assign title = "Projects">
 <@layout.defaultLayaout title>
 
-    <ul class="breadcrumb">
-        <li class="active">Projects</a></li>
-    </ul>
+    <div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Projects</li>
+            </ol>
+        </nav>
+    </div>
 
     <h1>Projects</h1>
     <p>
@@ -25,10 +29,10 @@
             </tr>
             </thead>
             <tbody>
-                <#list projectProjectionPage.getContent() as projectProjection>
+            <#list projectProjectionPage.getContent() as projectProjection>
                 <tr>
                     <td class="text-center table-alignment"><a
-                            href="/projects/${projectProjection.uuid}/links/"> ${projectProjection.name} </a></td>
+                                href="/projects/${projectProjection.uuid}/links/"> ${projectProjection.name} </a></td>
                     <td class="text-center table-alignment">${projectProjection.created}</td>
                     <td class="text-center table-alignment">
                         <#if projectProjection.modified??>
@@ -38,14 +42,14 @@
                     </td>
                     <td class="text-center">
                         <a href="/projects/${projectProjection.uuid}/update">
-                            <i class="glyphicon glyphicon-pencil">&nbsp;</i>
+                            <span class="oi oi-wrench" aria-hidden="true">&nbsp;&nbsp;</span>
                         </a>
                         <a href="/projects/${projectProjection.uuid}/delete" class="remove-project">
-                            <i class="glyphicon glyphicon-remove"></i>
+                            <span class="oi oi-trash" aria-hidden="true"></span>
                         </a>
                     </td>
                 </tr>
-                </#list>
+            </#list>
             </tbody>
         </table>
         <#import "../layout/pagination.ftl" as pagination>
