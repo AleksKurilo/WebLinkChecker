@@ -1,0 +1,13 @@
+table {
+    table-layout: fixed;
+}
+
+.table-alignment {
+    overflow: auto;
+    /*text-align: center;*/
+    width: 20%;
+}
+
+.breadcrumb {
+    margin-top: 10px;
+}
